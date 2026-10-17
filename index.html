@@ -1,0 +1,1591 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#090a10">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Signal 2026">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icon-180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+  <title>Signal 2026 – Průvodce + Signal Spots</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <style>
+    :root {
+      --bg: #090a10;
+      --card: #131521;
+      --card-done: #0e1018;
+      --border: #26293e;
+      --purple: #8b5cf6;
+      --purple-bg: rgba(139, 92, 246, 0.18);
+      --green: #10b981;
+      --green-bg: rgba(16, 185, 129, 0.18);
+      --amber: #f59e0b;
+      --amber-bg: rgba(245, 158, 11, 0.18);
+      --red: #ef4444;
+      --red-bg: rgba(239, 68, 68, 0.18);
+      --sky: #38bdf8;
+      --sky-bg: rgba(56, 189, 248, 0.16);
+      --pink: #ec4899;
+      --pink-bg: rgba(236, 72, 153, 0.18);
+      --text: #f3f4f6;
+      --muted: #9ca3af;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.45;
+      padding-bottom: 92px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .container { max-width: 600px; margin: 0 auto; padding: 0 14px; }
+    header {
+      position: sticky; top: 0; z-index: 30;
+      background: rgba(9, 10, 16, 0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 0;
+    }
+    .row-between { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .row-wrap { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .scroll-row {
+      display: flex; gap: 6px; overflow-x: auto; padding-bottom: 2px;
+      scrollbar-width: none; -ms-overflow-style: none;
+    }
+    .scroll-row::-webkit-scrollbar { display: none; }
+
+    h1 { font-size: 18px; font-weight: 800; letter-spacing: -0.02em; }
+    h2 { font-size: 17px; font-weight: 800; color: #fff; margin-top: 8px; }
+    h3 { font-size: 15.5px; font-weight: 800; color: #fff; }
+
+    .btn {
+      border: 1px solid var(--border);
+      background: #1c1f30;
+      color: var(--text);
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      text-decoration: none;
+      display: inline-flex; align-items: center; justify-content: center; gap: 5px;
+    }
+    .btn-active { background: var(--purple); border-color: #a78bfa; color: #fff; }
+    .btn-green { background: var(--green-bg); border-color: var(--green); color: #6ee7b7; }
+    .btn-sky { background: var(--sky-bg); border-color: var(--sky); color: #7dd3fc; }
+    .btn-amber { background: var(--amber-bg); border-color: var(--amber); color: #fcd34d; }
+    .btn-pink { background: var(--pink-bg); border-color: var(--pink); color: #f9a8d4; }
+
+    .badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 3px 8px; border-radius: 6px;
+      font-size: 12px; font-weight: 700;
+    }
+    .badge-paid { background: var(--purple); color: #fff; }
+    .badge-free { background: var(--green); color: #052e16; }
+    .badge-map { background: #26293e; color: #fff; border: 1px solid #4b5563; }
+    .badge-mapping { background: var(--amber-bg); color: #fcd34d; border: 1px solid var(--amber); }
+    .badge-spot { background: var(--pink-bg); color: #f9a8d4; border: 1px solid var(--pink); }
+
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(139, 92, 246, 0.35);
+      border-radius: 16px;
+      padding: 15px;
+      margin-bottom: 10px;
+    }
+    .card-done {
+      background: var(--card-done);
+      border: 1px solid var(--border);
+      opacity: 0.62;
+    }
+    .card-spot {
+      background: var(--card);
+      border: 1px solid rgba(236, 72, 153, 0.4);
+      border-radius: 16px;
+      padding: 15px;
+      margin-bottom: 10px;
+    }
+    .card-wc {
+      background: var(--card);
+      border: 1px solid rgba(56, 189, 248, 0.45);
+      border-radius: 16px;
+      padding: 15px;
+      margin-bottom: 10px;
+    }
+
+    .deal-box {
+      margin-top: 8px; padding: 8px 11px; border-radius: 10px;
+      background: rgba(236, 72, 153, 0.14);
+      border: 1px solid rgba(236, 72, 153, 0.4);
+      color: #fbcfe8; font-size: 13.5px; font-weight: 700;
+    }
+
+    .crowd-bar {
+      margin-top: 10px; padding: 8px 11px; border-radius: 10px;
+      font-size: 13px; font-weight: 600;
+      display: flex; align-items: center; justify-content: space-between; gap: 8px;
+    }
+    .crowd-low { background: var(--green-bg); border: 1px solid rgba(16,185,129,0.4); color: #a7f3d0; }
+    .crowd-med { background: var(--amber-bg); border: 1px solid rgba(245,158,11,0.4); color: #fde68a; }
+    .crowd-high { background: var(--red-bg); border: 1px solid rgba(239,68,68,0.45); color: #fecaca; }
+
+    .meta-box {
+      margin-top: 11px; padding-top: 10px;
+      border-top: 1px solid var(--border);
+      font-size: 13.5px; color: #d1d5db;
+      display: flex; flex-direction: column; gap: 5px;
+    }
+    .connector {
+      text-align: center; padding: 6px 10px; margin: -2px 0 8px 0;
+      font-size: 13px; color: var(--muted); font-weight: 600;
+    }
+    .connector-metro {
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px dashed var(--amber);
+      color: #fde68a; border-radius: 12px;
+      padding: 10px; margin: 8px 0 14px 0; text-align: center; font-size: 13.5px;
+    }
+
+    #map { height: 56vh; width: 100%; border-radius: 14px; border: 1px solid var(--purple); z-index: 10; }
+    .custom-marker {
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 999px; font-weight: 800; font-size: 12px;
+      color: #fff; border: 2px solid #fff; box-shadow: 0 0 8px rgba(0,0,0,0.9);
+    }
+    .spot-marker {
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 8px; font-size: 13px; background: #1f122b; color: #fff;
+      border: 2px solid var(--pink); box-shadow: 0 0 8px rgba(0,0,0,0.9);
+    }
+    .wc-marker {
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 8px; font-size: 13px; background: #0f172a; color: #fff;
+      border: 2px solid var(--sky); box-shadow: 0 0 8px rgba(0,0,0,0.9);
+    }
+
+    nav.bottom-nav {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 40;
+      padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px)) !important;
+      background: rgba(12, 13, 20, 0.97);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid var(--border);
+      padding: 6px 8px 10px 8px;
+    }
+    .nav-grid {
+      max-width: 600px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px;
+    }
+    .nav-btn {
+      background: transparent; border: none; color: var(--muted);
+      padding: 6px 2px; border-radius: 10px; cursor: pointer;
+      display: flex; flex-direction: column; align-items: center; gap: 2px;
+      font-size: 11.5px; font-weight: 600;
+    }
+    .nav-btn.active {
+      color: #c4b5fd; background: rgba(139, 92, 246, 0.18); font-weight: 800;
+    }
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+
+  <!-- HORNÍ PANEL -->
+  <header>
+    <div class="container">
+      <div class="row-between">
+        <div>
+          <div class="row-wrap">
+            <span class="badge" style="background:var(--purple-bg);color:#ddd6fe;border:1px solid var(--purple);">15.–18. 10. 2026</span>
+            <span id="live-clock" style="font-family:monospace;font-size:13px;color:#34d399;font-weight:700;">19:00:00</span>
+          </div>
+          <h1>SIGNAL <span style="color:#a78bfa;">PRŮVODCE</span></h1>
+        </div>
+
+        <div style="text-align:right;background:#131521;padding:6px 11px;border-radius:12px;border:1px solid var(--border);">
+          <div id="remaining-stats" style="font-size:13.5px;font-weight:800;color:#fbbf24;">Zbývá ~3 h</div>
+          <div id="eta-finish" style="font-size:12px;color:var(--muted);">Konec: ~22:00</div>
+        </div>
+      </div>
+
+      <!-- 1. ŘÁDEK: VÝBĚR DNE / TRASY -->
+      <div class="scroll-row" style="margin-top:8px;">
+        <button onclick="setRouteFilter('centrum')" id="btn-centrum" class="btn btn-active" style="flex:1;">
+          1. Centrum (10 + 22 Spots)
+        </button>
+        <button onclick="setRouteFilter('dejvice')" id="btn-dejvice" class="btn" style="flex:1;">
+          2. Dejvice (8 + 10 Spots)
+        </button>
+        <button onclick="setRouteFilter('all')" id="btn-all" class="btn">
+          Vše
+        </button>
+      </div>
+
+      <!-- 2. ŘÁDEK: FILTRY -->
+      <div class="scroll-row" style="margin-top:6px;">
+        <button onclick="cycleAccessFilter()" id="btn-access" class="btn" style="font-size:12px;padding:6px 10px;">
+          🎟️ Vstup: Vše (Free + Inside)
+        </button>
+        <button onclick="toggleSkipFlux()" id="btn-flux" class="btn btn-green" style="font-size:12px;padding:6px 10px;">
+          👶 Vynechat 12+ (FLUX)
+        </button>
+        <button onclick="cycleCrowdSim()" id="btn-crowd-sim" class="btn btn-amber" style="font-size:12px;padding:6px 10px;">
+          👥 Odhad front: Dle hodin
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HLAVNÍ OBSAH -->
+  <main class="container" style="padding-top:12px;">
+
+    <!-- OPTIMALIZÁTOR TRASY -->
+    <div id="optimizer-box" class="card" style="background:linear-gradient(145deg,#131521,#1e1633);margin-bottom:14px;">
+      <div class="row-between" style="margin-bottom:8px;">
+        <span style="font-size:13.5px;font-weight:800;color:#c4b5fd;">⚡ Řazení a přepočet trasy:</span>
+        <button onclick="resetProgress()" style="background:none;border:none;color:var(--muted);text-decoration:underline;font-size:12.5px;cursor:pointer;">
+          Resetovat vše
+        </button>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;">
+        <button onclick="setSortMode('smart')" id="sort-smart" class="btn btn-active" style="flex-direction:column;padding:8px 4px;">
+          <span>🔥 Mimo špičku</span>
+          <span style="font-size:10.5px;font-weight:400;opacity:0.85;">Venkovní → Vnitřní</span>
+        </button>
+        <button onclick="setSortMode('geo')" id="sort-geo" class="btn" style="flex-direction:column;padding:8px 4px;">
+          <span>🚶 Po směru</span>
+          <span style="font-size:10.5px;font-weight:400;opacity:0.85;">Metro → Metro</span>
+        </button>
+        <button onclick="setSortMode('gps')" id="sort-gps" class="btn" style="flex-direction:column;padding:8px 4px;">
+          <span>📍 Dle GPS</span>
+          <span style="font-size:10.5px;font-weight:400;opacity:0.85;">Od nejbližší</span>
+        </button>
+      </div>
+
+      <div id="route-explanation" style="font-size:13px;color:#e5e7eb;margin-top:9px;padding-top:8px;border-top:1px solid var(--border);"></div>
+    </div>
+
+    <!-- ZÁLOŽKA 1: SEZNAM INSTALACÍ -->
+    <section id="tab-list">
+      <div id="installations-container"></div>
+      <div id="skipped-box" class="hidden card" style="border-color:var(--border);margin-top:14px;"></div>
+    </section>
+
+    <!-- ZÁLOŽKA 2: MAPA -->
+    <section id="tab-map" class="hidden">
+      <div class="row-between" style="margin-bottom:8px;font-size:12px;color:var(--muted);flex-wrap:wrap;">
+        <div class="row-wrap">
+          <span>🟣 Inside</span>
+          <span>🟢 Free</span>
+          <span>🟠 Mapping</span>
+          <span>🩷 Signal Spot</span>
+          <span>🟦 WC</span>
+        </div>
+        <div class="row-wrap">
+          <button onclick="toggleMapPois()" id="btn-map-pois" class="btn btn-pink" style="padding:5px 9px;font-size:12px;">
+            🍹 Spots & WC: ZAP
+          </button>
+          <button onclick="fitMapToCurrentRoute()" class="btn" style="padding:5px 9px;font-size:12px;">
+            🔍 Celá trasa
+          </button>
+          <button onclick="locateUserOnMap()" class="btn btn-active" style="padding:5px 9px;font-size:12px;">
+            📍 Moje GPS
+          </button>
+        </div>
+      </div>
+      <div id="map"></div>
+      <div id="map-selected-card" style="margin-top:10px;"></div>
+    </section>
+
+    <!-- ZÁLOŽKA 3: SIGNAL SPOTS & WC -->
+    <section id="tab-food" class="hidden">
+      <div class="card-spot" style="margin-bottom:10px;padding:13px;">
+        <div class="row-between">
+          <strong style="color:#f9a8d4;font-size:15px;">✨ Oficiální Signal Spots (31 podniků) + WC</strong>
+          <span class="badge badge-spot">Heslo: Signal Special</span>
+        </div>
+        <p style="font-size:13.5px;color:#e5e7eb;margin-top:6px;">
+          Ukažte u obsluhy svou <strong>4denní vstupenku Signal INSIDE</strong> a řekněte si o <strong>„Signal Special“</strong>. Většina podniků má během festivalu (15.–18. 10.) prodlouženou otevírací dobu – aktuální časy ověříte jedním klikem na <em>Google Maps</em>.
+        </p>
+      </div>
+
+      <!-- Filtry kategorií Signal Spots -->
+      <div class="scroll-row" style="margin-bottom:12px;">
+        <button onclick="setFoodFilter('all')" id="fbtn-all" class="btn btn-active">Vše</button>
+        <button onclick="setFoodFilter('warm')" id="fbtn-warm" class="btn">☕ Na zahřátí</button>
+        <button onclick="setFoodFilter('food')" id="fbtn-food" class="btn">🍔 Jídlo</button>
+        <button onclick="setFoodFilter('drink')" id="fbtn-drink" class="btn">🍺 Drink & Pivo</button>
+        <button onclick="setFoodFilter('wc')" id="fbtn-wc" class="btn">🚻 Veřejná WC & OC</button>
+      </div>
+
+      <div id="food-container"></div>
+    </section>
+
+    <!-- ZÁLOŽKA 4: SMYČKY & ODHAD FRONT -->
+    <section id="tab-loops" class="hidden">
+      <div class="card" style="margin-bottom:10px;padding:12px;font-size:13px;color:#d1d5db;">
+        <strong>ℹ️ Odkud pocházejí časy:</strong> Délky představení (<em>Voda</em> 10 min / 3× za hodinu, <em>Chemická show</em> 15 min v :00 a :30, <em>EFORCE</em> 8 min v :15 a :45, <em>Zvukový robot</em> od 14:00, <em>Videomappingy</em> 8 min) jsou <strong>oficiální data z webu Signal Festivalu</strong>. Ukazatel front je <strong>orientační model</strong> podle kapacity sálu a špičky (19:15–20:45).
+      </div>
+      <div id="loops-container"></div>
+    </section>
+
+    <!-- ZÁLOŽKA 5: DOPRAVA ZE ZLIČÍNA -->
+    <section id="tab-mhd" class="hidden">
+      <div class="card">
+        <div class="row-between" style="margin-bottom:6px;">
+          <span class="badge" style="background:var(--amber-bg);color:#fcd34d;border:1px solid var(--amber);">Metro B (Bez přestupu)</span>
+          <span style="font-size:13px;color:var(--muted);">Jízda: ~24 min</span>
+        </div>
+        <h3>1. Večer: Zličín (P+R) ↔ Trasa Centrum</h3>
+        <ul style="margin-top:8px;padding-left:18px;font-size:14px;color:#e5e7eb;display:flex;flex-direction:column;gap:8px;">
+          <li><strong>Příjezd:</strong> Ze Zličína jeďte Metrem B přímo na <strong>Náměstí Republiky</strong>. Dětská instalace <strong>#15 Zvukový robot</strong> v Kampusu Hybernská je otevřená už od <strong>14:00</strong> (a přímo v Kampusu máte Signal Spot <em>Kavárna Kampus Hybernská</em> se slevou 10 % na svařák).</li>
+          <li><strong>Signal Spots po cestě s dětmi:</strong> U Staroměstského náměstí <em>Skautský institut</em> (levandulová limonáda -10 %), u Národní třídy <em>BASAK HOTDOG</em> (corndog -15 %) a <em>TAKUMI Quadrio</em> (ramen -15 %), u Jungmannova nám. <em>Hortus Angelicus</em> a u Savarinu <em>Burger Service</em> (-10 % na vše).</li>
+          <li><strong>Návrat na Zličín:</strong> Trasa končí u stanic <strong>Národní třída / Můstek (Metro B)</strong>, odkud jedete 21 minut přímo k autu na Zličín.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="row-between" style="margin-bottom:6px;">
+          <span class="badge" style="background:var(--green-bg);color:#6ee7b7;border:1px solid var(--green);">Metro B + Metro A</span>
+          <span style="font-size:13px;color:var(--muted);">Jízda: ~27 min</span>
+        </div>
+        <h3>2. Večer: Zličín (P+R) ↔ Trasa Dejvice</h3>
+        <ul style="margin-top:8px;padding-left:18px;font-size:14px;color:#e5e7eb;display:flex;flex-direction:column;gap:8px;">
+          <li><strong>Příjezd:</strong> Ze Zličína Metrem B na <strong>Můstek</strong>, přestup na Metro A na stanici <strong>Dejvická</strong>.</li>
+          <li><strong>Signal Spots v Dejvicích:</strong> Přímo v budově PPF Gate u instalace #7 je <em>Cafe Sofa</em> (speciální festivalové Mochi pro děti se slevou 10 %). V budově NTK u #4 je <em>Cafe Prostoru_</em> (-15 % na punč), v Technické ulici <em>Hlavní Gastro zóna</em> a pro rodiče <em>Automat Matuška</em> s 50% slevou na čepované pivo!</li>
+          <li><strong>Návrat z Troji/Bubenče:</strong> Od instalace u plavebního kanálu Troja (#1) dojděte na tramvaj <strong>Nádraží Podbaba</strong> (linky 8 a 18 vás za 4 minuty dovezou zpět na metro Dejvická).</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- SPODNÍ NAVIGACE -->
+  <nav class="bottom-nav">
+    <div class="nav-grid">
+      <button onclick="switchTab('list')" id="nav-list" class="nav-btn active">
+        <span style="font-size:17px;">📋</span><span>Trasa</span>
+      </button>
+      <button onclick="switchTab('map')" id="nav-map" class="nav-btn">
+        <span style="font-size:17px;">🗺️</span><span>Mapa</span>
+      </button>
+      <button onclick="switchTab('food')" id="nav-food" class="nav-btn">
+        <span style="font-size:17px;">🍔</span><span>Spots & WC</span>
+      </button>
+      <button onclick="switchTab('loops')" id="nav-loops" class="nav-btn">
+        <span style="font-size:17px;">⏱️</span><span>Intervaly</span>
+      </button>
+      <button onclick="switchTab('mhd')" id="nav-mhd" class="nav-btn">
+        <span style="font-size:17px;">🚇</span><span>Zličín MHD</span>
+      </button>
+    </div>
+  </nav>
+
+  <script>
+    // ================= 1. OVĚŘENÁ DATABÁZE INSTALACÍ (signalfestival.com) =================
+    const INSTALLATIONS = [
+      // --- TRASA CENTRUM ---
+      {
+        id: "15", route: "centrum", geoOrder: 1, smartOrder: 1,
+        title: "Zvukový robot", artist: "Ján Šicko (SK)",
+        location: "Kampus Hybernská", address: "Hybernská 998/4, Praha 1",
+        lat: 50.0869, lng: 14.4316, isPaid: true, category: "INSIDE",
+        age12Plus: false, warning: null, crowdProfile: "medium",
+        hours: "14:00–24:00 (Otevřeno už od 14:00, live session v 16:30 a 18:30)",
+        visitMinutes: 20,
+        mhd: "Metro B – Náměstí Republiky (3 min pěšky)",
+        nearestRefreshment: "✨ Signal Spot přímo v areálu: Kavárna Kampus Hybernská (-10 % svařák) + WC",
+        loopType: "continuous",
+        loopText: "Běží nepřetržitě od 14:00 (live session 16:30 a 18:30)",
+        desc: "Interaktivní instalace pro děti i dospělé. Otevírá už ve 14:00 – ideální stihnout hned po příjezdu před 19:00."
+      },
+      {
+        id: "16", route: "centrum", geoOrder: 2, smartOrder: 2,
+        title: "Alcove LTD", artist: "ENCOR Studio (CH)",
+        location: "Náměstí Republiky (u Palladia)", address: "Náměstí Republiky, Praha 1",
+        lat: 50.0880, lng: 14.4290, isPaid: false, category: "FREE",
+        age12Plus: false, warning: null, crowdProfile: "low",
+        hours: "19:00–24:00", visitMinutes: 12,
+        mhd: "Metro B – Náměstí Republiky",
+        nearestRefreshment: "✨ Signal Spots poblíž: PULT V Celnici (-14 % ležáky), TAKUMI Senovážné (-15 % ramen) + WC Palladium",
+        loopType: "continuous",
+        loopText: "Objektová instalace je spuštěna nepřetržitě",
+        desc: "Zrcadlový lodní kontejner měnící se pomocí světla a zvuku v optickou iluzi prostoru."
+      },
+      {
+        id: "10", route: "centrum", geoOrder: 5, smartOrder: 3,
+        title: "Život v pravdě", artist: "Svitlana Reinish (UA)",
+        location: "Věž Staroměstské radnice", address: "Staroměstské náměstí 1/3, Praha 1",
+        lat: 50.0870, lng: 14.4207, isPaid: false, category: "MAPPING",
+        age12Plus: false, warning: null, crowdProfile: "low",
+        hours: "19:00–24:00", visitMinutes: 15,
+        mhd: "Metro A – Staroměstská / Metro B – Můstek",
+        nearestRefreshment: "✨ Signal Spot vedle radnice: Skautský institut (-10 % svařák a levandulová limonáda) + Veřejné WC v radnici",
+        loopType: "mapping8",
+        loopText: "Projekce trvá 8 minut (opakuje se ve smyčce)",
+        desc: "Velkoformátový videomapping přes dvě stěny věže Staroměstské radnice inspirovaný myšlenkami Václava Havla."
+      },
+      {
+        id: "MB", route: "centrum", geoOrder: 6, smartOrder: 4,
+        title: "Letem světlem by Mercedes-Benz", artist: "Maxim Velčovský (CZ)",
+        location: "Clam-Gallasův palác (nádvoří)", address: "Husova 158/20, Praha 1",
+        lat: 50.0860, lng: 14.4177, isPaid: false, category: "FREE",
+        age12Plus: false, warning: null, crowdProfile: "low",
+        hours: "19:00–24:00", visitMinutes: 12,
+        mhd: "Metro A – Staroměstská (4 min)",
+        nearestRefreshment: "✨ Signal Spots za rohem: KAFE DAMU (-10 % horký mošt/svařák) a AUTENTISTA (-15 % menu)",
+        loopType: "continuous",
+        loopText: "Běží nepřetržitě",
+        desc: "Laserové trajektorie a světelná instalace Maxima Velčovského na nádvoří Clam-Gallasova paláce."
+      },
+      {
+        id: "8", route: "centrum", geoOrder: 3, smartOrder: 5,
+        title: "Dreaming Infinite", artist: "Timo Lejeune (NL)",
+        location: "Kostel sv. Šimona a Judy", address: "Dušní ulice, Praha 1",
+        lat: 50.0913, lng: 14.4206, isPaid: true, category: "INSIDE",
+        age12Plus: false,
+        warning: "Intenzivní světelné efekty (nevhodné pro osoby s epilepsií). Bez věkového omezení.",
+        crowdProfile: "medium", hours: "19:00–24:00", visitMinutes: 18,
+        mhd: "Metro A – Staroměstská (6 min)",
+        nearestRefreshment: "✨ Signal Spots u kostela: Anežka (-20 % horký mošt, filtr, svařák), Dlouhá 22 (-20 % menu), Bugsy's Bar (-20 % jídlo)",
+        loopType: "continuous",
+        loopText: "Spuštěno nepřetržitě (doporučená doba zážitku 15 min)",
+        desc: "Monumentální světelný objekt v odsvěceném kostele zkoumající svět za 10 000 let."
+      },
+      {
+        id: "9", route: "centrum", geoOrder: 4, smartOrder: 6,
+        title: "MIMIC.2", artist: "Media.tribe (INT)",
+        location: "Právnická fakulta UK („bazén“)", address: "nám. Curieových 7, Praha 1",
+        lat: 50.0910, lng: 14.4168, isPaid: true, category: "INSIDE",
+        age12Plus: false,
+        warning: "Lasery a intenzivní světlo (nevhodné pro epileptiky). Děti vstup povolen.",
+        crowdProfile: "medium", hours: "19:00–24:00", visitMinutes: 15,
+        mhd: "Metro A – Staroměstská (5 min)",
+        nearestRefreshment: "✨ Signal Spots po cestě: U Parlamentu (-12 % polévky a pivo) a di Tutti Kaprova (-10 % nealko/vína)",
+        loopType: "loop4",
+        loopText: "4minutová audiovizuální smyčka (rychlá obrátka)",
+        desc: "Laserové projekce a LED obrazovky ve dvoraně Právnické fakulty přezdívané „bazén“."
+      },
+      {
+        id: "11", route: "centrum", geoOrder: 7, smartOrder: 7,
+        title: "X Kinetic Techno Sculpture", artist: "G. Kitzinger, A. L. Nagy, R. Mákó (HU/CH)",
+        location: "Zrcadlová kaple Klementina", address: "Klementinum 190/5, Praha 1",
+        lat: 50.0863, lng: 14.4162, isPaid: true, category: "INSIDE",
+        age12Plus: false, warning: null, crowdProfile: "high",
+        hours: "19:00–24:00", visitMinutes: 18,
+        mhd: "Metro A – Staroměstská (3 min)",
+        nearestRefreshment: "✨ Signal Spots u Klementina: KAFE DAMU v Karlově (-10 % mošt/svařák) a U Parlamentu (-12 % polévky)",
+        loopType: "continuous",
+        loopText: "Běží nepřetržitě",
+        desc: "Kinetická techno socha v barokní Zrcadlové kapli Klementina. Menší kapacita kaple – kratší čekání po 20:30."
+      },
+      {
+        id: "12", route: "centrum", geoOrder: 8, smartOrder: 8,
+        title: "Na Měsíc", artist: "Laurie Anderson (US) & Hsin-Chien Huang (TW)",
+        location: "Divadlo X10", address: "Charvátova 10/39, Praha 1",
+        lat: 50.0822, lng: 14.4208, isPaid: true, category: "INSIDE",
+        age12Plus: false,
+        warning: "Intenzivní světelné efekty (nevhodné pro epileptiky). Bez věkového omezení.",
+        crowdProfile: "medium", hours: "19:00–24:00", visitMinutes: 20,
+        mhd: "Metro B – Národní třída (2 min)",
+        nearestRefreshment: "✨ Signal Spots hned u vchodu: TAKUMI Quadrio (-15 % Tokyo Paitan), BASAK HOTDOG (-15 % corndog), Café Jericho",
+        loopType: "continuous",
+        loopText: "Interaktivní instalace je spuštěna nepřetržitě",
+        desc: "Pohlcující 3D vesmírná krajina v podzemí Divadla X10, do které doslova vstoupíte."
+      },
+      {
+        id: "13", route: "centrum", geoOrder: 9, smartOrder: 9,
+        title: "Za co neseš zodpovědnost ty", artist: "Karolína Schulzová (CZ)",
+        location: "Nádvoří kostela Panny Marie Sněžné", address: "Jungmannovo náměstí 753/18, Praha 1",
+        lat: 50.0828, lng: 14.4240, isPaid: false, category: "FREE",
+        age12Plus: false, warning: null, crowdProfile: "low",
+        hours: "19:00–24:00", visitMinutes: 12,
+        mhd: "Metro A/B – Můstek (1 min)",
+        nearestRefreshment: "✨ Signal Spots přímo u kostela: Hortus Angelicus Café ve Františkánské zahradě (-15 % svařák) a Bar Zvon",
+        loopType: "loop6",
+        loopText: "Objektová instalace se opakuje ve smyčce a trvá 6 minut",
+        desc: "Venkovní světelné panely s výroky odkazujícími k pasivitě a odkazu Václava Havla u Jungmannova náměstí."
+      },
+      {
+        id: "14", route: "centrum", geoOrder: 10, smartOrder: 10,
+        title: "FLUX", artist: "Kurt Hentschläger (AT)",
+        location: "Jízdárna Savarin", address: "Na Příkopě 852, Praha 1",
+        lat: 50.0837, lng: 14.4255, isPaid: true, category: "INSIDE",
+        age12Plus: true,
+        warning: "JEDINÁ INSTALACE OD 12 LET! Naprostá tma, silné záblesky a limitovaná kapacita.",
+        crowdProfile: "high", hours: "19:00–24:00", visitMinutes: 20,
+        mhd: "Metro A/B – Můstek (2 min – přímé metro B na Zličín)",
+        nearestRefreshment: "✨ Signal Spot u Savarinu: Burger Service (-10 % na celý sortiment) + BK/KFC Můstek do 24:00",
+        loopType: "continuous",
+        loopText: "Instalace je spuštěna nepřetržitě (limitovaná kapacita)",
+        desc: "Evropská premiéra v Jízdárně Savarin v naprosté tmě se silnými záblesky. Vstup povolen až od 12 let."
+      },
+
+      // --- TRASA DEJVICE ---
+      {
+        id: "7", route: "dejvice", geoOrder: 11, smartOrder: 12,
+        title: "Black Mechanical Planet", artist: "Jan Kaláb (CZ)",
+        location: "PPF Gate – Evropská", address: "Evropská 2690/17, Praha 6",
+        lat: 50.1003, lng: 14.3912, isPaid: false, category: "FREE",
+        age12Plus: false, warning: null, crowdProfile: "low",
+        hours: "19:00–24:00", visitMinutes: 12,
+        mhd: "Metro A – Dejvická (výstup Evropská, 2 min)",
+        nearestRefreshment: "✨ Signal Spot přímo u instalace: Cafe Sofa (-10 % na speciální festivalové MOCHI) + Cafe Šesťák (-10 % vše)",
+        loopType: "continuous",
+        loopText: "Běží nepřetržitě",
+        desc: "Monumentální socha Jana Kalába ožívající speciální projekcí Jana Hladila a zvukem Ondřeje Skaly."
+      },
+      {
+        id: "6", route: "dejvice", geoOrder: 12, smartOrder: 11,
+        title: "Residual Signal: pocta Woodymu Vašulkovi", artist: "MUCHA Studio (CZ)",
+        location: "Masarykova kolej ČVUT", address: "Thákurova 1, Praha 6",
+        lat: 50.1011, lng: 14.3935, isPaid: true, category: "INSIDE",
+        age12Plus: false,
+        warning: "Poznámka z webu: V uměleckém díle se objevují záběry nahého lidského těla a intenzivní světlo.",
+        crowdProfile: "medium", hours: "19:00–24:00", visitMinutes: 18,
+        mhd: "Metro A – Dejvická (3 min)",
+        nearestRefreshment: "✨ Signal Spots za rohem: Cafe Šesťák (-10 % na vše) a Cafe Sofa (-10 % Mochi) + WC v metru Dejvická",
+        loopType: "continuous",
+        loopText: "Interaktivní instalace je spuštěna nepřetržitě",
+        desc: "Interaktivní pocta průkopníkům videoartu v Masarykově koleji."
+      },
+      {
+        id: "5", route: "dejvice", geoOrder: 13, smartOrder: 13,
+        title: "Missing Interval", artist: "Felix Frank (DE)",
+        location: "Arcibiskupský seminář", address: "Thákurova 676/3, Praha 6",
+        lat: 50.1023, lng: 14.3926, isPaid: false, category: "MAPPING",
+        age12Plus: false, warning: null, crowdProfile: "low",
+        hours: "19:00–24:00", visitMinutes: 15,
+        mhd: "Metro A – Dejvická (4 min)",
+        nearestRefreshment: "🌭 100 m v Technické ulici: Hlavní Signal Gastro zóna + Signal Spot Cafe Prostoru_ v NTK (-15 % punč)",
+        loopType: "mapping8",
+        loopText: "Projekce trvá 8 minut (opakuje se ve smyčce)",
+        desc: "Hlavní videomapping dejvické trasy na průčelí s kupolí Arcibiskupského semináře."
+      },
+      {
+        id: "SV", route: "dejvice", geoOrder: 14, smartOrder: 14,
+        title: "Student Visions (4 instalace ČVUT & VŠCHT)", artist: "FaceIt, Impuls, EFORCE formule, Chemická show",
+        location: "Technická ulice (Kampus Dejvice)", address: "Technická 2–6, Praha 6",
+        lat: 50.1032, lng: 14.3915, isPaid: false, category: "FREE",
+        age12Plus: false, warning: null, crowdProfile: "low",
+        hours: "19:00–24:00", visitMinutes: 30,
+        mhd: "Metro A – Dejvická / Tram Vítězné náměstí",
+        nearestRefreshment: "✨ Přímo na místě: Hlavní Gastro zóna (Technická 4) + Signal Spot Cafe Prostoru_ v budově NTK (-15 % punč + WC)",
+        loopType: "student_combined",
+        loopText: "Chemická show (15 min) vždy v :00 a :30 | EFORCE (8 min) vždy v :15 a :45 | FaceIt nepřetržitě",
+        desc: "4 venkovní studentské instalace v Technické ulici. Živá chemická show VŠCHT (:00 a :30) a projekce formule EFORCE (:15 a :45) na sebe plynule navazují!"
+      },
+      {
+        id: "4", route: "dejvice", geoOrder: 15, smartOrder: 15,
+        title: "Brána imaginace", artist: "Milan Cais (CZ)",
+        location: "Park Flemingovo náměstí", address: "Flemingovo náměstí, Praha 6",
+        lat: 50.1045, lng: 14.3942, isPaid: false, category: "FREE",
+        age12Plus: false, warning: null, crowdProfile: "low",
+        hours: "19:00–24:00", visitMinutes: 12,
+        mhd: "Metro A – Dejvická (6 min)",
+        nearestRefreshment: "✨ Signal Spots: Cafe Prostoru_ v NTK (-15 % vinný punč), Diskoteka Pizza a Rakin Seafood Bar",
+        loopType: "loop8",
+        loopText: "Imerzivní projekce se opakuje ve smyčce a trvá 8 minut",
+        desc: "Světelný portál Milana Caise v parku na Flemingově náměstí."
+      },
+      {
+        id: "3", route: "dejvice", geoOrder: 16, smartOrder: 16,
+        title: "Scattered Light", artist: "Jim Campbell (US)",
+        location: "Park generála Lázaro Cárdenase", address: "nám. Interbrigády, Bubeneč",
+        lat: 50.1048, lng: 14.4038, isPaid: false, category: "FREE",
+        age12Plus: false, warning: null, crowdProfile: "low",
+        hours: "19:00–24:00", visitMinutes: 15,
+        mhd: "Metro A – Dejvická (10 min parkem)",
+        nearestRefreshment: "✨ Signal Spots u parku: casa borzoi (-10 % vše), Pivovar Bubeneč (-15 % piva), Station 6 a Automat Matuška (-50 % pivo!)",
+        loopType: "continuous",
+        loopText: "Světelná instalace je spuštěna nepřetržitě",
+        desc: "Monumentální souhvězdí více než 1 500 zavěšených žárovek v parku skládající 3D pohyblivý obraz."
+      },
+      {
+        id: "2", route: "dejvice", geoOrder: 17, smartOrder: 17,
+        title: "Voda", artist: "Laterna magika (CZ)",
+        location: "Stará čistírna odpadních vod Bubeneč", address: "Papírenská 199/6, Praha 6",
+        lat: 50.1101, lng: 14.4021, isPaid: true, category: "INSIDE",
+        age12Plus: false, warning: null, crowdProfile: "high",
+        hours: "19:00–24:00", visitMinutes: 25,
+        mhd: "Tram 8, 18 – Nádraží Podbaba (8 min)",
+        nearestRefreshment: "✨ Signal Spot po cestě z parku: Station 6 (bývalé nádraží Bubeneč) + v areálu čistírny Café Továrna a WC",
+        loopType: "water20",
+        loopText: "Performance trvá 10 min a opakuje se 3× za hodinu (~každých 20 min)",
+        desc: "Živá taneční a vizuální performance Laterny magiky v historické Staré čistírně odpadních vod."
+      },
+      {
+        id: "1", route: "dejvice", geoOrder: 18, smartOrder: 18,
+        title: "Multimmersion_Upside Down", artist: "Aka Chang (TW)",
+        location: "Plavební kanál Troja–Podbaba", address: "Vodácká ul., Praha-Troja",
+        lat: 50.1155, lng: 14.4125, isPaid: false, category: "FREE",
+        age12Plus: false, warning: null, crowdProfile: "low",
+        hours: "19:00–24:00", visitMinutes: 15,
+        mhd: "Tram 8, 18 – Nádraží Podbaba (4 min jízdy na metro Dejvická)",
+        nearestRefreshment: "🍵 U kanálu: Bistro Loděnice Troja (případně po návratu tramvají na Dejvickou Signal Spots u Kulaťáku)",
+        loopType: "loop8",
+        loopText: "Performance laserové instalace se opakuje ve smyčce a trvá 8 minut",
+        desc: "Desetimetrový laser vykreslující světelné struktury přímo nad hladinou a peřejemi plavebního kanálu."
+      }
+    ];
+
+    // ================= 2. KOMPLETNÍ DATABÁZE 31 SIGNAL SPOTS + ZÁCHRANNÝCH WC =================
+    // cat: 'warm' (Na zahřátí), 'food' (Jídlo), 'drink' (Drink & Pivo), 'wc' (Veřejná WC / OC)
+    const SPOTS_AND_WC = [
+      // ==================== TRASA CENTRUM: NA ZAHŘÁTÍ (9) ====================
+      {
+        id: "sp-hybernska", isOfficialSpot: true, route: "centrum", cat: "warm", icon: "☕",
+        name: "Kavárna Kampus Hybernská",
+        near: "Přímo u #15 (Zvukový robot)",
+        deal: "Signal Special: Svařák s 10% slevou",
+        address: "Hybernská 998/4, Praha 1", lat: 50.0868, lng: 14.4318,
+        note: "Přímo ve dvoře Kampusu Hybernská u dětské instalace #15. Teplé zázemí a toalety v areálu."
+      },
+      {
+        id: "sp-anezka", isOfficialSpot: true, route: "centrum", cat: "warm", icon: "☕",
+        name: "Anežka (Anežský klášter)",
+        near: "U #8 (Kostel sv. Šimona a Judy – 2 min)",
+        deal: "Signal Special: 20 % sleva na svařené víno, filtr a horký mošt",
+        address: "U Milosrdných 17, Praha 1", lat: 50.0916, lng: 14.4242,
+        note: "Skvělá zastávka s dětmi v zahradách Anežského kláštera kousek od instalace #8 (horký mošt o 20 % levněji)."
+      },
+      {
+        id: "sp-skautsky", isOfficialSpot: true, route: "centrum", cat: "warm", icon: "☕",
+        name: "Skautský institut",
+        near: "Hned u #10 (Staroměstská radnice – 1 min)",
+        deal: "Signal Special: 10 % sleva na svařené víno a levandulovou limonádu",
+        address: "Staroměstské náměstí 4/1, Praha 1", lat: 50.0865, lng: 14.4200,
+        note: "Klidné útočiště ve dvoře hned vedle věže Staroměstské radnice (#10), kam se schováte před davem z videomappingu."
+      },
+      {
+        id: "sp-kafedamu", isOfficialSpot: true, route: "centrum", cat: "warm", icon: "☕",
+        name: "KAFE DAMU",
+        near: "Mezi #MB (Clam-Gallas) a #11 (Klementinum)",
+        deal: "Signal Special: Svařák nebo horký mošt s 10% slevou",
+        address: "Karlova 26, Praha 1", lat: 50.0858, lng: 14.4168,
+        note: "Studentská kavárna v budově DAMU přímo mezi Clam-Gallasovým palácem a Klementinem."
+      },
+      {
+        id: "sp-spacebreak", isOfficialSpot: true, route: "centrum", cat: "warm", icon: "☕",
+        name: "Space Break (u Signal Space)",
+        near: "Mezi #10 a #13 (Rytířská ulice)",
+        deal: "Signal Special: 10 % sleva na svařené víno",
+        address: "Rytířská 406/10, Praha 1", lat: 50.0846, lng: 14.4225,
+        note: "Přímo u galerie Signal Space na Starém Městě."
+      },
+      {
+        id: "sp-hortus", isOfficialSpot: true, route: "centrum", cat: "warm", icon: "☕",
+        name: "Hortus Angelicus Café",
+        near: "Přímo u #13 (P. Marie Sněžná / Františkánská zahrada)",
+        deal: "Signal Special: 15 % sleva na svařené víno",
+        address: "Jungmannovo náměstí 18 (Františkánská zahrada), Praha 1", lat: 50.0825, lng: 14.4245,
+        note: "Kouzelná kavárna přímo ve Františkánské zahradě hned vedle instalace #13."
+      },
+      {
+        id: "sp-jericho", isOfficialSpot: true, route: "centrum", cat: "warm", icon: "☕",
+        name: "Café Jericho",
+        near: "U #12 (Divadlo X10 – 2 min)",
+        deal: "Signal Special: 10 % sleva na svařené víno, limonádu a skinny bitch",
+        address: "Opatovická 26, Praha 1", lat: 50.0805, lng: 14.4195,
+        note: "Tradiční pražská kavárna kousek od Divadla X10 (#12) a Národní třídy."
+      },
+      {
+        id: "sp-betlemska", isOfficialSpot: true, route: "centrum", cat: "warm", icon: "☕",
+        name: "Klub Betlémská",
+        near: "Mezi #MB a #12 (Betlémské náměstí)",
+        deal: "Signal Special: 15 % sleva na svařený Rybízák",
+        address: "Betlémské náměstí 169/11, Praha 1", lat: 50.0842, lng: 14.4175,
+        note: "Útulný podnik na Betlémském náměstí po cestě ze Staroměstské na Národní třídu."
+      },
+      {
+        id: "sp-dlouha22", isOfficialSpot: true, route: "centrum", cat: "warm", icon: "🍽️",
+        name: "Dlouhá 22",
+        near: "Mezi #16, #10 a #8 (Dlouhá ulice)",
+        deal: "Signal Special: 20 % sleva na celé menu!",
+        address: "Dlouhá 705/22, Praha 1", lat: 50.0895, lng: 14.4245,
+        note: "Výrazná 20% sleva na kompletní menu přímo na spojnici mezi Náměstím Republiky a kostelem sv. Šimona a Judy (#8)."
+      },
+
+      // ==================== TRASA CENTRUM: JÍDLO (6) ====================
+      {
+        id: "sp-takumi-q", isOfficialSpot: true, route: "centrum", cat: "food", icon: "🍜",
+        name: "TAKUMI Quadrio",
+        near: "Přímo u #12 (Divadlo X10 / Národní třída)",
+        deal: "Signal Special: Ramen TOKYO PAITAN s 15% slevou",
+        address: "Spálená 2121/22 (OC Quadrio), Praha 1", lat: 50.0819, lng: 14.4206,
+        note: "Horká japonská polévka ramen přímo u instalace #12 a stanice metra B Národní třída. Pro zahřátí s dětmi naprostá jednička!"
+      },
+      {
+        id: "sp-basak", isOfficialSpot: true, route: "centrum", cat: "food", icon: "🌭",
+        name: "BASAK HOTDOG Národní",
+        near: "U #12 (Divadlo X10 / Národní třída)",
+        deal: "Signal Special: Corndog s 15% slevou",
+        address: "Spálená / Národní, Praha 1", lat: 50.0817, lng: 14.4202,
+        note: "Křupavé korejské corndogy (párek/sýr v těstíčku na špejli) přímo u Národní třídy – děti je milují."
+      },
+      {
+        id: "sp-burgerservice", isOfficialSpot: true, route: "centrum", cat: "food", icon: "🍔",
+        name: "Burger Service",
+        near: "Hned u #14 (Jízdárna Savarin / Na Příkopě)",
+        deal: "Signal Special: 10 % sleva na celý sortiment",
+        address: "Na Příkopě / Panská, Praha 1", lat: 50.0842, lng: 14.4262,
+        note: "Šťavnaté burgery a hranolky se slevou 10 % přímo u poslední zastávky v Centru (#14 Savarin) před odjezdem z Můstku."
+      },
+      {
+        id: "sp-uparlamentu", isOfficialSpot: true, route: "centrum", cat: "food", icon: "🍲",
+        name: "Restaurace U Parlamentu",
+        near: "Mezi #9 (Právnická fak.) a #11 (Klementinum)",
+        deal: "Signal Special: Polévky a pivo s 12% slevou",
+        address: "Valentinská 52/8, Praha 1", lat: 50.0882, lng: 14.4168,
+        note: "Klasická česká restaurace hned u metra Staroměstská – teplé polévky se slevou 12 %."
+      },
+      {
+        id: "sp-biskup", isOfficialSpot: true, route: "centrum", cat: "food", icon: "🥪",
+        name: "BISKUP",
+        near: "Blízko #15 a #16 (Biskupský dvůr)",
+        deal: "Signal Special: 10 % na kolínka na paprice + okénko na teplý vývar s sebou a zvýhodněné sendviče",
+        address: "Biskupský dvůr 1152/6, Praha 1", lat: 50.0902, lng: 14.4342,
+        note: "Skvělá možnost vzít si horký vývar do kelímku a sendvič s sebou na cestu."
+      },
+      {
+        id: "sp-takumi-s", isOfficialSpot: true, route: "centrum", cat: "food", icon: "🍜",
+        name: "TAKUMI Senovážné nám.",
+        near: "Blízko #15 a #16 (Senovážné náměstí)",
+        deal: "Signal Special: Ramen TOKYO PAITAN s 15% slevou",
+        address: "Senovážné náměstí 994/6, Praha 1", lat: 50.0858, lng: 14.4312,
+        note: "Druhá pobočka japonského ramenu kousek od Kampusu Hybernská (#15)."
+      },
+
+      // ==================== TRASA CENTRUM: DRINK & PIVO (7) ====================
+      {
+        id: "sp-ditutti", isOfficialSpot: true, route: "centrum", cat: "drink", icon: "🍹",
+        name: "di Tutti",
+        near: "Mezi #9 a #10 (Kaprova ulice)",
+        deal: "Signal Special: 10 % sleva na vybraná vína, spritzy a nealkoholické nápoje",
+        address: "Kaprova 45/9, Praha 1", lat: 50.0881, lng: 14.4178,
+        note: "Italský bar přímo na trase mezi Staroměstským náměstím a Právnickou fakultou (sleva platí i na nealko nápoje)."
+      },
+      {
+        id: "sp-bugsys", isOfficialSpot: true, route: "centrum", cat: "drink", icon: "🍸",
+        name: "Bugsy's Bar",
+        near: "Mezi #8, #9 a #10 (Kostečná / Pařížská)",
+        deal: "Signal Special: 25 % sleva na Bugsy's DNA Gin & Tonic a 20 % sleva na jídlo",
+        address: "Kostečná 10 / Pařížská, Praha 1", lat: 50.0894, lng: 14.4198,
+        note: "Legendární koktejlový bar kousek od kostela sv. Šimona a Judy (#8) se slevou 20 % na jídlo."
+      },
+      {
+        id: "sp-pult", isOfficialSpot: true, route: "centrum", cat: "drink", icon: "🍺",
+        name: "PULT (Ambiente)",
+        near: "Hned u #15 a #16 (V Celnici)",
+        deal: "Signal Special: 14 % sleva na všechny ležáky na čepu",
+        address: "V Celnici 1031/4, Praha 1", lat: 50.0881, lng: 14.4312,
+        note: "Špičkově načepované pivo v Pultu přímo mezi Náměstím Republiky (#16) a Kampusem Hybernská (#15)."
+      },
+      {
+        id: "sp-autentista", isOfficialSpot: true, route: "centrum", cat: "drink", icon: "🍷",
+        name: "AUTENTISTA wine & champagne bar",
+        near: "Hned u #MB (Clam-Gallasův palác)",
+        deal: "Signal Special: 15 % sleva na celé menu",
+        address: "Řetězová 222/10, Praha 1", lat: 50.0853, lng: 14.4182,
+        note: "Vinný bar v klidné uličce hned u Clam-Gallasova paláce."
+      },
+      {
+        id: "sp-zvon", isOfficialSpot: true, route: "centrum", cat: "drink", icon: "🍸",
+        name: "Bar Zvon",
+        near: "U #13 (Jungmannovo náměstí)",
+        deal: "Signal Special: Koktejl CURRÆNT FOMO s 10% slevou",
+        address: "Jungmannovo náměstí, Praha 1", lat: 50.0830, lng: 14.4235,
+        note: "Přímo u instalace #13 a stanice metra Můstek."
+      },
+      {
+        id: "sp-lucerna", isOfficialSpot: true, route: "centrum", cat: "drink", icon: "🍹",
+        name: "Kavárna Lucerna",
+        near: "U #13 a #14 (Pasáž Lucerna, Vodičkova)",
+        deal: "Signal Special: Speciální Jägermeister drinky s 15% slevou",
+        address: "Vodičkova 704/36, Praha 1", lat: 50.0812, lng: 14.4258,
+        note: "Ikonická kavárna v pasáži Lucerna u sochy sv. Václava na obráceném koni."
+      },
+      {
+        id: "sp-myslis", isOfficialSpot: true, route: "centrum", cat: "drink", icon: "🍺",
+        name: "Myslíš?",
+        near: "Mezi #MB a #12 (Skořepka)",
+        deal: "Signal Special: Nectar of Happiness 17 IPA od Zichovce s 10% slevou",
+        address: "Skořepka 354/2, Praha 1", lat: 50.0840, lng: 14.4192,
+        note: "Podnik na spojnici mezi Staroměstskou a Národní třídou."
+      },
+
+      // ==================== TRASA CENTRUM: ZÁCHRANNÉ BODY S VEŘEJNÝM WC (3) ====================
+      {
+        id: "wc-palladium", isOfficialSpot: false, route: "centrum", cat: "wc", icon: "🚻",
+        name: "OC Palladium – Velkokapacitní WC & Food Court",
+        near: "Přímo u #16 (Náměstí Republiky)",
+        deal: "Veřejně přístupné zázemí v OC (do 22:00)",
+        address: "Náměstí Republiky 1, Praha 1", lat: 50.0886, lng: 14.4295,
+        note: "Jistota čistých vytápěných toalet a velkého food courtu hned u výstupu z metra B Náměstí Republiky."
+      },
+      {
+        id: "wc-radnice", isOfficialSpot: false, route: "centrum", cat: "wc", icon: "🚻",
+        name: "Veřejné toalety Staroměstská radnice",
+        near: "Přímo pod #10 (Věž Staroměstské radnice)",
+        deal: "Městské veřejné toalety v průchodu radnice",
+        address: "Staroměstské náměstí 1/3, Praha 1", lat: 50.0869, lng: 14.4204,
+        note: "Nejbližší veřejné WC přímo u videomappingu na Staroměstském náměstí."
+      },
+      {
+        id: "wc-mustek", isOfficialSpot: false, route: "centrum", cat: "wc", icon: "🚻",
+        name: "Burger King / KFC Můstek & WC v metru Národní třída",
+        near: "U #12, #13 a #14 (Závěr trasy u metra B)",
+        deal: "Otevřeno do 24:00 (před odjezdem na Zličín)",
+        address: "Václavské náměstí 2 / Spálená 22, Praha 1", lat: 50.0838, lng: 14.4244,
+        note: "Záchranný bod na samém konci trasy Centrum těsně před nástupem do metra B směrem na Zličín."
+      },
+
+      // ==================== TRASA DEJVICE: SIGNAL SPOTS (9) + GASTRO ZÓNA ====================
+      {
+        id: "sp-ntk", isOfficialSpot: true, route: "dejvice", cat: "warm", icon: "☕",
+        name: "Cafe Prostoru_ v NTK",
+        near: "Přímo u #4 (Flemingovo nám.) a #SV (Technická)",
+        deal: "Signal Special: 15 % sleva na vinný punč (+ čisté WC v NTK)",
+        address: "Technická 2710/6, Praha 6", lat: 50.1039, lng: 14.3908,
+        note: "Velká moderní kavárna přímo v přízemí Národní technické knihovny. Ideální místo, kde se s dětmi ohřát a odskočit si na čisté WC!"
+      },
+      {
+        id: "sp-sofa", isOfficialSpot: true, route: "dejvice", cat: "food", icon: "🍡",
+        name: "Cafe Sofa (v budově PPF Gate)",
+        near: "Přímo u #7 (Black Mechanical Planet – PPF Gate)",
+        deal: "Signal Special: Speciální festivalové MOCHI s 10% slevou",
+        address: "Evropská 2690/17, Praha 6", lat: 50.1002, lng: 14.3915,
+        note: "Přímo u instalace #7 Jana Kalába! Speciální japonské rýžové koláčky Mochi se slevou 10 % – pro děti parádní zážitek."
+      },
+      {
+        id: "sp-diskoteka", isOfficialSpot: true, route: "dejvice", cat: "food", icon: "🍕",
+        name: "Diskoteka Pizza",
+        near: "Mezi #4 (Flemingovo nám.) a #3 (Park L. Cárdenase)",
+        deal: "Signal Special: Kombo Diskoteka Vera a Disco birra se slevou",
+        address: "Verdunská 27, Praha 6", lat: 50.1025, lng: 14.3982,
+        note: "Čerstvá pizza přímo na spojnici mezi kampusem ČVUT a parkem L. Cárdenase."
+      },
+      {
+        id: "sp-rakin", isOfficialSpot: true, route: "dejvice", cat: "food", icon: "🌭",
+        name: "Rakin Seafood Bar",
+        near: "Blízko Vítězného náměstí / Dejvické ulice",
+        deal: "Signal Special: Octopus Dog s 10% slevou",
+        address: "Dejvická 573/38, Praha 6", lat: 50.0992, lng: 14.3975,
+        note: "Bistro v Dejvické ulici se speciálním festivalovým hotdogem."
+      },
+      {
+        id: "sp-borzoi", isOfficialSpot: true, route: "dejvice", cat: "food", icon: "🥐",
+        name: "casa borzoi",
+        near: "U #3 (Park generála Lázaro Cárdenase)",
+        deal: "Signal Special: 10 % sleva na veškerý sortiment",
+        address: "Bubeneč (u nám. Interbrigády), Praha 6", lat: 50.1038, lng: 14.4025,
+        note: "10% sleva na kompletní nabídku kousek od světelných žárovek v parku (#3)."
+      },
+      {
+        id: "sp-sestak", isOfficialSpot: true, route: "dejvice", cat: "drink", icon: "☕",
+        name: "Cafe Šesťák",
+        near: "Mezi #7 a #6 (Vítězné náměstí – Kulaťák)",
+        deal: "Signal Special: 10 % sleva na vše",
+        address: "Vítězné náměstí, Praha 6", lat: 50.1005, lng: 14.3948,
+        note: "Přímo na Kulaťáku u výstupu z metra Dejvická se slevou 10 % na celou nabídku."
+      },
+      {
+        id: "sp-matuska", isOfficialSpot: true, route: "dejvice", cat: "drink", icon: "🍺",
+        name: "Automat Matuška",
+        near: "Dejvická ulice (směr Hradčanská)",
+        deal: "Signal Special: 50 % sleva na všechno čepované pivo!",
+        address: "Dejvická 4, Praha 6", lat: 50.0978, lng: 14.4032,
+        note: "Poloviční cena na všechna řemeslná čepovaná piva pivovaru Matuška!"
+      },
+      {
+        id: "sp-pivovarbubenec", isOfficialSpot: true, route: "dejvice", cat: "drink", icon: "🍺",
+        name: "Pivovar Bubeneč",
+        near: "U #3 (Park L. Cárdenase – Bubeneč)",
+        deal: "Signal Special: 15 % sleva na všechna čepovaná piva",
+        address: "Bubeneč, Praha 6", lat: 50.1042, lng: 14.4048,
+        note: "Lokální pivovar přímo v Bubenči u parku L. Cárdenase."
+      },
+      {
+        id: "sp-station6", isOfficialSpot: true, route: "dejvice", cat: "drink", icon: "🚂",
+        name: "Station 6 (Bývalé nádraží Bubeneč)",
+        near: "Přesně mezi #3 (Park) a #2 (Stará čistírna)",
+        deal: "Signal Special: Speciální festivalová sleva odhalená na místě 👀",
+        address: "Goetheho 61/4, Praha 6 – Bubeneč", lat: 50.1068, lng: 14.4060,
+        note: "Krásně zrekonstruovaná historická budova bývalého nádraží Bubeneč přímo na pěší cestě z parku (#3) ke Staré čistírně (#2)."
+      },
+      {
+        id: "wc-gastro-dejvice", isOfficialSpot: false, route: "dejvice", cat: "wc", icon: "🌭",
+        name: "Hlavní Signal Gastro Zóna & Mobilní WC",
+        near: "Přímo u #SV (Technická 4 – Student Visions)",
+        deal: "Oficiální festivalová gastro zóna (19:00–24:00)",
+        address: "Technická 4, Praha 6", lat: 50.1030, lng: 14.3918,
+        note: "Potvrzená hlavní gastro zóna Signal Festivalu přímo v Technické ulici u chemické show a formule EFORCE (teplé nápoje, rychlé jídlo, ToiToi)."
+      },
+      {
+        id: "wc-cistirna", isOfficialSpot: false, route: "dejvice", cat: "wc", icon: "🚻",
+        name: "Zázemí & Café Továrna (Stará čistírna Bubeneč)",
+        near: "Přímo v areálu #2 (Voda – Laterna magika)",
+        deal: "Vnitřní kavárna a toalety v areálu čistírny (19:00–24:00)",
+        address: "Papírenská 199/6, Praha 6", lat: 50.1102, lng: 14.4024,
+        note: "Zázemí a vnitřní toalety v areálu Staré čistírny před závěrečným přechodem k plavebnímu kanálu Troja (#1)."
+      }
+    ];
+
+    // ================= 3. STAV APLIKACE =================
+    let currentRouteFilter = 'centrum'; // 'centrum', 'dejvice', 'all'
+    let accessFilter = 'all'; // 'all', 'paid', 'free'
+    let skipFlux12Plus = false;
+    let sortMode = 'smart'; // 'smart', 'geo', 'gps'
+    let crowdSimMode = 'auto'; // 'auto', 'peak', 'offpeak'
+    let foodFilter = 'all'; // 'all', 'warm', 'food', 'drink', 'wc'
+    let showMapPois = true;
+    let userLocation = null;
+
+    let visitedIds = JSON.parse(localStorage.getItem('signal2026_visited_v4') || '[]');
+    let skippedIds = JSON.parse(localStorage.getItem('signal2026_skipped_v4') || '[]');
+
+    let mapInstance = null;
+    let mapMarkers = [];
+    let userMarker = null;
+    let userAccuracyCircle = null;
+
+    function getDistanceMeters(lat1, lon1, lat2, lon2) {
+      const R = 6371e3;
+      const p1 = lat1 * Math.PI / 180;
+      const p2 = lat2 * Math.PI / 180;
+      const dp = (lat2 - lat1) * Math.PI / 180;
+      const dl = (lon2 - lon1) * Math.PI / 180;
+      const a = Math.sin(dp/2) * Math.sin(dp/2) + Math.cos(p1) * Math.cos(p2) * Math.sin(dl/2) * Math.sin(dl/2);
+      return Math.round(R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)));
+    }
+
+    function getWalkMinutes(itemA, itemB) {
+      if (!itemA || !itemB) return 0;
+      if (itemA.route !== itemB.route) return 15;
+      const dist = getDistanceMeters(itemA.lat, itemA.lng, itemB.lat, itemB.lng) * 1.3;
+      return Math.max(2, Math.round(dist / 70));
+    }
+
+    function getCrowdStatus(item, estimatedArrivalHourDecimal) {
+      if (!item.isPaid) {
+        return {
+          level: "low",
+          label: "Venkovní FREE (bez vstupní fronty)",
+          waitMins: 0,
+          cssClass: "crowd-low"
+        };
+      }
+
+      let isPeak = false;
+      if (crowdSimMode === 'peak') isPeak = true;
+      else if (crowdSimMode === 'offpeak') isPeak = false;
+      else {
+        const h = estimatedArrivalHourDecimal !== undefined
+          ? estimatedArrivalHourDecimal
+          : (new Date().getHours() + new Date().getMinutes() / 60);
+        isPeak = (h >= 19.2 && h <= 20.85);
+      }
+
+      if (item.crowdProfile === 'high') {
+        return isPeak ? {
+          level: "high",
+          label: "Odhad: Vysoká vytíženost (fronta ~20–25 min)",
+          waitMins: 22,
+          cssClass: "crowd-high"
+        } : {
+          level: "medium",
+          label: "Odhad: Střední vytíženost (fronta ~8–10 min)",
+          waitMins: 9,
+          cssClass: "crowd-med"
+        };
+      } else {
+        return isPeak ? {
+          level: "medium",
+          label: "Odhad: Střední vytíženost (fronta ~10–15 min)",
+          waitMins: 12,
+          cssClass: "crowd-med"
+        } : {
+          level: "low",
+          label: "Odhad: Klidnější vstup (fronta ~5 min)",
+          waitMins: 5,
+          cssClass: "crowd-low"
+        };
+      }
+    }
+
+    function getFilteredAndSortedInstallations() {
+      let list = INSTALLATIONS.filter(item => {
+        if (currentRouteFilter !== 'all' && item.route !== currentRouteFilter) return false;
+        if (accessFilter === 'paid' && !item.isPaid) return false;
+        if (accessFilter === 'free' && item.isPaid) return false;
+        if (skipFlux12Plus && item.age12Plus) return false;
+        if (skippedIds.includes(item.id)) return false;
+        return true;
+      });
+
+      if (sortMode === 'smart') list.sort((a, b) => a.smartOrder - b.smartOrder);
+      else if (sortMode === 'geo') list.sort((a, b) => a.geoOrder - b.geoOrder);
+      else if (sortMode === 'gps' && userLocation) {
+        list.sort((a, b) =>
+          getDistanceMeters(userLocation.lat, userLocation.lng, a.lat, a.lng) -
+          getDistanceMeters(userLocation.lat, userLocation.lng, b.lat, b.lng)
+        );
+      }
+      return list;
+    }
+
+    function calculateSchedule(items) {
+      const now = new Date();
+      let currentMins = now.getHours() * 60 + now.getMinutes();
+      if (currentMins < 18 * 60 + 30) {
+        currentMins = (currentRouteFilter === 'centrum') ? (18 * 60 + 30) : (19 * 60);
+      }
+
+      let totalRemainingMins = 0;
+      let totalRemainingWalkMeters = 0;
+      const scheduleMap = {};
+      const activeItems = items.filter(i => !visitedIds.includes(i.id));
+
+      activeItems.forEach((item, idx) => {
+        const arrivalHourDec = (currentMins / 60) % 24;
+        const crowd = getCrowdStatus(item, arrivalHourDec);
+        const arrH = Math.floor((currentMins / 60) % 24).toString().padStart(2, '0');
+        const arrM = Math.floor(currentMins % 60).toString().padStart(2, '0');
+
+        let walkToNextMins = 0;
+        let walkToNextMeters = 0;
+        let isMetroTransfer = false;
+
+        if (idx < activeItems.length - 1) {
+          const nextItem = activeItems[idx + 1];
+          if (item.route !== nextItem.route) {
+            isMetroTransfer = true;
+            walkToNextMins = 15;
+          } else {
+            walkToNextMins = getWalkMinutes(item, nextItem);
+            walkToNextMeters = Math.round(getDistanceMeters(item.lat, item.lng, nextItem.lat, nextItem.lng) * 1.3);
+            totalRemainingWalkMeters += walkToNextMeters;
+          }
+        }
+
+        const stepDuration = item.visitMinutes + crowd.waitMins + walkToNextMins;
+        totalRemainingMins += stepDuration;
+
+        scheduleMap[item.id] = {
+          eta: `${arrH}:${arrM}`,
+          crowd,
+          walkToNextMins,
+          walkToNextMeters,
+          isMetroTransfer
+        };
+
+        currentMins += stepDuration;
+      });
+
+      const finH = Math.floor((currentMins / 60) % 24).toString().padStart(2, '0');
+      const finM = Math.floor(currentMins % 60).toString().padStart(2, '0');
+
+      return {
+        scheduleMap,
+        activeCount: activeItems.length,
+        totalRemainingMins,
+        totalKm: (totalRemainingWalkMeters / 1000).toFixed(1),
+        finishTime: `${finH}:${finM}`
+      };
+    }
+
+    function toggleVisited(id) {
+      if (visitedIds.includes(id)) visitedIds = visitedIds.filter(i => i !== id);
+      else visitedIds.push(id);
+      localStorage.setItem('signal2026_visited_v4', JSON.stringify(visitedIds));
+      renderAll(false);
+    }
+
+    function skipInstallation(id) {
+      if (!skippedIds.includes(id)) {
+        skippedIds.push(id);
+        localStorage.setItem('signal2026_skipped_v4', JSON.stringify(skippedIds));
+        renderAll(false);
+      }
+    }
+
+    function restoreSkipped(id) {
+      skippedIds = skippedIds.filter(i => i !== id);
+      localStorage.setItem('signal2026_skipped_v4', JSON.stringify(skippedIds));
+      renderAll(false);
+    }
+
+    function resetProgress() {
+      if (!confirm('Opravdu chcete vymazat všechny odškrtnuté a vynechané instalace?')) return;
+      visitedIds = [];
+      skippedIds = [];
+      localStorage.removeItem('signal2026_visited_v4');
+      localStorage.removeItem('signal2026_skipped_v4');
+      renderAll(false);
+    }
+
+    function getLiveLoopStatus(item) {
+      const now = new Date();
+      const mins = now.getMinutes();
+      if (item.loopType === 'student_combined') {
+        const nextChem = (Math.floor(mins / 30) + 1) * 30;
+        const diffChem = nextChem - mins;
+        const chemStr = (nextChem % 60).toString().padStart(2, '0');
+
+        const nextEf = mins < 15 ? 15 : (mins < 45 ? 45 : 75);
+        const diffEf = nextEf - mins;
+        const efStr = (nextEf % 60).toString().padStart(2, '0');
+        return `Chemická show za ${diffChem} m (:${chemStr}) | EFORCE za ${diffEf} m (:${efStr})`;
+      }
+      return item.loopText;
+    }
+
+    function renderList() {
+      const items = getFilteredAndSortedInstallations();
+      const calc = calculateSchedule(items);
+
+      const statEl = document.getElementById('remaining-stats');
+      const etaEl = document.getElementById('eta-finish');
+      if (calc.activeCount === 0) {
+        statEl.textContent = "Trasa hotová! 🎉";
+        etaEl.textContent = "Směr metro → Zličín";
+      } else {
+        const h = Math.floor(calc.totalRemainingMins / 60);
+        const m = calc.totalRemainingMins % 60;
+        statEl.textContent = `Zbývá ${calc.activeCount} míst (~${h > 0 ? h + ' h ' : ''}${m} m)`;
+        etaEl.textContent = `Pěšky ${calc.totalKm} km • Konec ~${calc.finishTime}`;
+      }
+
+      const expEl = document.getElementById('route-explanation');
+      if (sortMode === 'smart') {
+        expEl.innerHTML = `<strong>Režim Mimo špičku:</strong> Začínáte v <strong>#15 Kampus Hybernská</strong> (otevřeno od 14:00). Mezi 19:00 a 20:00 procházíte venkovní FREE instalace bez čekání u turniketů a po 20:00 vnitřní lokality Signal INSIDE.`;
+      } else if (sortMode === 'geo') {
+        expEl.innerHTML = `<strong>Po směru chůze:</strong> Čistě geografické pořadí od výstupu z metra po závěrečnou stanici.`;
+      } else {
+        expEl.innerHTML = `<strong>Podle GPS:</strong> Seřazeno vzdušnou čarou od nejbližší instalace k vaší aktuální poloze.`;
+      }
+
+      const container = document.getElementById('installations-container');
+      container.innerHTML = items.map((item, idx) => {
+        const isDone = visitedIds.includes(item.id);
+        const sched = calc.scheduleMap[item.id] || {
+          eta: "--:--",
+          crowd: getCrowdStatus(item),
+          walkToNextMins: 0,
+          walkToNextMeters: 0,
+          isMetroTransfer: false
+        };
+
+        const priceBadge = item.isPaid
+          ? `<span class="badge badge-paid">🎟️ PLACENÉ (Inside)</span>`
+          : `<span class="badge badge-free">🟢 ZDARMA (Free)</span>`;
+
+        const mappingBadge = item.category === 'MAPPING'
+          ? `<span class="badge badge-mapping">📽️ VIDEOMAPPING</span>`
+          : '';
+
+        const warningHtml = item.warning ? `
+          <div style="margin-top:9px;padding:8px 10px;border-radius:10px;font-size:13px;font-weight:600;background:${item.age12Plus ? 'var(--red-bg)' : 'var(--amber-bg)'};border:1px solid ${item.age12Plus ? 'var(--red)' : 'var(--amber)'};color:${item.age12Plus ? '#fecaca' : '#fde68a'};">
+            ⚠️ ${item.warning}
+          </div>
+        ` : '';
+
+        let connectorHtml = '';
+        if (!isDone && sched.walkToNextMins > 0) {
+          if (sched.isMetroTransfer) {
+            connectorHtml = `<div class="connector-metro">🚇 <strong>Přejezd mezi trasami (Centrum ↔ Dejvice):</strong> Metro A Staroměstská ↔ Dejvická (~15 min)</div>`;
+          } else {
+            connectorHtml = `<div class="connector">↓ Pěší přesun: ~${sched.walkToNextMins} min (${sched.walkToNextMeters} m)</div>`;
+          }
+        }
+
+        return `
+          <div>
+            <div class="card ${isDone ? 'card-done' : ''}">
+              <div class="row-between" style="flex-wrap:wrap;">
+                <div class="row-wrap">
+                  <span class="badge badge-map">Mapa #${item.id}</span>
+                  ${priceBadge}
+                  ${mappingBadge}
+                </div>
+                ${!isDone ? `<span class="badge" style="background:#1f2437;color:#fcd34d;border:1px solid #374151;">Příchod ~${sched.eta}</span>` : ''}
+              </div>
+
+              <h2>${idx + 1}. ${item.title}</h2>
+              <div style="font-size:13.5px;color:#c4b5fd;font-weight:600;margin-top:2px;">
+                ${item.artist} • <span style="color:#d1d5db;">${item.location} (${item.address})</span>
+              </div>
+
+              <div class="crowd-bar ${sched.crowd.cssClass}">
+                <span>${sched.crowd.label}</span>
+                <span style="white-space:nowrap;">Prohlídka ~${item.visitMinutes} m</span>
+              </div>
+
+              <p style="margin-top:10px;font-size:14.5px;color:#e5e7eb;">${item.desc}</p>
+              ${warningHtml}
+
+              <div class="meta-box">
+                <div>🕒 <strong>Interval:</strong> <span style="color:#6ee7b7;font-weight:700;">${getLiveLoopStatus(item)}</span></div>
+                <div>🚇 <strong>MHD:</strong> ${item.mhd}</div>
+                <div style="color:#f9a8d4;font-weight:600;">${item.nearestRefreshment}</div>
+              </div>
+
+              <div class="row-wrap" style="margin-top:12px;">
+                <a href="https://mapy.cz/zakladni?x=${item.lng}&y=${item.lat}&z=17&q=${encodeURIComponent(item.location + ' ' + item.address)}" target="_blank" class="btn btn-green" style="flex:1;">
+                  🧭 Mapy.cz
+                </a>
+                <a href="https://www.google.com/maps/dir/?api=1&destination=${item.lat},${item.lng}&travelmode=walking" target="_blank" class="btn btn-sky" style="flex:1;">
+                  🗺️ Google
+                </a>
+                <button onclick="toggleVisited('${item.id}')" class="btn ${isDone ? 'btn-green' : 'btn-active'}">
+                  ${isDone ? '✓ Hotovo' : '✓ Odškrtnout'}
+                </button>
+                ${!isDone ? `<button onclick="skipInstallation('${item.id}')" class="btn" title="Skrýt z trasy">✕ Vynechat</button>` : ''}
+              </div>
+            </div>
+            ${connectorHtml}
+          </div>
+        `;
+      }).join('');
+
+      const skippedBox = document.getElementById('skipped-box');
+      const skippedItems = INSTALLATIONS.filter(i => skippedIds.includes(i.id));
+      if (skippedItems.length > 0) {
+        skippedBox.classList.remove('hidden');
+        skippedBox.innerHTML = `
+          <div style="font-size:13.5px;font-weight:700;color:#fca5a5;margin-bottom:8px;">
+            Vynechané instalace (${skippedItems.length}) – klepnutím vrátíte do trasy:
+          </div>
+          <div class="row-wrap">
+            ${skippedItems.map(s => `
+              <button onclick="restoreSkipped('${s.id}')" class="btn" style="font-size:12.5px;">
+                ↩ Vrátit #${s.id}${s.title}
+              </button>
+            `).join('')}
+          </div>
+        `;
+      } else {
+        skippedBox.classList.add('hidden');
+      }
+    }
+
+    function renderFood() {
+      const container = document.getElementById('food-container');
+      const items = SPOTS_AND_WC.filter(r => {
+        if (currentRouteFilter !== 'all' && r.route !== currentRouteFilter) return false;
+        if (foodFilter !== 'all' && r.cat !== foodFilter) return false;
+        return true;
+      });
+
+      container.innerHTML = items.map(r => `
+        <div class="${r.isOfficialSpot ? 'card-spot' : 'card-wc'}">
+          <div class="row-between" style="flex-wrap:wrap;">
+            <span class="badge ${r.isOfficialSpot ? 'badge-spot' : 'btn-sky'}">
+              ${r.isOfficialSpot ? '✨ SIGNAL SPOT' : '🚻 WC / GASTRO ZÓNA'}
+            </span>
+            <span style="font-size:12.5px;color:#d1d5db;font-weight:600;">${r.near}</span>
+          </div>
+
+          <h3 style="margin-top:8px;font-size:16.5px;">${r.icon} ${r.name}</h3>
+          <div style="font-size:13px;color:var(--muted);margin-top:2px;">📍 ${r.address}</div>
+
+          <div class="deal-box" style="${!r.isOfficialSpot ? 'background:var(--sky-bg);border-color:var(--sky);color:#bae6fd;' : ''}">
+            🎁 ${r.deal}
+          </div>
+
+          <p style="font-size:14px;color:#e5e7eb;margin-top:8px;">${r.note}</p>
+
+          <div class="row-wrap" style="margin-top:11px;">
+            <a href="https://mapy.cz/zakladni?x=${r.lng}&y=${r.lat}&z=17&q=${encodeURIComponent(r.name + ' ' + r.address)}" target="_blank" class="btn btn-green" style="flex:1;">
+              🧭 Navigovat (Mapy.cz)
+            </a>
+            <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(r.name + ' ' + r.address)}" target="_blank" class="btn btn-sky" style="flex:1;">
+              🕒 Otevírací doba & Google
+            </a>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderLoops() {
+      const container = document.getElementById('loops-container');
+      const items = getFilteredAndSortedInstallations();
+      const calc = calculateSchedule(items);
+
+      container.innerHTML = items.map(item => {
+        const crowd = calc.scheduleMap[item.id] ? calc.scheduleMap[item.id].crowd : getCrowdStatus(item);
+        return `
+          <div class="card" style="padding:12px;">
+            <div class="row-between">
+              <div class="row-wrap">
+                <span class="badge badge-map">#${item.id}</span>
+                <span class="badge ${item.isPaid ? 'badge-paid' : 'badge-free'}">${item.isPaid ? 'PLACENÉ' : 'ZDARMA'}</span>
+                <strong>${item.title}</strong>
+              </div>
+              <span style="font-size:12px;color:#fcd34d;font-weight:700;">
+                ${crowd.waitMins > 0 ? 'Odhad fronty ~' + crowd.waitMins + ' m' : 'Bez fronty'}
+              </span>
+            </div>
+            <div style="font-size:13px;color:var(--muted);margin-top:4px;">${item.location} (${item.hours})</div>
+            <div style="font-size:13.5px;color:#6ee7b7;font-weight:700;margin-top:4px;">🕒 ${getLiveLoopStatus(item)}</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function initOrUpdateMap(shouldFitBounds = false) {
+      if (typeof L === 'undefined') {
+        document.getElementById('map').innerHTML = '<div style="padding:20px;color:#fca5a5;">Mapové podklady vyžadují připojení k internetu. Použijte záložku Trasa nebo Spots & WC, které fungují plně offline.</div>';
+        return;
+      }
+
+      let isFirstInit = false;
+      if (!mapInstance) {
+        isFirstInit = true;
+        mapInstance = L.map('map').setView([50.0875, 14.4210], 14);
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+          attribution: '&copy; OpenStreetMap & CartoDB',
+          maxZoom: 19
+        }).addTo(mapInstance);
+      }
+
+      setTimeout(() => mapInstance.invalidateSize(), 120);
+
+      mapMarkers.forEach(m => mapInstance.removeLayer(m));
+      mapMarkers = [];
+
+      const items = getFilteredAndSortedInstallations();
+      const coords = [];
+
+      items.forEach((item, index) => {
+        const isDone = visitedIds.includes(item.id);
+        let bg = item.isPaid ? '#8b5cf6' : '#10b981';
+        if (item.category === 'MAPPING') bg = '#f59e0b';
+        if (isDone) bg = '#4b5563';
+
+        const icon = L.divIcon({
+          className: '',
+          html: `<div class="custom-marker" style="width:30px;height:30px;background:${bg};">${index + 1}.</div>`,
+          iconSize: [30, 30],
+          iconAnchor: [15, 15]
+        });
+
+        const marker = L.marker([item.lat, item.lng], { icon }).addTo(mapInstance);
+        marker.on('click', () => {
+          const crowd = getCrowdStatus(item);
+          document.getElementById('map-selected-card').innerHTML = `
+            <div class="card" style="margin-bottom:0;">
+              <div class="row-between">
+                <strong>${index + 1}. ${item.title} (Mapa #${item.id})</strong>
+                <span class="badge ${item.isPaid ? 'badge-paid' : 'badge-free'}">${item.isPaid ? 'PLACENÉ' : 'ZDARMA'}</span>
+              </div>
+              <div style="font-size:13px;color:var(--muted);margin-top:4px;">${item.location} • ${crowd.label}</div>
+              <div style="font-size:13px;color:#f9a8d4;margin-top:4px;font-weight:600;">${item.nearestRefreshment}</div>
+              <div class="row-wrap" style="margin-top:10px;">
+                <a href="https://mapy.cz/zakladni?x=${item.lng}&y=${item.lat}&z=17&q=${encodeURIComponent(item.location)}" target="_blank" class="btn btn-green" style="flex:1;">Navigovat (Mapy.cz)</a>
+                <button onclick="toggleVisited('${item.id}')" class="btn btn-active">
+                  ${visitedIds.includes(item.id) ? '✓ Hotovo' : 'Odškrtnout'}
+                </button>
+              </div>
+            </div>
+          `;
+        });
+
+        mapMarkers.push(marker);
+        if (!isDone) coords.push([item.lat, item.lng]);
+      });
+
+      if (showMapPois) {
+        const pois = SPOTS_AND_WC.filter(r => currentRouteFilter === 'all' || r.route === currentRouteFilter);
+        pois.forEach(poi => {
+          const poiIcon = L.divIcon({
+            className: '',
+            html: `<div class="${poi.isOfficialSpot ? 'spot-marker' : 'wc-marker'}" style="width:27px;height:27px;">${poi.icon}</div>`,
+            iconSize: [27, 27],
+            iconAnchor: [13, 13]
+          });
+          const m = L.marker([poi.lat, poi.lng], { icon: poiIcon }).addTo(mapInstance);
+          m.on('click', () => {
+            document.getElementById('map-selected-card').innerHTML = `
+              <div class="${poi.isOfficialSpot ? 'card-spot' : 'card-wc'}" style="margin-bottom:0;">
+                <div class="row-between">
+                  <strong style="color:${poi.isOfficialSpot ? '#f9a8d4' : '#7dd3fc'};">${poi.icon} ${poi.name}</strong>
+                  <span class="badge ${poi.isOfficialSpot ? 'badge-spot' : 'btn-sky'}">${poi.isOfficialSpot ? 'Signal Spot' : 'WC / Zóna'}</span>
+                </div>
+                <div style="font-size:12.5px;color:var(--muted);margin-top:3px;">${poi.near} • ${poi.address}</div>
+                <div class="deal-box" style="margin-top:6px;">🎁 ${poi.deal}</div>
+                <p style="font-size:13.5px;margin-top:6px;">${poi.note}</p>
+                <div class="row-wrap" style="margin-top:10px;">
+                  <a href="https://mapy.cz/zakladni?x=${poi.lng}&y=${poi.lat}&z=17&q=${encodeURIComponent(poi.name + ' ' + poi.address)}" target="_blank" class="btn btn-green" style="flex:1;">🧭 Mapy.cz</a>
+                  <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(poi.name + ' ' + poi.address)}" target="_blank" class="btn btn-sky" style="flex:1;">🕒 Google Maps</a>
+                </div>
+              </div>
+            `;
+          });
+          mapMarkers.push(m);
+        });
+      }
+
+      if (coords.length > 1) {
+        const polyline = L.polyline(coords, { color: '#a855f7', weight: 3, dashArray: '6, 8', opacity: 0.85 }).addTo(mapInstance);
+        mapMarkers.push(polyline);
+        if (isFirstInit || shouldFitBounds) {
+          mapInstance.fitBounds(polyline.getBounds(), { padding: [28, 28] });
+        }
+      }
+    }
+
+    function fitMapToCurrentRoute() {
+      initOrUpdateMap(true);
+    }
+
+    function locateUserOnMap() {
+      if (!navigator.geolocation) {
+        alert('Geolokace není v prohlížeči podporována.');
+        return;
+      }
+      navigator.geolocation.getCurrentPosition(pos => {
+        userLocation = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+        if (mapInstance) {
+          if (userMarker) mapInstance.removeLayer(userMarker);
+          if (userAccuracyCircle) mapInstance.removeLayer(userAccuracyCircle);
+
+          userAccuracyCircle = L.circle([userLocation.lat, userLocation.lng], {
+            radius: pos.coords.accuracy || 25,
+            color: '#38bdf8', fillColor: '#38bdf8', fillOpacity: 0.15, weight: 1
+          }).addTo(mapInstance);
+
+          userMarker = L.circleMarker([userLocation.lat, userLocation.lng], {
+            radius: 8, color: '#fff', fillColor: '#2563eb', fillOpacity: 1, weight: 2
+          }).addTo(mapInstance).bindPopup('Tady jsi!').openPopup();
+
+          mapInstance.setView([userLocation.lat, userLocation.lng], 15);
+        }
+      }, () => {
+        alert('Nepodařilo se načíst GPS polohu. Zkontrolujte povolení polohy.');
+      });
+    }
+
+    function toggleMapPois() {
+      showMapPois = !showMapPois;
+      const btn = document.getElementById('btn-map-pois');
+      btn.textContent = showMapPois ? "🍹 Spots & WC: ZAP" : "🍹 Spots & WC: VYP";
+      btn.className = showMapPois ? "btn btn-pink" : "btn";
+      initOrUpdateMap(false);
+    }
+
+    function setRouteFilter(route) {
+      currentRouteFilter = route;
+      ['centrum', 'dejvice', 'all'].forEach(r => {
+        const btn = document.getElementById(`btn-${r}`);
+        btn.className = (r === route) ? "btn btn-active" : "btn";
+      });
+      renderAll(true);
+    }
+
+    function setSortMode(mode) {
+      if (mode === 'gps' && !userLocation) {
+        if (!navigator.geolocation) return;
+        navigator.geolocation.getCurrentPosition(pos => {
+          userLocation = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+          sortMode = 'gps';
+          updateSortButtons();
+          renderAll(false);
+        }, () => alert('Pro seřazení podle vzdálenosti povolte GPS polohu.'));
+        return;
+      }
+      sortMode = mode;
+      updateSortButtons();
+      renderAll(false);
+    }
+
+    function updateSortButtons() {
+      ['smart', 'geo', 'gps'].forEach(m => {
+        document.getElementById(`sort-${m}`).className = (m === sortMode) ? "btn btn-active" : "btn";
+      });
+    }
+
+    function cycleAccessFilter() {
+      const order = ['all', 'paid', 'free'];
+      accessFilter = order[(order.indexOf(accessFilter) + 1) % order.length];
+      const btn = document.getElementById('btn-access');
+      if (accessFilter === 'all') btn.textContent = "🎟️ Vstup: Vše (Free + Inside)";
+      else if (accessFilter === 'paid') btn.textContent = "🟣 Jen PLACENÉ (Signal INSIDE)";
+      else btn.textContent = "🟢 Jen ZDARMA (Venkovní)";
+      renderAll(false);
+    }
+
+    function toggleSkipFlux() {
+      skipFlux12Plus = !skipFlux12Plus;
+      const btn = document.getElementById('btn-flux');
+      btn.textContent = skipFlux12Plus ? "👶 FLUX (12+) skrytý" : "👶 Vynechat 12+ (FLUX)";
+      btn.className = skipFlux12Plus ? "btn btn-active" : "btn btn-green";
+      renderAll(false);
+    }
+
+    function cycleCrowdSim() {
+      const modes = ['auto', 'peak', 'offpeak'];
+      crowdSimMode = modes[(modes.indexOf(crowdSimMode) + 1) % modes.length];
+      const btn = document.getElementById('btn-crowd-sim');
+      if (crowdSimMode === 'auto') btn.textContent = "👥 Odhad front: Dle hodin";
+      else if (crowdSimMode === 'peak') btn.textContent = "🔴 Simulace: Špička (19:30)";
+      else btn.textContent = "🟢 Simulace: Po 21:00 (Klid)";
+      renderAll(false);
+    }
+
+    function setFoodFilter(f) {
+      foodFilter = f;
+      ['all', 'warm', 'food', 'drink', 'wc'].forEach(k => {
+        document.getElementById(`fbtn-${k}`).className = (k === f) ? "btn btn-active" : "btn";
+      });
+      renderFood();
+    }
+
+    function switchTab(tab) {
+      ['list', 'map', 'food', 'loops', 'mhd'].forEach(t => {
+        document.getElementById(`tab-${t}`).classList.add('hidden');
+        document.getElementById(`nav-${t}`).classList.remove('active');
+      });
+      document.getElementById(`tab-${tab}`).classList.remove('hidden');
+      document.getElementById(`nav-${tab}`).classList.add('active');
+
+      if (tab === 'map') initOrUpdateMap(false);
+      if (tab === 'food') renderFood();
+      if (tab === 'loops') renderLoops();
+    }
+
+    function renderAll(shouldRefitMap = false) {
+      renderList();
+      renderFood();
+      if (!document.getElementById('tab-map').classList.contains('hidden')) initOrUpdateMap(shouldRefitMap);
+      if (!document.getElementById('tab-loops').classList.contains('hidden')) renderLoops();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      renderAll(true);
+      setInterval(() => {
+        document.getElementById('live-clock').textContent = new Date().toLocaleTimeString('cs-CZ');
+      }, 1000);
+      setInterval(() => {
+        renderList();
+        if (!document.getElementById('tab-loops').classList.contains('hidden')) renderLoops();
+      }, 30000);
+    });
+  </script>
+  <script>
+    // Offline režim: uloží aplikaci do telefonu (funguje jen na https, např. GitHub Pages)
+    if ('serviceWorker' in navigator && location.protocol === 'https:') {
+      navigator.serviceWorker.register('sw.js').catch(() => {});
+    }
+  </script>
+</body>
+</html>
