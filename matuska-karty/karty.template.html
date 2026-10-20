@@ -1,0 +1,337 @@
+<title>Matuška na čepu</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap">
+<style>
+/* Layout: sticky výčepní lišta s filtry, pod ní mřížka karet; karta se otáčí klepnutím (líc = rychlý přehled, rub = detail). */
+:root {
+  --bg: #eef0ea;
+  --paper: #fbfcf8;
+  --ink: #1c231b;
+  --muted: #5b6656;
+  --line: #d3d9cb;
+  --hop: #3f6b26;
+  --hop-soft: #e1ebd6;
+  --amber: #a85f0c;
+  --amber-soft: #f6e6cf;
+  --warn: #9a2f1c;
+  --warn-soft: #f8e1da;
+  --beer-zlata: #e3a72f;
+  --beer-jantar: #b5601d;
+  --beer-tmava: #3b1f12;
+  --beer-kal: #efc35a;
+  --beer-malina: #c5364f;
+  --f-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --r: 14px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121510; --paper: #1b2018; --ink: #eaeee4; --muted: #a2ad9a; --line: #2f382b;
+    --hop: #9cc77d; --hop-soft: #26331f; --amber: #f0b25f; --amber-soft: #3a2a14;
+    --warn: #f19a85; --warn-soft: #3d1f18; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #121510; --paper: #1b2018; --ink: #eaeee4; --muted: #a2ad9a; --line: #2f382b;
+  --hop: #9cc77d; --hop-soft: #26331f; --amber: #f0b25f; --amber-soft: #3a2a14;
+  --warn: #f19a85; --warn-soft: #3d1f18; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font: 16px/1.45 var(--f-body); }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+.wrap { max-width: 1240px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; margin: 0; }
+button { font: inherit; color: inherit; cursor: pointer; }
+:focus-visible { outline: 3px solid var(--amber); outline-offset: 2px; }
+
+header.top { padding-block: 22px 6px; display: grid; gap: 4px; }
+header.top h1 { font-size: clamp(28px, 6vw, 44px); font-weight: 800; letter-spacing: -0.02em; line-height: 1; }
+header.top p { margin: 0; color: var(--muted); }
+
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); padding-block: 10px; border-bottom: 1px solid var(--line); }
+.bar .wrap { display: grid; gap: 10px; }
+.row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+#q { flex: 1 1 220px; min-width: 0; padding: 10px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); font: inherit; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; background: var(--paper); }
+.seg button { border: 0; background: none; padding: 9px 14px; font-weight: 700; }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.chip { border: 1px solid var(--line); background: var(--paper); border-radius: 999px; padding: 6px 12px; font-size: 14px; }
+.chip[aria-pressed="true"] { background: var(--hop); border-color: var(--hop); color: var(--paper); }
+.chips-label { font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-weight: 700; margin-right: 2px; }
+
+details.guide { margin-block: 16px 4px; background: var(--paper); border: 1px solid var(--line); border-radius: var(--r); }
+details.guide summary { padding: 14px 18px; font-weight: 700; cursor: pointer; font-family: var(--f-display); font-size: 18px; }
+.guide-body { padding: 0 18px 18px; display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.guide-body section { min-width: 0; }
+.guide-body h3 { font-size: 15px; margin-bottom: 6px; }
+.guide-body p, .guide-body li { margin: 0 0 6px; font-size: 15px; }
+.guide-body ul { padding-left: 18px; margin: 0; }
+.say { font-style: italic; color: var(--hop); }
+
+.count { color: var(--muted); font-size: 14px; padding-block: 14px 8px; }
+.grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); align-items: start; padding-bottom: 40px; }
+.empty { padding: 40px 0; color: var(--muted); }
+
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; display: grid; grid-template-columns: 10px 1fr; cursor: pointer; transition: transform .18s ease; }
+.card.turning { transform: perspective(900px) rotateY(90deg); }
+.card .glass { background: var(--beer); }
+.card.tap { border-color: var(--hop); box-shadow: 0 0 0 2px var(--hop); }
+.face { padding: 16px 18px 14px; display: grid; gap: 12px; min-width: 0; }
+.face[hidden] { display: none; }
+.kicker { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.cat { font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-weight: 700; }
+.tapbtn { border: 1px solid var(--line); background: none; border-radius: 999px; padding: 4px 10px; font-size: 13px; font-weight: 700; white-space: nowrap; }
+.card.tap .tapbtn { background: var(--hop); color: var(--paper); border-color: var(--hop); }
+.name { font-size: 30px; font-weight: 800; letter-spacing: -0.015em; line-height: 1.02; }
+.style { font-weight: 700; color: var(--amber); margin-top: 2px; }
+.stats { display: grid; grid-template-columns: auto auto 1fr; gap: 0; border-block: 1px solid var(--line); }
+.stat { padding: 8px 14px 8px 0; margin-right: 14px; border-right: 1px solid var(--line); }
+.stat:last-child { border-right: 0; margin-right: 0; padding-right: 0; }
+.stat b { display: block; font-family: var(--f-display); font-size: 22px; font-variant-numeric: tabular-nums; line-height: 1.1; }
+.stat span { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+.meter { display: flex; gap: 3px; margin: 5px 0 3px; }
+.meter i { width: 18px; height: 7px; border-radius: 2px; background: var(--line); }
+.meter i.on { background: var(--hop); }
+.stat .bw { display: block; text-transform: none; letter-spacing: 0; color: var(--ink); font-size: 14px; }
+.tagline { font-size: 17px; margin: 0; }
+.flav { display: flex; flex-wrap: wrap; gap: 6px; }
+.flav span { background: var(--amber-soft); color: var(--ink); border-radius: 6px; padding: 3px 9px; font-size: 14px; font-weight: 700; }
+.hops { font-size: 14px; margin: 0; }
+.hops b, .lbl { font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-weight: 700; }
+.warn { background: var(--warn-soft); color: var(--warn); border-radius: 8px; padding: 6px 10px; font-size: 14px; font-weight: 700; }
+.tipnote { background: var(--hop-soft); border-radius: 8px; padding: 6px 10px; font-size: 14px; }
+.flip { justify-self: start; border: 0; background: none; padding: 2px 0; color: var(--hop); font-weight: 700; font-size: 14px; }
+
+.back .name { font-size: 22px; }
+.pitch { background: var(--hop-soft); border-radius: 10px; padding: 10px 12px; }
+.pitch p { margin: 4px 0 0; }
+.kv { display: grid; gap: 10px; }
+.kv p { margin: 2px 0 0; font-size: 15px; }
+.hoplist { list-style: none; padding: 0; margin: 4px 0 0; display: grid; gap: 4px; font-size: 14px; }
+.hoplist b { font-weight: 700; }
+.facts { display: grid; grid-template-columns: max-content 1fr; gap: 4px 12px; font-size: 14px; margin: 0; }
+.facts dt { color: var(--muted); }
+.facts dd { margin: 0; min-width: 0; }
+details.orig summary { cursor: pointer; font-size: 14px; font-weight: 700; color: var(--muted); }
+details.orig p { font-size: 14px; white-space: pre-line; margin: 6px 0 0; }
+.src { font-size: 13px; color: var(--muted); }
+.src a { color: var(--hop); }
+footer { padding-block: 10px 40px; color: var(--muted); font-size: 13px; }
+@media (prefers-reduced-motion: reduce) { .card { transition: none; } }
+</style>
+
+<header class="top wrap">
+  <h1>Matuška na čepu</h1>
+  <p>Karty piv pro obsluhu. Klepněte na kartu a otočí se na podrobnosti.</p>
+</header>
+
+<div class="bar">
+  <div class="wrap">
+    <div class="row">
+      <div class="seg" role="group" aria-label="Zobrazit">
+        <button id="v-tap" aria-pressed="false">Na čepu <span id="n-tap"></span></button>
+        <button id="v-all" aria-pressed="true">Všechna <span id="n-all"></span></button>
+      </div>
+      <input id="q" type="search" placeholder="Hledat pivo, chmel, chuť…" aria-label="Hledat">
+    </div>
+    <div class="row" id="chips"><span class="chips-label">Host chce</span></div>
+  </div>
+</div>
+
+<main class="wrap">
+  <details class="guide" id="guide">
+    <summary>Než začnete: jak kartě rozumět a jak pivo doporučit</summary>
+    <div class="guide-body">
+      <section>
+        <h3>Čísla na kartě</h3>
+        <p><b>° stupňovitost</b> – kolik sladového cukru bylo v pivu před kvašením. Víc stupňů = plnější a obvykle silnější pivo. Není to alkohol!</p>
+        <p><b>% alkohol</b> – skutečný obsah alkoholu.</p>
+        <p><b>IBU hořkost</b> – čím víc, tím hořčí. U Matušky třeba Sunshine 15 (skoro nehořké), Desítka 38, Raptor 55, Námořník 70 (hodně hořké). Ovocná vůně a sladové tělo hořkost zjemňují, kyselost ji schová.</p>
+      </section>
+      <section>
+        <h3>Ležák × ALE</h3>
+        <p><b>Spodní kvašení</b> = ležáky. Kvasí v chladu, chuť je čistá a sladová – to, co Češi znají.</p>
+        <p><b>Svrchní kvašení</b> = ALE (IPA, APA, stout, pšeničné…). Kvasí v teple, je ovocnější a voňavější.</p>
+        <p>Všechna piva Matuška jsou <b>nefiltrovaná a nepasterizovaná</b> (uvádí pivovar). Mírný zákal je v pořádku, nejde o vadu.</p>
+      </section>
+      <section>
+        <h3>Jak pivo doporučit – 3 otázky</h3>
+        <ul>
+          <li><span class="say">„Co normálně pijete?“</span> Ležák → Desítka, Dvanáctka, Světlé. Nic/víno/cider → kyseláč nebo Voltage.</li>
+          <li><span class="say">„Spíš hořké, nebo spíš ovocné?“</span> Hořké → Raptor, Námořník. Ovocné → California, Apollo Galaxy, juicy piva.</li>
+          <li><span class="say">„Spíš lehké, nebo něco silnějšího?“</span> Nahoře v liště jsou filtry Lehké a Silné.</li>
+        </ul>
+        <p>Nejistý host? Nabídněte ochutnávku do panáku, pokud to podnik dovolí.</p>
+      </section>
+      <section>
+        <h3>Poctivě</h3>
+        <p>Když něco nevíte, řekněte <span class="say">„To přesně nevím, zjistím vám to.“</span> Nevymýšlejte chutě, které na kartě nejsou.</p>
+        <p><b>Alergeny:</b> všechna piva obsahují lepek (ječmen). Pšenici, oves nebo laktózu najdete na rubu karty u konkrétního piva.</p>
+        <p>U silných piv (štítek „Silné pivo“) hosta upozorněte a nabídněte menší míru.</p>
+      </section>
+    </div>
+  </details>
+
+  <div class="count" id="count" aria-live="polite"></div>
+  <div class="grid" id="grid"></div>
+</main>
+
+<footer class="wrap" id="foot"></footer>
+
+<script>
+const DATA = __DATA__;
+const BEERS = DATA.beers;
+const GROUPS = [
+  ["lezak", "Klasika (ležák)", b => b.group === "lezak"],
+  ["ovocne", "Ovocné a chmelové", b => b.group === "ovocne"],
+  ["horke", "Hořké", b => (b.ibu || 0) >= 55],
+  ["tmave", "Tmavé", b => b.group === "tmave"],
+  ["kysele", "Kyselé", b => b.group === "kysele"],
+  ["psenicne", "Pšeničné a jemné", b => b.group === "psenicne"],
+  ["lehke", "Lehké (do 4,5 %)", b => b.abv != null && b.abv <= 4.5],
+  ["silne", "Silné (od 6,5 %)", b => b.abv != null && b.abv >= 6.5],
+];
+const BITTER = [[20, "jemná"], [35, "mírná"], [50, "střední"], [65, "výrazná"], [999, "velmi výrazná"]];
+
+const store = {
+  get(k) { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} },
+};
+const tapBase = DATA.onTapUpdated + "|" + DATA.onTap.join(",");
+let saved = store.get("matuska-tap");
+let onTap = new Set(saved && saved.base === tapBase ? saved.set : DATA.onTap);
+let view = onTap.size ? "tap" : "all";
+let group = null;
+let flipped = new Set();
+
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const fmtAbv = v => v == null ? "?" : String(v).replace(".", ",");
+function bitter(ibu) {
+  if (ibu == null) return { level: 0, word: "neuvedeno" };
+  const i = BITTER.findIndex(([max]) => ibu < max);
+  return { level: i + 1, word: BITTER[i][1] };
+}
+
+function front(b) {
+  const bt = bitter(b.ibu);
+  return `
+  <div class="face front">
+    <div class="kicker"><span class="cat">${esc(b.category)}</span>
+      <button class="tapbtn" data-act="tap" aria-pressed="${onTap.has(b.slug)}">${onTap.has(b.slug) ? "✓ Na čepu" : "+ Na čep"}</button></div>
+    <div><h2 class="name">${esc(b.name)}</h2><div class="style">${esc(b.styleLabel)}</div></div>
+    <div class="stats">
+      <div class="stat"><b>${esc(b.deg || "?")}</b><span>stupně</span></div>
+      <div class="stat"><b>${fmtAbv(b.abv)} %</b><span>alkohol</span></div>
+      <div class="stat"><span>hořkost</span>
+        <div class="meter" aria-hidden="true">${[1,2,3,4,5].map(i => `<i class="${i <= bt.level ? "on" : ""}"></i>`).join("")}</div>
+        <span class="bw"><strong>${esc(bt.word)}</strong>${b.ibu != null ? ` · ${b.ibu} IBU` : ""}</span></div>
+    </div>
+    <p class="tagline">${esc(b.tagline)}</p>
+    <div class="flav" aria-label="Chuť a vůně">${b.flavors.map(f => `<span>${esc(f)}</span>`).join("")}</div>
+    <p class="hops"><b>Chmel</b> ${esc(b.hops.map(h => h.name).join(", "))}</p>
+    ${b.caution ? `<div class="warn">${esc(b.caution)}</div>` : ""}
+    <button class="flip" data-act="flip">Otočit – podrobnosti ↻</button>
+  </div>`;
+}
+
+function back(b) {
+  return `
+  <div class="face back">
+    <div class="kicker"><span class="cat">${esc(b.name)} · rub</span>
+      <button class="tapbtn" data-act="tap" aria-pressed="${onTap.has(b.slug)}">${onTap.has(b.slug) ? "✓ Na čepu" : "+ Na čep"}</button></div>
+    <div class="pitch"><span class="lbl">Jak to říct hostovi</span><p>${esc(b.pitch)}</p></div>
+    <div class="kv">
+      <div><span class="lbl">Komu ho nabídnout</span><p>${esc(b.who)}</p></div>
+      <div><span class="lbl">Hodí se k jídlu</span><p>${esc(b.food)}</p></div>
+      <div><span class="lbl">Styl: ${esc(b.styleName)}</span><p>${esc(b.styleText)}</p></div>
+      <div><span class="lbl">Chmely a co dělají</span>
+        <ul class="hoplist">${b.hops.map(h => `<li><b>${esc(h.name)}</b>${h.note ? " – " + esc(h.note) : ""}</li>`).join("")}</ul></div>
+    </div>
+    ${b.tip ? `<div class="tipnote"><b>Tip:</b> ${esc(b.tip)}</div>` : ""}
+    <dl class="facts">
+      <dt>Styl dle pivovaru</dt><dd>${esc(b.siteStyle)}</dd>
+      <dt>Slad</dt><dd>${esc(b.malt)}</dd>
+      ${b.extra ? `<dt>Další suroviny</dt><dd>${esc(b.extra)}</dd>` : ""}
+      <dt>Kvašení</dt><dd>${b.fermentation ? esc(b.fermentation) + (b.fermentation === "spodní" ? " (ležák)" : b.fermentation === "svrchní" ? " (ALE)" : "") : "neuvedeno"}</dd>
+      <dt>Hořkost</dt><dd>${b.ibu != null ? b.ibu + " IBU" : "pivovar neuvádí"}</dd>
+      <dt>Alergeny</dt><dd>${esc(b.allergens.join(", "))}</dd>
+      <dt>Jak často se vaří</dt><dd>${esc(b.availability)}</dd>
+    </dl>
+    <details class="orig"><summary>Co o pivu píše pivovar</summary><p>${esc(b.description)}</p></details>
+    <div class="src">Zdroj: <a href="${esc(b.url)}" target="_blank" rel="noopener">${esc(b.url.replace("https://www.", ""))}</a></div>
+    <button class="flip" data-act="flip">↺ Zpět na přehled</button>
+  </div>`;
+}
+
+function matches(b, q) {
+  if (!q) return true;
+  const hay = [b.name, b.styleLabel, b.siteStyle, b.category, b.tagline, b.flavors.join(" "), b.hops.map(h => h.name).join(" ")].join(" ").toLowerCase();
+  return q.split(/\s+/).every(w => hay.includes(w));
+}
+
+function render() {
+  const q = document.getElementById("q").value.trim().toLowerCase();
+  const g = GROUPS.find(x => x[0] === group);
+  const list = BEERS.filter(b => (view === "all" || onTap.has(b.slug)) && (!g || g[2](b)) && matches(b, q));
+  document.getElementById("n-tap").textContent = `(${onTap.size})`;
+  document.getElementById("n-all").textContent = `(${BEERS.length})`;
+  document.getElementById("v-tap").setAttribute("aria-pressed", view === "tap");
+  document.getElementById("v-all").setAttribute("aria-pressed", view === "all");
+  document.querySelectorAll("#chips .chip").forEach(c => c.setAttribute("aria-pressed", c.dataset.g === group));
+  document.getElementById("count").textContent = list.length
+    ? `${list.length} ${list.length === 1 ? "pivo" : list.length < 5 ? "piva" : "piv"}${view === "tap" ? " na čepu" : ""}`
+    : "";
+  const grid = document.getElementById("grid");
+  if (!list.length) {
+    grid.innerHTML = view === "tap" && !onTap.size
+      ? `<p class="empty">Zatím není nic označeno jako „na čepu“. Přepněte na <b>Všechna</b> a u piv, která čepujete, klepněte na <b>+ Na čep</b>.</p>`
+      : `<p class="empty">Nic neodpovídá. Zkuste zrušit filtr nebo hledání.</p>`;
+    return;
+  }
+  grid.innerHTML = list.map(b => `
+    <article class="card${onTap.has(b.slug) ? " tap" : ""}" data-slug="${b.slug}" style="--beer: var(--beer-${b.color})">
+      <div class="glass" aria-hidden="true"></div>
+      <div>${flipped.has(b.slug) ? back(b) : front(b)}</div>
+    </article>`).join("");
+}
+
+function flip(card) {
+  const slug = card.dataset.slug;
+  const go = () => { flipped.has(slug) ? flipped.delete(slug) : flipped.add(slug); render(); };
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return go();
+  card.classList.add("turning");
+  setTimeout(go, 170);
+}
+
+document.getElementById("grid").addEventListener("click", e => {
+  const card = e.target.closest(".card");
+  if (!card) return;
+  const act = e.target.closest("[data-act]")?.dataset.act;
+  if (act === "tap") {
+    const s = card.dataset.slug;
+    onTap.has(s) ? onTap.delete(s) : onTap.add(s);
+    store.set("matuska-tap", { base: tapBase, set: [...onTap] });
+    render();
+    return;
+  }
+  if (e.target.closest("a, summary, details")) return;
+  flip(card);
+});
+document.getElementById("v-tap").onclick = () => { view = "tap"; render(); };
+document.getElementById("v-all").onclick = () => { view = "all"; render(); };
+document.getElementById("q").addEventListener("input", render);
+const chips = document.getElementById("chips");
+GROUPS.forEach(([id, label]) => {
+  const b = document.createElement("button");
+  b.className = "chip"; b.dataset.g = id; b.textContent = label;
+  b.onclick = () => { group = group === id ? null : id; render(); };
+  chips.appendChild(b);
+});
+document.getElementById("foot").innerHTML =
+  `Fakta (stupně, alkohol, hořkost, chmel, slad, popis) jsou z webu <a href="${esc(DATA.source)}" target="_blank" rel="noopener">pivovarmatuska.cz</a>, staženo ${esc(DATA.fetched.split("-").reverse().join(". "))}. ` +
+  `Vysvětlivky a doporučení pro obsluhu vychází z těchto údajů. Výběr „Na čepu“ si pamatuje každé zařízení zvlášť.`;
+try { if (!store.get("matuska-guide-seen")) { document.getElementById("guide").open = true; store.set("matuska-guide-seen", 1); } } catch (e) {}
+render();
+</script>

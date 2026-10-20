@@ -1,0 +1,1016 @@
+{
+ "fetched": "2026-10-20",
+ "source": "https://www.pivovarmatuska.cz/piva/",
+ "beers": [
+  {
+   "slug": "apollo-galaxy",
+   "url": "https://www.pivovarmatuska.cz/pivo/apollo-galaxy/",
+   "name": "Apollo Galaxy",
+   "description": "Apollo Galaxy původně vychází z GB Pale Ale. Pokusili jsme se vytvořit letní pivo, které skloubí výrazné\n\naroma Zlaté Rakety a pitelnost Californie, a zároveň si zachová plnost a sílu, která je vhodná\n\npro teplé letní večery. Použili jsme chmel Galaxy nabitý australským sluncem, který\n\ndodává s chmelem Citra výrazné aroma po tropickém ovoci. Pro hořkost piva byl použit\n\namerický chmel Apollo.",
+   "attrs": {
+    "styl": "Pale Ale",
+    "stupňovitost": "13°",
+    "alkohol": "5,5 %",
+    "hořkost": "60 IBU",
+    "slad": "plzeňský, mnichovský, karapils, ječmen",
+    "chmel": "Apollo, Galaxy, Citra",
+    "kvašení": "svrchní",
+    "dostupnost": "častá"
+   },
+   "sizes": [
+    "0,33l",
+    "0,75l",
+    "sud"
+   ],
+   "image": "https://snappycdn.net/matuska-prod/re1k2kLhcmwKyUnugA13uTxCfzjteQMX_d7RDHH6YuI/fill/127/514/ce/1/aHR0cHM6Ly9tZ3dkYXRhLm5ldC9tYXR1c2thL3Byb2QvdXBsb2Fkcy8yMDE5LzA2L3AxMDMzNjY1LWFwb2xsb2dhbGF4eS5wbmc.png",
+   "category": "Svrchně kvašená"
+  },
+  {
+   "slug": "california",
+   "url": "https://www.pivovarmatuska.cz/pivo/california/",
+   "name": "California",
+   "description": "Kalifornie, to je slunce, nápady, energie, optimismus, a to jsme chtěli vtisknout i do naší Californie. Doufáme, že to tam najdete, až si ji dáte. Původně vychází z GB Pale Ale, ale US verze je říznější a pěnivější. My tam přidali opět něco českého, a tak je to verze US/CZ.",
+   "attrs": {
+    "styl": "APA",
+    "stupňovitost": "12°",
+    "alkohol": "5,3 %",
+    "hořkost": "55 IBU",
+    "slad": "plzeňský, karapils, ječmen",
+    "chmel": "Citra, Cascade",
+    "kvašení": "svrchní",
+    "dostupnost": "velmi častá"
+   },
+   "sizes": [
+    "0,33l",
+    "0,75l",
+    "sud"
+   ],
+   "image": "https://snappycdn.net/matuska-prod/Fkj_q-2bdi7i2IAJIKaRSFZ0_F80TcZqLFDBTN36fTQ/fill/127/514/ce/1/aHR0cHM6Ly9tZ3dkYXRhLm5ldC9tYXR1c2thL3Byb2QvdXBsb2Fkcy8yMDE5LzA2L2NhbGlmb3JuaWEucG5n.png",
+   "category": "Svrchně kvašená"
+  },
+  {
+   "slug": "double-ipa",
+   "url": "https://www.pivovarmatuska.cz/pivo/double-ipa/",
+   "name": "Double IPA",
+   "description": "Pivo chmelené experimentálním chmelem, který má aromatický profil podobný barrel-aged pivům, kokosům a whiskey.",
+   "attrs": {
+    "styl": "IIPA",
+    "stupňovitost": "18°",
+    "alkohol": "7,6 %",
+    "hořkost": "70 IBU",
+    "slad": "český, mnichovský, karapils, ječmen",
+    "chmel": "Citra, Amarillo, Ella, Sabro",
+    "kvašení": "svrchní",
+    "dostupnost": "velmi občasná"
+   },
+   "sizes": [
+    "0,33l",
+    "0,75l",
+    "sud"
+   ],
+   "image": "https://snappycdn.net/matuska-prod/o9NZcaT0zNH2J169uYcBoP26z-wvrulo4uhpC1QNLvE/fill/127/514/ce/1/aHR0cHM6Ly9tZ3dkYXRhLm5ldC9tYXR1c2thL3Byb2QvdXBsb2Fkcy8yMDE5LzA2L2RvdWJsZWlwYS5wbmc.png",
+   "category": "Svrchně kvašená"
+  },
+  {
+   "slug": "e-s-b",
+   "url": "https://www.pivovarmatuska.cz/pivo/e-s-b/",
+   "name": "E. S. B.",
+   "description": "Tento druh piva pochází z Anglie a je považován za anglické pivovarnické dědictví. V\n\nBritánii se vaří kolem 250 druhů tohoto piva Bitter. Na první chmelové sypání pužíváme\n\nchmel Columbus, na druhé chmelové sypání používáme anglický Fuggle. Fuggle je nejslavnější anglický chmel a jeho rodokmen sahá do roku 1875. Na třetí chmelové sypání pak anglický Bramling Cross. Na suché chmelení – Dry Hopping používáme také Bramling Cross. Charakter vůně je díky\n\nanglickým chmelům po rybízu a pomerančích. Chmelové aroma je však méně intenzivní než\n\nu druhu IPA. Naše ESB je záměrně méně řízné, což je pro tento druh piva\n\ntypické. Rozvinutí chutě a vůně prospěje vyšší teplota čepovaného piva cca 13 C°.",
+   "attrs": {
+    "styl": "ESB (Extra Special Bitter)",
+    "stupňovitost": "14°",
+    "alkohol": "5,7 %",
+    "hořkost": "55 IBU",
+    "slad": "plzeňský, mnichovský, karamelový, karapils, ječmen",
+    "chmel": "Columbus, Fuggle, Bramling Cross",
+    "kvašení": "svrchní",
+    "dostupnost": "občasná"
+   },
+   "sizes": [
+    "0,33l",
+    "0,75l",
+    "sud"
+   ],
+   "image": "https://snappycdn.net/matuska-prod/OJnPa3IAg3-0OWsVuJtz61MWCHzqh84WaYDkLjdA6TE/fill/127/514/ce/1/aHR0cHM6Ly9tZ3dkYXRhLm5ldC9tYXR1c2thL3Byb2QvdXBsb2Fkcy8yMDE5LzA2L2VzYi5wbmc.png",
+   "category": "Svrchně kvašená"
+  },
+  {
+   "slug": "eldorado",
+   "url": "https://www.pivovarmatuska.cz/pivo/eldorado/",
+   "name": "Eldorado",
+   "description": "V tomto pivu převažuje dominantní chmel Eldorado, který dohromady s Citrou a Apollem vytváří velmi příjemné pivo, které voní po citrusech a mangu. Verze uvařená v únoru 2021 se liší vynecháním mnichovského sladu, pivo je tedy oproti původní verzi světlejší.",
+   "attrs": {
+    "styl": "APA",
+    "stupňovitost": "13°",
+    "alkohol": "5,5 %",
+    "hořkost": "60 IBU",
+    "slad": "plzeňský, karapils, ječmen",
+    "chmel": "Citra, Eldorado, Apollo",
+    "kvašení": "svrchní",
+    "dostupnost": "občasná"
+   },
+   "sizes": [
+    "0,33l",
+    "0,75l",
+    "sud"
+   ],
+   "image": "https://snappycdn.net/matuska-prod/QBjPwraKsPDHJ45SEf_DE2YbycH-bxHXUUeD5EkCnzU/fill/127/514/ce/1/aHR0cHM6Ly9tZ3dkYXRhLm5ldC9tYXR1c2thL3Byb2QvdXBsb2Fkcy8yMDE5LzA2L2VsZG9yYWRvLnBuZw.png",
+   "category": "Svrchně kvašená"
+  },
+  {
+   "slug": "fastball",
+   "url": "https://www.pivovarmatuska.cz/pivo/fastball/",
+   "name": "Fastball",
+   "description": "Lehké osvěžující pivo. Recepturu sestavil Adam Matuška, a jelikož hrál vrcholově baseball, tak použil baseballový termín Fastball – rychlý a rovný nadhoz. Fastball má výbornou pitelnost a příjemně voní. Uhasí žízeň, osvěží a zanechá vás v dobré kondici. Zůstanete připraveni právě takový Fastball nadhodit.",
+   "attrs": {
+    "styl": "Pale Ale",
+    "stupňovitost": "9°",
+    "alkohol": "3,8 %",
+    "hořkost": "35 IBU",
+    "slad": "plzeňský, karapils, ječmen",
+    "chmel": "Citra, Cascade",
+    "kvašení": "svrchní",
+    "dostupnost": "občasná, hlavně v létě"
+   },
+   "sizes": [
+    "0,33l",
+    "0,75l",
+    "sud"
+   ],
+   "image": "https://snappycdn.net/matuska-prod/jgZn5Vb4UhnAFbrqD9hR5E8Ld8JyqWhSUP_BgIpk8-0/fill/127/514/ce/1/aHR0cHM6Ly9tZ3dkYXRhLm5ldC9tYXR1c2thL3Byb2QvdXBsb2Fkcy8yMDE5LzA2L2Zhc3RiYWxsLnBuZw.png",
+   "category": "Svrchně kvašená"
+  },
+  {
+   "slug": "hellcat",
+   "url": "https://www.pivovarmatuska.cz/pivo/hellcat/",
+   "name": "Hellcat",
+   "description": "Hellcat je jedno z nejsilnějších IIPA piv vyrobených v ČR. Ve vůni je dominantní chmel Simcoe, který voní po borovici. Na várku se používá pouze světlý slad plzeňského typu, nicméně barva piva přechází do světle jantarové, což je dáno velkým množstvím sladu použitého na várku. „Užitná hodnota“ jedné sklenice Hellcatu je cca hodnota dvou sklenic plzeňského piva. Přesto, že má Hellcat relativně vysoké analytické ukazatele, tak se dobře pije a chmel na vás opojně působí.",
+   "attrs": {
+    "styl": "IIPA",
+    "stupňovitost": "21°",
+    "alkohol": "8,4 %",
+    "slad": "plzeňský, ječmen",
+    "chmel": "Simcoe, Columbus",
+    "kvašení": "svrchní",
+    "dostupnost": "občasná"
+   },
+   "sizes": [
+    "0,33l",
+    "0,75l",
+    "sud"
+   ],
+   "image": "https://snappycdn.net/matuska-prod/F_SvvZs8ZKnfzsRIYl5AOV7E3Ngmv1NcNFKuw9h56YU/fill/127/514/ce/1/aHR0cHM6Ly9tZ3dkYXRhLm5ldC9tYXR1c2thL3Byb2QvdXBsb2Fkcy8yMDE5LzA2L2hlbGxjYXQucG5n.png",
+   "category": "Svrchně kvašená"
+  },
+  {
+   "slug": "raptor",
+   "url": "https://www.pivovarmatuska.cz/pivo/raptor/",
+   "name": "Raptor",
+   "description": "První IPA uvařená v pivovaru Matuška kombinuje české a americké chmele. Druh IPA pochází z 19.století z Anglie. IPA byla společností East India Company exportována do Indie, kde měla Anglie své kolonie. Pivo muselo přežít dlouhou lodní cestu v teplém prostředí, a proto se vařilo silnější a více chmelené. Chmel totiž chrání pivo proti škodlivým bakteriím. Pro našeho Raptora jsme použili směs surovin českých, anglických a amerických s použitím našeho varního postupu.",
+   "attrs": {
+    "styl": "IPA",
+    "stupňovitost": "15°",
+    "alkohol": "6,3 %",
+    "hořkost": "55 IBU",
+    "slad": "plzeňský, mnichovský, karamelový, karapils, ječmen",
+    "chmel": "Saaz Special, Premiant, Cascade, Amarillo",
+    "kvašení": "svrchní",
+    "dostupnost": "častá"
+   },
+   "sizes": [
+    "0,33l",
+    "0,75l",
+    "sud"
+   ],
+   "image": "https://snappycdn.net/matuska-prod/Hcof7Vt3V_5C7oNDVl54NsHKvnu9X3A3sRLB8engS3Y/fill/127/514/ce/1/aHR0cHM6Ly9tZ3dkYXRhLm5ldC9tYXR1c2thL3Byb2QvdXBsb2Fkcy8yMDE5LzA2L3JhcHRvci5wbmc.png",
+   "category": "Svrchně kvašená"
+  },
+  {
+   "slug": "high-voltage",
+   "url": "https://www.pivovarmatuska.cz/pivo/high-voltage/",
+   "name": "High Voltage",
+   "description": "Novinka, která spadá do kategorie Juicy Double IPA. Díky velkému množství chmelů Citra, Eldorado a Mosaic má pivo elektrizující silné aroma tropického ovoce, které z piva čiší nejen ve vůni, ale také v chuti. Kombinace chmele, ovesných a pšeničných vloček daly pivu jemnost, pitelnost a mírný zákal. 15 gramů chmele na 1 litr piva ve vás vzbudí vysoké napětí dát si ještě jedno nebo si jít lehnout.",
+   "attrs": {
+    "styl": "Juicy Double IPA",
+    "stupňovitost": "18°",
+    "alkohol": "7,6%",
+    "hořkost": "50 IBU",
+    "slad": "plzeňský, pšeničný, ječmen",
+    "chmel": "Citra, Mosaic, Eldorado",
+    "kvašení": "svrchní",
+    "dostupnost": "občasná",
+    "další": "ovesné vločky, pšeničné vločky"
+   },
+   "sizes": [
+    "0,33 l",
+    "0,75 l",
+    "sud"
+   ],
+   "image": "https://snappycdn.net/matuska-prod/5CMl9_GMx7EkUVv_tIQRtFPkiYebETxNRyfnBuPL4xA/fill/127/514/ce/1/aHR0cHM6Ly9tZ3dkYXRhLm5ldC9tYXR1c2thL3Byb2QvdXBsb2Fkcy8yMDIxLzAzL2hpZ2gtdm9sdGFnZS5wbmc.png",
+   "category": "Svrchně kvašená"
+  },
+  {
+   "slug": "tropical-rocket",
+   "url": "https://www.pivovarmatuska.cz/pivo/tropical-rocket/",
+   "name": "Tropical Rocket",
+   "description": "Jedná se o jedno z nejsilnějších pravidelně vařených piv v našem pivovaru. Převládají v něm tropické vůně a od Zlaté Rakety se liší použitými chmely.",
+   "attrs": {
+    "styl": "IPA",
+    "stupňovitost": "17°",
+    "alkohol": "7 %",
+    "hořkost": "60 IBU",
+    "slad": "plzeňský, karapils, ječmen",
+    "chmel": "Comet, Eldorado, Citra, Amarillo, Cascade",
+    "kvašení": "svrchní",
+    "dostupnost": "častá"
+   },
+   "sizes": [
+    "0,33l",
+    "0,75l",
+    "sud"
+   ],
+   "image": "https://snappycdn.net/matuska-prod/DpilAnRok3Z4s7XYMBJDGu4LZrdzks7YbtBzxkxxWFY/fill/127/514/ce/1/aHR0cHM6Ly9tZ3dkYXRhLm5ldC9tYXR1c2thL3Byb2QvdXBsb2Fkcy8yMDE5LzA2L3Ryb3BpY2Fscm9ja2V0LnBuZw.png",
+   "category": "Svrchně kvašená"
+  },
+  {
+   "slug": "voltage",
+   "url": "https://www.pivovarmatuska.cz/pivo/voltage/",
+   "name": "Voltage",
+   "description": "Pivo High Voltage nás bavilo natolik, že jsme se rozhodili uvařit jeho lehčí verzi. Do této dvanáctky jsme dali stejné množství chmelů, jako do jeho silnějšího vzoru. Pivo Voltage tak má výrazné chmelové aroma po citrusech, marakuji a ananasu, které mu dodávají chmely Citra a Galaxy. Stylově Voltage zapadá do kategorie Juicy Pale Ale.",
+   "attrs": {
+    "styl": "Juicy Pale Ale",
+    "stupňovitost": "12°",
+    "alkohol": "5,3%",
+    "hořkost": "28 IBU",
+    "slad": "Low color Pale Ale, pšeničný, Pale Ale (Weyermann, Swaden), ovesné vločky, pšeničné vločky, ječmen",
+    "chmel": "Citra, Galaxy",
+    "kvašení": "svrchní",
+    "dostupnost": "velmi občasná"
+   },
+   "sizes": [
+    "0,33 l",
+    "0,75 l",
+    "sud"
+   ],
+   "image": "https://snappycdn.net/matuska-prod/DWEcg1GqAk6ibpS-c03YL1vAjzmMBaOf3RWI9VyYEu8/fill/127/514/ce/1/aHR0cHM6Ly9tZ3dkYXRhLm5ldC9tYXR1c2thL3Byb2QvdXBsb2Fkcy8yMDIxLzA2L3ZvbHRhZ2UucG5n.png",
+   "category": "Svrchně kvašená"
+  },
+  {
+   "slug": "zlata-raketa",
+   "url": "https://www.pivovarmatuska.cz/pivo/zlata-raketa/",
+   "name": "Zlatá Raketa",
+   "description": "Jedná se o jedno z nejsilnějších pravidelně vařených piv v našem pivovaru, které voní a chutná exoticky přitažlivě. Pár Raket a jste v ráji.",
+   "attrs": {
+    "styl": "IPA",
+    "stupňovitost": "17°",
+    "alkohol": "7 %",
+    "hořkost": "60 IBU",
+    "slad": "plzeňský, karapils",
+    "chmel": "Citra, Cascade, Amarillo",
+    "kvašení": "svrchní",
+    "dostupnost": "častá"
+   },
+   "sizes": [
+    "0,33l",
+    "0,75l",
+    "sud"
+   ],
+   "image": "https://snappycdn.net/matuska-prod/NJrW_CR9nYMshmE7q5yecl2uTwK4mKlxDpWyd-wLGAM/fill/127/514/ce/1/aHR0cHM6Ly9tZ3dkYXRhLm5ldC9tYXR1c2thL3Byb2QvdXBsb2Fkcy8yMDE5LzA2L3psYXRhcmFrZXRhLnBuZw.png",
+   "category": "Svrchně kvašená"
+  },
+  {
+   "slug": "broumy",
+   "url": "https://www.pivovarmatuska.cz/pivo/broumy/",
+   "name": "Broumy",
+   "description": "Broumy jsou polotmavou spodně kvašenou dvanáctkou, jejíž recept sestavil Martin Matuška. Pivo bylo prvně uvařeno k oslavám 10. výročí našeho pivovaru, a vzhledem k tomu, že mělo velký úspěch, rozhodli jsme se ho uvařit znovu.",
+   "attrs": {
+    "styl": "Lager",
+    "stupňovitost": "12°",
+    "alkohol": "4,8 %",
+    "hořkost": "25 IBU",
+    "slad": "český, mnichovský, karamelový, karapils, ječmen",
+    "chmel": "žatecký",
+    "kvašení": "spodní",
+    "dostupnost": "občasná"
+   },
+   "sizes": [
+    "0,33l",
+    "0,75l",
+    "sud"
+   ],
+   "image": "https://snappycdn.net/matuska-prod/VJvc22D2znaDiReBXb8Ji_9X0hgTZtRsnI_5SoyfqvM/fill/127/514/ce/1/aHR0cHM6Ly9tZ3dkYXRhLm5ldC9tYXR1c2thL3Byb2QvdXBsb2Fkcy8yMDE5LzA5L2Jyb3VteS1zbWFsbDEwMDBoLnBuZw.png",
+   "category": "Spodně kvašená"
+  },
+  {
+   "slug": "california-lager",
+   "url": "https://www.pivovarmatuska.cz/pivo/california-lager/",
+   "name": "California Lager",
+   "description": "California je pivo inspirované slunnou Kalifornií. Toto je méně hořká varianta s vyšším aroma, kde byly použity spodní kvasnice. Je to tedy ležák.",
+   "attrs": {
+    "styl": "APL",
+    "stupňovitost": "12°",
+    "alkohol": "5,2 %",
+    "hořkost": "35 IBU",
+    "slad": "plzeňský, karamelový",
+    "chmel": "Citra, Cascade, ŽPČ",
+    "kvašení": "spodní",
+    "dostupnost": "občasná"
+   },
+   "sizes": [
+    "0,33l",
+    "0,75l",
+    "sud"
+   ],
+   "image": "https://snappycdn.net/matuska-prod/M-FEFqjX0SSWVSteFkRur_2_ka5pAEhWH-t-UInHYhg/fill/127/514/ce/1/aHR0cHM6Ly9tZ3dkYXRhLm5ldC9tYXR1c2thL3Byb2QvdXBsb2Fkcy8yMDE5LzA2L2NhbGlmb3JuaWFsYWdlci5wbmc.png",
+   "category": "Spodně kvašená"
+  },
+  {
+   "slug": "desitka",
+   "url": "https://www.pivovarmatuska.cz/pivo/desitka/",
+   "name": "Desítka",
+   "description": "Prostě a jednoduše poctivá desítka vařená na dva rmuty.",
+   "attrs": {
+    "styl": "Lager",
+    "stupňovitost": "10°",
+    "alkohol": "4,2 %",
+    "hořkost": "38 IBU",
+    "slad": "plzeňský, karapils, ječmen",
+    "chmel": "ŽPČ, Saaz Special",
+    "kvašení": "spodní",
+    "dostupnost": "častá"
+   },
+   "sizes": [
+    "0,33l",
+    "0,75l",
+    "sud"
+   ],
+   "image": "https://snappycdn.net/matuska-prod/5uwEDahuD6x21ZftaW7gkGo5FuuBwkbTqCoZw1JLYQQ/fill/127/514/ce/1/aHR0cHM6Ly9tZ3dkYXRhLm5ldC9tYXR1c2thL3Byb2QvdXBsb2Fkcy8yMDE5LzA2L2Rlc2l0a2EucG5n.png",
+   "category": "Spodně kvašená"
+  },
+  {
+   "slug": "dvanactka",
+   "url": "https://www.pivovarmatuska.cz/pivo/dvanactka/",
+   "name": "Dvanáctka",
+   "description": "Jednoduše česká dvanáctka.",
+   "attrs": {
+    "styl": "Lager",
+    "stupňovitost": "12°",
+    "alkohol": "5,1 %",
+    "hořkost": "40 IBU",
+    "slad": "plzeňský, ječmen",
+    "chmel": "ŽPČ, Saaz Special",
+    "kvašení": "spodní",
+    "dostupnost": "občasná"
+   },
+   "sizes": [
+    "0,33l",
+    "0,75l",
+    "sud"
+   ],
+   "image": "https://snappycdn.net/matuska-prod/OwG6rdi2-HnoQn9twyhfNZisn12Lgrul1wQd3CD8KA0/fill/127/514/ce/1/aHR0cHM6Ly9tZ3dkYXRhLm5ldC9tYXR1c2thL3Byb2QvdXBsb2Fkcy8yMDE5LzA2L2R2YW5hY3RrYS5wbmc.png",
+   "category": "Spodně kvašená"
+  },
+  {
+   "slug": "jitrnice-zelena",
+   "url": "https://www.pivovarmatuska.cz/pivo/jitrnice-zelena/",
+   "name": "Jitrnice",
+   "description": "Pivo dostupné hlavně v období zabíjaček a masopustu. Naši předci žili v přesvědčení, že v období masopustu má člověk jíst a pít co nejvíce, aby byl po celý rok při síle. Tak na zdraví a sílu!",
+   "attrs": {
+    "styl": "Lager",
+    "stupňovitost": "14°",
+    "alkohol": "5,8 %",
+    "slad": "plzeňský, mnichovský, karapils, karamelový",
+    "chmel": "Saaz Special, Žatecký",
+    "kvašení": "spodní",
+    "dostupnost": "velmi občasná"
+   },
+   "sizes": [
+    "0,5l",
+    "0,7l",
+    "sud"
+   ],
+   "image": "https://snappycdn.net/matuska-prod/TfF1eSh7HEAOd0s22ID4vl1W3Ikb7R9b0PAhMM8U9dw/fill/127/514/ce/1/aHR0cHM6Ly9tZ3dkYXRhLm5ldC9tYXR1c2thL3Byb2QvdXBsb2Fkcy8yMDE5LzA2L2ppdHJuaWNlLXplbGVuYS5wbmc.png",
+   "category": "Spodně kvašená"
+  },
+  {
+   "slug": "knir",
+   "url": "https://www.pivovarmatuska.cz/pivo/knir/",
+   "name": "Knír",
+   "description": "Spodně kvašené pivo na podporu Movember (boj proti rakovině varlat a prostaty).",
+   "attrs": {
+    "styl": "Lager",
+    "stupňovitost": "14°",
+    "alkohol": "5,8 %",
+    "hořkost": "43 IBU",
+    "slad": "plzeňský, mnichovský, karamelový, karapils, ječmen",
+    "chmel": "Žatecký, Premiant",
+    "kvašení": "spodní",
+    "dostupnost": "občasná"
+   },
+   "sizes": [
+    "0,33l",
+    "0,75l",
+    "sud"
+   ],
+   "image": "https://snappycdn.net/matuska-prod/MOLP5Ooi6l5nnoGSAixgPNieJDvflEcheQLkRuS9baU/fill/127/514/ce/1/aHR0cHM6Ly9tZ3dkYXRhLm5ldC9tYXR1c2thL3Byb2QvdXBsb2Fkcy8yMDE5LzA2L2tuaXIucG5n.png",
+   "category": "Spodně kvašená"
+  },
+  {
+   "slug": "namornik",
+   "url": "https://www.pivovarmatuska.cz/pivo/namornik/",
+   "name": "Námořník",
+   "description": "Tento druh jsme si definovali sami a uvidíme, jak Námořník zaujme. Jako je drsnější námořnický rum, tak i náš Námořník je takový drsný. Nic kulatého, nic velejemného. Námořníka jsme uvařili mimo jiné z chmelu CZ Agnus, který je náš\n\nnejsilnější chmel, co se hořkosti týče. Tato odrůda také zlepšuje stabilitu piva, což se pro\n\ndaleké námořní cesty hodí. Agnus patří do skupiny chmelů Super High Alpha. Pozor na něj, rád hází přes palubu.",
+   "attrs": {
+    "styl": "Lager",
+    "stupňovitost": "15°",
+    "alkohol": "6,3 %",
+    "hořkost": "70 IBU",
+    "slad": "plzeňský, mnichovský, karamelový, karapils, ječmen",
+    "chmel": "Žatecký, Columbus, Agnus",
+    "kvašení": "spodní",
+    "dostupnost": "občasná"
+   },
+   "sizes": [
+    "0,33l",
+    "0,75l",
+    "sud"
+   ],
+   "image": "https://snappycdn.net/matuska-prod/raEIlMdouPGR5e67Q91aPOvPOmN7seSG3Lh4BoPN4Bs/fill/127/514/ce/1/aHR0cHM6Ly9tZ3dkYXRhLm5ldC9tYXR1c2thL3Byb2QvdXBsb2Fkcy8yMDE5LzA2L25hbW9ybmlrLnBuZw.png",
+   "category": "Spodně kvašená"
+  },
+  {
+   "slug": "svetle",
+   "url": "https://www.pivovarmatuska.cz/pivo/svetle/",
+   "name": "Světlé",
+   "description": "Ve světě se používá název Pils, Pilsener, Bohemian Pilsner. U nás v ČR tento název nelze\n\npoužívat z právního hlediska, a tak se naše pivo jmenuje pouze Speciální světlé. Jedná se o světově nejrozšířenější druh piva.",
+   "attrs": {
+    "styl": "Lager",
+    "stupňovitost": "13°",
+    "alkohol": "5,5 %",
+    "hořkost": "35 IBU",
+    "slad": "plzeňský, mnichovský, ječmen",
+    "chmel": "Žatecký, Saaz Special",
+    "kvašení": "spodní",
+    "dostupnost": "občasná"
+   },
+   "sizes": [
+    "0,33l",
+    "0,75l",
+    "sud"
+   ],
+   "image": "https://snappycdn.net/matuska-prod/-71JTHD2BHG3Wd5M9cvODiIOlYuzDvIQEH-82Op2dKo/fill/127/514/ce/1/aHR0cHM6Ly9tZ3dkYXRhLm5ldC9tYXR1c2thL3Byb2QvdXBsb2Fkcy8yMDE5LzA2L3N2ZXRsZS5wbmc.png",
+   "category": "Spodně kvašená"
+  },
+  {
+   "slug": "vanocni",
+   "url": "https://www.pivovarmatuska.cz/pivo/vanocni/",
+   "name": "Vánoční",
+   "description": "Na Vánoce se u nás vaří dvě stejná piva. Toto je s českými chmely a spodními kvasnicemi.",
+   "attrs": {
+    "styl": "Lager",
+    "stupňovitost": "19°",
+    "alkohol": "7,8 %",
+    "slad": "plzeňský, mnichovský, karamelový, karapils, ječmen",
+    "chmel": "Žatecký, Premiant, Saaz Special",
+    "kvašení": "spodní",
+    "dostupnost": "o Vánocích"
+   },
+   "sizes": [
+    "0,33l",
+    "0,75l",
+    "sud"
+   ],
+   "image": "https://snappycdn.net/matuska-prod/v-_cAJs01lp2o3uYPnJr0RaXlPx2C2ZNH_IxMQSCKxg/fill/127/514/ce/1/aHR0cHM6Ly9tZ3dkYXRhLm5ldC9tYXR1c2thL3Byb2QvdXBsb2Fkcy8yMDE5LzA2L3Zhbm9jbmkucG5n.png",
+   "category": "Spodně kvašená"
+  },
+  {
+   "slug": "wet-hop",
+   "url": "https://www.pivovarmatuska.cz/pivo/wet-hop/",
+   "name": "Wet Hop",
+   "description": "Pivo Wet Hop vychází z naší Světlé 13-ky, kdy byl do piva přidán čerstvý hlávkový žatecký chmel. Chmel jsme použili jak při chmelovaru, tak při whirlpoolu i při studeném chmelení. Tuto várku je možné uvařit pouze jednou v roce, a to když probíhá sklizeň. Chmel utržený na chmelnici obsahuje 80% vody, sušený chmel 10%, proto se musí do 24 hodin zpracovat. Jeden z prvních pivovarů, který s tímto druhem piv přišel na trh, byla Sierra Nevada.",
+   "attrs": {
+    "styl": "Lager",
+    "stupňovitost": "13°",
+    "alkohol": "5,5 %",
+    "hořkost": "35 IBU",
+    "slad": "plzeňský, mnichovský, ječmen",
+    "chmel": "Žatecký, Saaz Special, čerstvý Žatecký",
+    "kvašení": "spodní",
+    "dostupnost": "velmi občasná, v době sklizně chmele (přelom srpna a září)"
+   },
+   "sizes": [
+    "0,33l",
+    "0,75l",
+    "sud"
+   ],
+   "image": "https://snappycdn.net/matuska-prod/Bsw9rsa7wTZO2J9ayfBsJNS4e2vojCmRDz3WWpheNN4/fill/127/514/ce/1/aHR0cHM6Ly9tZ3dkYXRhLm5ldC9tYXR1c2thL3Byb2QvdXBsb2Fkcy8yMDE5LzA2L3dldGhvcC5wbmc.png",
+   "category": "Spodně kvašená"
+  },
+  {
+   "slug": "drevo",
+   "url": "https://www.pivovarmatuska.cz/pivo/drevo/",
+   "name": "Dřevo",
+   "description": "Dřevo je jedno z nejvýjimečnějších piv, které jsme v našem pivovaru uvařili. Pivo vychází z našeho Vánočního, jedná se tedy o 19 stupňový doppelbock. Toto pivo však leželo v tanku na americkém dubu přes dva měsíce, což mu dodalo dřevité tóny s podtóny bourbonu a vanilky. Tohoto výsledku jsme docílili přidáním celkem 240 desek amerického dubu přímo do tanku. Dále je pivo příjemně karamelové, s jemným řízem a vzhledem k alkoholu zrádně, nebezpečně pitelné. S celým nápadem přišel náš Michal “Veselka” Veselý, který se inspiroval Oak Aged Doppelbockem od německého pivovaru Camba Bavaria a naším Vánočním. Nejdříve si se svým tátou toto pivo uvařili ve své kyvetě doma a pak pyšně přinesl ukázat výsledek zbytku týmu. Pivo nám všem zachutnalo natolik, že jsme se ho rozhodli uvařit i pro Vás!",
+   "attrs": {
+    "styl": "Lager",
+    "stupňovitost": "19°",
+    "alkohol": "7,8 %",
+    "slad": "plzeňský, mnichovský, karamelový, ječmen",
+    "chmel": "Žatecký, Premiant, Saaz Special",
+    "kvašení": "spodní",
+    "dostupnost": "velmi občasná",
+    "další": "Pivo dozrávalo v tanku na americkém dubu"
+   },
+   "sizes": [
+    "0,33 l",
+    "0,75 l",
+    "sud"
+   ],
+   "image": "https://snappycdn.net/matuska-prod/gQTdZP0OhmDNcIHj3_Ov83fe_QG41wfHK29vCxhXtMo/fill/127/514/ce/1/aHR0cHM6Ly9tZ3dkYXRhLm5ldC9tYXR1c2thL3Byb2QvdXBsb2Fkcy8yMDIwLzEyL2RyZXZvLXNtYWxsMTAwMGgucG5n.png",
+   "category": "Spodně kvašená"
+  },
+  {
+   "slug": "sunshine",
+   "url": "https://www.pivovarmatuska.cz/pivo/sunshine/",
+   "name": "Sunshine",
+   "description": "Kyseláč inspirovaný pivem Future Sunshine z pivovaru Pressure Drop Brewing, které jsme ochutnali v Anglii. Jedná se o silnější patnáctku stylu Sour Fruited Ale s 6% alkoholu. Kouzlili jsme s tropickým ovocem – broskví, ananasem, passion fruitem ve formě pyré a laktózou. Sunshine voní a chutná jako bezstarostné léto, válení se na dece, dovolenkové lásky, horký písek a šumící oceán, prostě všechno to, co nám v zimě tolik chybí.",
+   "attrs": {
+    "styl": "Sour Fruited Ale",
+    "stupňovitost": "15°",
+    "alkohol": "6%",
+    "hořkost": "15 IBU",
+    "slad": "plzeňský, pšeničný, kyselý, ovesné vločky, karapils, ječmen",
+    "chmel": "Citra",
+    "kvašení": "svrchní",
+    "dostupnost": "častá",
+    "ostatní": "laktóza, ovocné pyré (ananas, broskev, passion fruit)"
+   },
+   "sizes": [
+    "0,33L",
+    "0,75L",
+    "sud"
+   ],
+   "image": "https://snappycdn.net/matuska-prod/Box_chL-0xpkkyYHLgqPaO1FkJq7_WNGBaiQDJ2C23w/fill/93/380/ce/1/aHR0cHM6Ly9tZ3dkYXRhLm5ldC9tYXR1c2thL3Byb2QvdXBsb2Fkcy8yMDIyLzA1L3N1bnNoaW5lLW1hbHkuanBn.jpg",
+   "category": "Kyseláče"
+  },
+  {
+   "slug": "kysela-mana",
+   "url": "https://www.pivovarmatuska.cz/pivo/kysela-mana/",
+   "name": "Kyselá Máňa",
+   "description": "Pivo je uvařené z plzeňského a pšeničného sladu, malin, šípku, koriandru, chmele a špetky soli. Jedná se tedy o malinové gose s šípkem. Pivo je velmi svěží, lehce kyselé, malinové ve vůni i na jazyku a to vše zakulacené v plné chuti podpořené mořskou solí. Pitelnost: Extrémně vysoká!",
+   "attrs": {
+    "styl": "Malinové Gose",
+    "stupňovitost": "10°",
+    "alkohol": "4,4%",
+    "hořkost": "15 IBU",
+    "slad": "plzeňský, pšeničný, ječmen",
+    "chmel": "Citra",
+    "kvašení": "svrchní",
+    "dostupnost": "velmi občasná",
+    "ostatní": "maliny, šípek, mořská sůl, koriandr, lactobacillus, kyselina mléčná"
+   },
+   "sizes": [
+    "0,33 l",
+    "0,75 l",
+    "sud"
+   ],
+   "image": "https://snappycdn.net/matuska-prod/k6ZfepClI1OxFjNg-8tA7lEAjNUQnCYgzbSkenLeQTw/fill/127/514/ce/1/aHR0cHM6Ly9tZ3dkYXRhLm5ldC9tYXR1c2thL3Byb2QvdXBsb2Fkcy8yMDIwLzEyL2t5c2VsYS1tYW5hLXNtYWxsMTAwMGgucG5n.png",
+   "category": "Kyseláče"
+  },
+  {
+   "slug": "bila-perla",
+   "url": "https://www.pivovarmatuska.cz/pivo/bila-perla/",
+   "name": "Bílá perla",
+   "description": "Do tohoto piva jsme použili kromě ječného sladu i pšeničný slad, kyselý slad a pomerančovou kůru. O velmi jemné chmelení se postaraly chmely Perle, Amarillo, Citra a ŽPČ a zakvašeno bylo našimi standardními kvasnicemi svrchního kvašení. Ve vůni najdete čerstvé pomeranče, koření a citrusy. Chuť je velmi jemná a osvěžující, jednoduše jarní. Proč pivní styl New Broumy? Nejedná se totiž úplně o klasický Wheat ALE, ani New England či Witbier. Prostě je out of style a tedy New Broumy. Na tomto receptu se podílel celý náš pivovarský team, konkrétně Honza Najbrt přišel s nápadem vařit Wheat ALE, Adam Matuška přihodil kyselý slad a pomerančovou kůru, Dominik Stára vyladil hořkost a poměry sladů, Michal Veselý vymyslel název a zbytek teamu se postaral o to, aby se k vám pivo dostalo v té nejlepší kondici!",
+   "attrs": {
+    "styl": "NB (New Broumy)",
+    "stupňovitost": "11°",
+    "alkohol": "4,2 %",
+    "hořkost": "20 IBU",
+    "slad": "plzeňský, kyselý, pšeničný, karapils, ječmen",
+    "chmel": "Amarillo, Perle, Citra, Galaxy",
+    "kvašení": "svrchní",
+    "dostupnost": "častá",
+    "ostatní": "Pomerančová kůra",
+    "": ""
+   },
+   "sizes": [
+    "0,33l",
+    "0,75l",
+    "sud"
+   ],
+   "image": "https://snappycdn.net/matuska-prod/y7bgWhkQLfG1dGDbbK981Yck2phN-64qTWawqK0D5jk/fill/127/514/ce/1/aHR0cHM6Ly9tZ3dkYXRhLm5ldC9tYXR1c2thL3Byb2QvdXBsb2Fkcy8yMDE5LzA2L2JpbGFwZXJsYS5wbmc.png",
+   "category": "New Broumy"
+  },
+  {
+   "slug": "new-broumy",
+   "url": "https://www.pivovarmatuska.cz/pivo/new-broumy/",
+   "name": "New Broumy",
+   "description": "New Broumy jsou pivo, které spadá do stejnojmenného pivního stylu. Tento styl zastupuje vše, co máme v Broumech rádi – silné chmelové aroma, vyváženou chuť a především vysokou pitelnost. O chmelový zážitek se postaraly chmely Azacca, Idaho a Citra, a také upravený postup chmelovaru. Jemné chuti jsme docílili kombinací ječného sladu, pšeničného sladu a ovesných vloček (POZOR, NEJEDNÁ SE O PŠENIČNÉ PIVO! 😊). K dalšímu napití vybízí malé procento kyselého sladu a pomerančové kůry.",
+   "attrs": {
+    "styl": "New Broumy",
+    "stupňovitost": "15°",
+    "alkohol": "6,3 %",
+    "hořkost": "40 IBU",
+    "slad": "plzeňský, ječmen, pšeničný, kyselý, ovesné vločky",
+    "chmel": "Azacca, Idaho, Citra",
+    "kvašení": "svrchní",
+    "dostupnost": "občasná",
+    "ostatní": "Pomerančová kůra"
+   },
+   "sizes": [
+    "0,33 l",
+    "0,75 l",
+    "sud"
+   ],
+   "image": "https://snappycdn.net/matuska-prod/YRPoMg7ELpmviaggdkxdAucgp7weYXFlFf650izQpdk/fill/127/514/ce/1/aHR0cHM6Ly9tZ3dkYXRhLm5ldC9tYXR1c2thL3Byb2QvdXBsb2Fkcy8yMDIwLzAyL25ld2Jyb3VteS1zbWFsbDEwMDBoLnBuZw.png",
+   "category": "New Broumy"
+  },
+  {
+   "slug": "cerna-raketa",
+   "url": "https://www.pivovarmatuska.cz/pivo/cerna-raketa/",
+   "name": "Černá raketa",
+   "description": "Pivo typu IBA (India Black Ale), černé a nachmelené pivo. Pivovar Matuška byl první, kdo ho v Čechách uvařil.",
+   "attrs": {
+    "styl": "IBA",
+    "stupňovitost": "17°",
+    "alkohol": "7 %",
+    "hořkost": "60 IBU",
+    "slad": "plzeňský, mnichovský, karamelový, pražený, karapils, ječmen",
+    "chmel": "Columbus, Cascade, Amarillo",
+    "kvašení": "svrchní",
+    "dostupnost": "velmi občasná"
+   },
+   "sizes": [
+    "0,33l",
+    "0,75l",
+    "sud"
+   ],
+   "image": "https://snappycdn.net/matuska-prod/lBFUKRXbJ2N8pDkS4CSVfR8E2tjCNp3NsB8wapNIbuQ/fill/127/514/ce/1/aHR0cHM6Ly9tZ3dkYXRhLm5ldC9tYXR1c2thL3Byb2QvdXBsb2Fkcy8yMDE5LzA2L2Nlcm5hcmFrZXRhLnBuZw.png",
+   "category": "Tmavá"
+  },
+  {
+   "slug": "cert-2",
+   "url": "https://www.pivovarmatuska.cz/pivo/cert-2/",
+   "name": "Čert",
+   "description": "Tmavé, svrchně kvašené pivo s vyšším obsahem pražených sladů, které v pivu vytváří chutě a vůně kávy či tmavé čokolády. Tuto chuť doplňují zahraniční experimentální chmely, které pivu dodávají vanilkové, bourbonové a kokosové tóny. Pivo má po napití pražený a hořký konec. Prostě po čertech dobré.",
+   "attrs": {
+    "styl": "Black Ale",
+    "stupňovitost": "14°",
+    "alkohol": "5,8 %",
+    "hořkost": "50 IBU",
+    "slad": "plzeňský, mnichovský, karamelový, karapils, ječmen, barevný, chocolate wheat malt",
+    "chmel": "Amarillo, Columbus, Cascade, Sabro, HBC 520",
+    "kvašení": "svrchní",
+    "dostupnost": "na Mikuláše"
+   },
+   "sizes": [
+    "0,33 l",
+    "0,75 l",
+    "sud"
+   ],
+   "image": "https://snappycdn.net/matuska-prod/2f3r_CqQNZDZiYOcr0nv4JobXcpbWKYUVeQO33zaU00/fill/122/496/ce/1/aHR0cHM6Ly9tZ3dkYXRhLm5ldC9tYXR1c2thL3Byb2QvdXBsb2Fkcy8yMDE5LzEyL2NlcnQtc21hbGwxMDAwaC0xLnBuZw.png",
+   "category": "Tmavá"
+  },
+  {
+   "slug": "robust-stout",
+   "url": "https://www.pivovarmatuska.cz/pivo/robust-stout/",
+   "name": "Robust Stout",
+   "description": "Stout, který je na pomezí Export a Imperial, proto se jmenuje Robust. Velmi plný, čokoládový a jemně hořký. Verze 2021 navíc ležela v tanku na americkém dubu, což pivu dodalo dřevité tóny s podtóny bourbonu a vanilky.",
+   "attrs": {
+    "styl": "Stout",
+    "stupňovitost": "18°",
+    "alkohol": "7 %",
+    "hořkost": "50 IBU",
+    "slad": "plzeňský, mnichovský, karamelový, karapils, pražený ječmen, pražená pšenice",
+    "chmel": "Saaz Special, Fuggles, Amarillo",
+    "dostupnost": "velmi občasná"
+   },
+   "sizes": [
+    "0,33l",
+    "0,75l",
+    "sud"
+   ],
+   "image": "https://snappycdn.net/matuska-prod/A3r6EXofSFugRofLtNQoCphCikZz_qIib-82at0gHo8/fill/127/514/ce/1/aHR0cHM6Ly9tZ3dkYXRhLm5ldC9tYXR1c2thL3Byb2QvdXBsb2Fkcy8yMDE5LzA2L3JvYnVzdHN0b3V0LnBuZw.png",
+   "category": "Tmavá"
+  },
+  {
+   "slug": "stout",
+   "url": "https://www.pivovarmatuska.cz/pivo/stout/",
+   "name": "Stout",
+   "description": "Výraz Stout byl používán jako synonymum pro silné pivo, a tak jsme podle tohoto přídavného jména náš Stout uvařili. Vyšší stupňovitost, černá barva, výrazná kávově – čokoládová vůně s plnou, velmi intenzivní hořkou chutí.",
+   "attrs": {
+    "styl": "Stout",
+    "stupňovitost": "16°",
+    "alkohol": "6,0 %",
+    "hořkost": "40 IBU",
+    "slad": "plzeňský, mnichovský, karamelový, pražený ječmen, karapils, pražená pšenice, ječmen",
+    "chmel": "Fuggles, Amarillo, Saaz Special",
+    "dostupnost": "velmi občasná"
+   },
+   "sizes": [
+    "0,33l",
+    "0,75l",
+    "sud"
+   ],
+   "image": "https://snappycdn.net/matuska-prod/MNxTsLGKeUg2o0_IL6Oog0ixQ6dDjxoZiL6VDQh1QzU/fill/127/514/ce/1/aHR0cHM6Ly9tZ3dkYXRhLm5ldC9tYXR1c2thL3Byb2QvdXBsb2Fkcy8yMDE5LzA2L3N0b3V0LnBuZw.png",
+   "category": "Tmavá"
+  },
+  {
+   "slug": "tmave",
+   "url": "https://www.pivovarmatuska.cz/pivo/tmave/",
+   "name": "Tmavé",
+   "description": "Naše tmavé je více chmelené než je u tohoto druhu běžné. Není také nijak doslazované.\n\nVychutnáte si skladbu pražených sladů s příjemnou hořkostí. Naše česká pivovarská\n\nterminologie nezná pojem „černé pivo,“ proto uvádíme tmavé s pomlčkou černé. Podle\n\nanalýzy barvy našeho tmavého však spadá do kategorie Schwarzbier, která je ve světě\n\nběžně uznávaná.",
+   "attrs": {
+    "styl": "Schwarz",
+    "stupňovitost": "14°",
+    "alkohol": "5,8 %",
+    "hořkost": "35 IBU",
+    "slad": "plzeňský, mnichovský, karamelový, pražený (barevný), karapils, ječmen",
+    "chmel": "Žatecký, Saaz Special",
+    "kvašení": "spodní",
+    "dostupnost": "častá"
+   },
+   "sizes": [
+    "0,33l",
+    "0,75l",
+    "sud"
+   ],
+   "image": "https://snappycdn.net/matuska-prod/_9IyKGKB27gY077-KcYV1-GPoYPUE06M1pdwuykBDIc/fill/127/514/ce/1/aHR0cHM6Ly9tZ3dkYXRhLm5ldC9tYXR1c2thL3Byb2QvdXBsb2Fkcy8yMDE5LzA2L3RtYXZlLnBuZw.png",
+   "category": "Tmavá"
+  },
+  {
+   "slug": "golden-weizenbock",
+   "url": "https://www.pivovarmatuska.cz/pivo/golden-weizenbock/",
+   "name": "Golden Weizenbock",
+   "description": "„Tekutý chléb“, silnější verze pšeničného piva, ve středověku v období půstu v klášterech sloužil namísto jídla.",
+   "attrs": {
+    "styl": "Weizen",
+    "stupňovitost": "16°",
+    "alkohol": "6,8 %",
+    "hořkost": "15 IBU",
+    "slad": "plzeňský, pšeničný, karamelový, ječmen",
+    "chmel": "Žatecký",
+    "kvašení": "svrchní",
+    "dostupnost": "velmi občasná"
+   },
+   "sizes": [
+    "0,33l",
+    "0,75l",
+    "sud"
+   ],
+   "image": "https://snappycdn.net/matuska-prod/tYV5zwSdkYobc5yUFNBRjQOOMBX4oZ2k0jX3oGj5e5c/fill/127/514/ce/1/aHR0cHM6Ly9tZ3dkYXRhLm5ldC9tYXR1c2thL3Byb2QvdXBsb2Fkcy8yMDE5LzA2L2dvbGRlbndlaXNlbmJvY2sucG5n.png",
+   "category": "Pšeničná"
+  },
+  {
+   "slug": "psenicne",
+   "url": "https://www.pivovarmatuska.cz/pivo/psenicne/",
+   "name": "Pšeničné",
+   "description": "Pšeničné patří do projmutého tenkostěného poháru, který je na tento druh piva určen. Jedině tak si dobré pšeničné vychutnáte. Pro toto pivo je typický kvasnicový zákal. Pšeničné zažívá ve světě i u nás svoji renesanci. Svým původem patří k nejstarším druhům piva, zmínky lze nalézt již ve středověku.",
+   "attrs": {
+    "styl": "Weizen",
+    "stupňovitost": "13°",
+    "alkohol": "5,5 %",
+    "hořkost": "18 IBU",
+    "slad": "plzeňský, pšeničný, ječmen",
+    "chmel": "Žatecký, Premiant",
+    "dostupnost": "občasná"
+   },
+   "sizes": [
+    "0,33l",
+    "0,75l",
+    "sud"
+   ],
+   "image": "https://snappycdn.net/matuska-prod/9yIR425UZ1pBDfpBQbtQHLHJbCzce20RPtNvBJeiB-Q/fill/127/514/ce/1/aHR0cHM6Ly9tZ3dkYXRhLm5ldC9tYXR1c2thL3Byb2QvdXBsb2Fkcy8yMDE5LzA2L3BzZW5pY25lLnBuZw.png",
+   "category": "Pšeničná"
+  },
+  {
+   "slug": "witbier",
+   "url": "https://www.pivovarmatuska.cz/pivo/witbier/",
+   "name": "Witbier",
+   "description": "Druh belgického pšeničného piva, které se vařilo již ve středověku. K jeho výrobě se používalo koření, které se nazývalo „gruid“. Většinou to býval koriandr a pomerančová kůra. Díky použití nesladovaných cereálií pivo obsahuje škrobnaté látky, které způsobují zákal typický pro tento druh piva. Je to lehké osvěžující pivo.",
+   "attrs": {
+    "styl": "Witbier",
+    "stupňovitost": "12°",
+    "alkohol": "5,2 %",
+    "hořkost": "15 IBU",
+    "slad": "plzeňský, pšenice sladovaná a nesladovaná, kyselý slad, ovesné vločky",
+    "chmel": "Citra",
+    "kvašení": "svrchní",
+    "dostupnost": "občasná, hlavně v létě"
+   },
+   "sizes": [
+    "0,33l",
+    "0,75l",
+    "sud"
+   ],
+   "image": "https://snappycdn.net/matuska-prod/BuK5S5IoLzY4Vy3xT4s4WtW3SM1B_rH1BTGTH_N1QLg/fill/127/514/ce/1/aHR0cHM6Ly9tZ3dkYXRhLm5ldC9tYXR1c2thL3Byb2QvdXBsb2Fkcy8yMDE5LzA2L3dpdGJpZXIucG5n.png",
+   "category": "Pšeničná"
+  },
+  {
+   "slug": "summer-ale",
+   "url": "https://www.pivovarmatuska.cz/pivo/summer-ale/",
+   "name": "Summer Ale",
+   "description": "Summer Ale je letní pivo citrusovo pomerančovým aroma, světlou barvou a stabilní pěnou. Té jsme dosáhli\n\npomocí několika procent pšeničného sladu. Zkrátka pivo na léto, jak má být!",
+   "attrs": {
+    "styl": "APA",
+    "stupňovitost": "12°",
+    "alkohol": "5,2 %",
+    "hořkost": "35 IBU",
+    "slad": "plzeňský, pšeničný, karapils, ječmen",
+    "chmel": "Citra, Loral",
+    "kvašení": "svrchní",
+    "dostupnost": "v letních měsících"
+   },
+   "sizes": [
+    "0,33l",
+    "0,75l",
+    "sud"
+   ],
+   "image": "https://snappycdn.net/matuska-prod/gxqat1H6hErpUiIWPw-5V0t46XH0ZmIXd6HjwKtVP_k/fill/127/514/ce/1/aHR0cHM6Ly9tZ3dkYXRhLm5ldC9tYXR1c2thL3Byb2QvdXBsb2Fkcy8yMDE5LzA2L3N1bW1lcmFsZS5wbmc.png",
+   "category": "Speciály"
+  },
+  {
+   "slug": "sv-martin",
+   "url": "https://www.pivovarmatuska.cz/pivo/sv-martin/",
+   "name": "Sv. Martin",
+   "description": "Pivo vařené jednou ročně na Sv. Martina. Hodí se k huse, sladové a příjemně chmelové.",
+   "attrs": {
+    "styl": "Lager",
+    "stupňovitost": "16°",
+    "alkohol": "6,3 %",
+    "slad": "plzeňský, mnichovský, karamelový",
+    "chmel": "Žatecký",
+    "kvašení": "spodní",
+    "dostupnost": "na Sv. Martina"
+   },
+   "sizes": [
+    "0,33l",
+    "0,75l",
+    "sud"
+   ],
+   "image": "https://snappycdn.net/matuska-prod/7lbMIUhtFiTsqMx2358b4tXKVEZP0aP_i9GgmDaaa50/fill/127/514/ce/1/aHR0cHM6Ly9tZ3dkYXRhLm5ldC9tYXR1c2thL3Byb2QvdXBsb2Fkcy8yMDE5LzA2L3N2bWFydGluLnBuZw.png",
+   "category": "Speciály"
+  },
+  {
+   "slug": "sv-vaclav",
+   "url": "https://www.pivovarmatuska.cz/pivo/sv-vaclav/",
+   "name": "Sv. Václav",
+   "description": "Na sv. Václava, patrona všech sládků a českého piva, jsme uvařili speciální Svatováclavskou desítku. Jedná se o desítku z čerstvého hlávkového chmele Saaz Special. Chmelem jsme doopravdy nešetřili, kdy jsme použili skoro 15 kg, a to jak do chmelovaru, tak do studeného chmelení. Sklizeň chmele probíhá pouze jednou za rok, a to na přelomu srpna a září. Proto je toto pivo výjimečné nejen svým svěžím chmelovým aroma a chutí, ale i vzácnou dostupností.",
+   "attrs": {
+    "styl": "Lager",
+    "stupňovitost": "10°",
+    "alkohol": "4,2 %",
+    "hořkost": "38 IBU",
+    "slad": "plzeňský, karapils, ječmen",
+    "chmel": "Žatecký, Saaz Special, čerstvý Saaz Special",
+    "kvašení": "spodní",
+    "dostupnost": "velmi občasná"
+   },
+   "sizes": [
+    "0,33l",
+    "0,75l",
+    "sud"
+   ],
+   "image": "https://snappycdn.net/matuska-prod/mIavpg79HTbOgpKH8n7OqvEP22bP-7mA90gxbiKJ6hY/fill/127/514/ce/1/aHR0cHM6Ly9tZ3dkYXRhLm5ldC9tYXR1c2thL3Byb2QvdXBsb2Fkcy8yMDE5LzA5L3N2dmFjbGF2LXNtYWxsMTAwMGgucG5n.png",
+   "category": "Speciály"
+  },
+  {
+   "slug": "svoboda",
+   "url": "https://www.pivovarmatuska.cz/pivo/svoboda/",
+   "name": "Svoboda",
+   "description": "K výročí Sametové revoluce jsme uvařili spodně kvašené pivo Svoboda 13°. Svoboda pro nás znamená, že vůbec vznikl náš pivovar, že se můžeme inspirovat všude po světě, a tudíž vařit pivo všech chutí, vůní, barev a stylů. Proto náš sládek Honza Najbrt dostal svobodnou ruku při tvorbě receptu. Honza se s týmem rozhodl vytvořit recept ze surovin z celého světa, což činí toto pivo doopravdy osvobozené od všech zajetých pivních druhů. Použité ingredience se každý rok mění, aby byla zachována sládkova svoboda, základ piva ale zůstává stejný.",
+   "attrs": {
+    "styl": "Lager",
+    "stupňovitost": "13°",
+    "alkohol": "5,5 %",
+    "slad": "plzeňský, Carared, ječmen",
+    "chmel": "Ella, Southern Passion, Motueka, Cryo Cascade",
+    "kvašení": "spodní",
+    "dostupnost": "velmi občasná"
+   },
+   "sizes": [
+    "0,33 l",
+    "0,75 l",
+    "sud"
+   ],
+   "image": "https://snappycdn.net/matuska-prod/qBw2BRrHFyFYE3hGA4AzgvJYRF_-G-RG-LwphPXbjCI/fill/127/514/ce/1/aHR0cHM6Ly9tZ3dkYXRhLm5ldC9tYXR1c2thL3Byb2QvdXBsb2Fkcy8yMDE5LzExL3N2b2JvZGEtc21hbGwyeDEwMDBoLnBuZw.png",
+   "category": "Speciály"
+  },
+  {
+   "slug": "vanocni-ale",
+   "url": "https://www.pivovarmatuska.cz/pivo/vanocni-ale/",
+   "name": "Vánoční Ale",
+   "description": "Na Vánoce se u nás vaří dvě stejná piva. Toto je s americkými chmely a svrchními kvasnicemi.",
+   "attrs": {
+    "styl": "IIPA",
+    "stupňovitost": "19°",
+    "alkohol": "7,8 %",
+    "slad": "plzeňský, mnichovský, karamelový",
+    "chmel": "Žatecký, Amarillo, Simcoe",
+    "kvašení": "svrchní",
+    "dostupnost": "o Vánocích"
+   },
+   "sizes": [
+    "0,33l",
+    "0,75l",
+    "sud"
+   ],
+   "image": "https://snappycdn.net/matuska-prod/cxhvdS3S7rIcDgP0JaylB-Jb06e5scLsAs2ogacciOY/fill/127/514/ce/1/aHR0cHM6Ly9tZ3dkYXRhLm5ldC9tYXR1c2thL3Byb2QvdXBsb2Fkcy8yMDE5LzA2L3Zhbm9jbmlhbGUucG5n.png",
+   "category": "Speciály"
+  },
+  {
+   "slug": "wet-hop-california",
+   "url": "https://www.pivovarmatuska.cz/pivo/wet-hop-california/",
+   "name": "Wet Hop California",
+   "description": "Jedná se o Californii, která oproti normální navíc obsahuje čerstvý chmel Cascade a také CRYO hop Cascade. Oba tyto chmely dodávají pivu pořádnou šťávu, která se nejvíce projevuje ve vůni.",
+   "attrs": {
+    "styl": "APA",
+    "stupňovitost": "12°",
+    "alkohol": "5,3 %",
+    "hořkost": "55 IBU",
+    "slad": "plzeňský, karapils, ječmen",
+    "chmel": "Citra, Cascade, čerstvý Cascade, CRYO Cascade",
+    "kvašení": "svrchní",
+    "dostupnost": "velmi občasná"
+   },
+   "sizes": [
+    "0,33l",
+    "0,75l",
+    "sud"
+   ],
+   "image": "https://snappycdn.net/matuska-prod/ZdmkiBo9sjpFmWtzrqSfmCeYUwVoGcCH8_yPmD2H1OI/fill/127/514/ce/1/aHR0cHM6Ly9tZ3dkYXRhLm5ldC9tYXR1c2thL3Byb2QvdXBsb2Fkcy8yMDE5LzA5L3dldGhvcGNhbGktc21hbGwxMDAwaC5wbmc.png",
+   "category": "Speciály"
+  },
+  {
+   "slug": "winter-ale",
+   "url": "https://www.pivovarmatuska.cz/pivo/winter-ale/",
+   "name": "Winter Ale",
+   "description": "IPA vařená na zimu, dominují spíše kořenité vůně.",
+   "attrs": {
+    "styl": "IPA",
+    "stupňovitost": "16°",
+    "alkohol": "6,6 %",
+    "hořkost": "55 IBU",
+    "slad": "plzeňský, mnichovský, karamelový",
+    "chmel": "Lotus, Loral, Most, Pacific Jade",
+    "kvašení": "svrchní",
+    "dostupnost": "občasná, hlavně v zimě"
+   },
+   "sizes": [
+    "0,33l",
+    "0,75l",
+    "sud"
+   ],
+   "image": "https://snappycdn.net/matuska-prod/rsPQfdQPBz0wIAq15cCs-VePDITTi4Nqq9U7EUbjDeU/fill/127/514/ce/1/aHR0cHM6Ly9tZ3dkYXRhLm5ldC9tYXR1c2thL3Byb2QvdXBsb2Fkcy8yMDE5LzA2L3dpbnRlcmFsZS5wbmc.png",
+   "category": "Speciály"
+  },
+  {
+   "slug": "black-dog",
+   "url": "https://www.pivovarmatuska.cz/pivo/black-dog/",
+   "name": "Black Dog",
+   "description": "Toto pivo jsme uvařili společně s kluky z Black Dogu k jejich narozeninám. Jedná se o Pale Ale, do kterého jsme použili kromě plzeňského sladu také pšeničný a kyselý. Do piva jsme dali pouze jeden druh chmele, a to sice Simcoe, který pivu dodává bylinné a borovicové tóny. Celkově je pivo velmi svěží s mírným zákalem a lehkou kyselinkou.",
+   "attrs": {
+    "styl": "Pale Ale",
+    "stupňovitost": "11°",
+    "alkohol": "4,9%",
+    "hořkost": "20 IBU",
+    "slad": "plzeňský, pšeničný, kyselý, ječmen, karapils",
+    "chmel": "Simcoe",
+    "kvašení": "svrchní",
+    "dostupnost": "velmi občasná"
+   },
+   "sizes": [
+    "0,33 l",
+    "0,75 l",
+    "sud"
+   ],
+   "image": "https://snappycdn.net/matuska-prod/K10q7ljXkQkd2XZ5wzKUvYD19qWJU2gzWH6iEOGiJ1c/fill/127/514/ce/1/aHR0cHM6Ly9tZ3dkYXRhLm5ldC9tYXR1c2thL3Byb2QvdXBsb2Fkcy8yMDIxLzA2L2JsYWNrZG9nLXNtLnBuZw.png",
+   "category": "Speciály"
+  },
+  {
+   "slug": "raketa-sour",
+   "url": "https://www.pivovarmatuska.cz/pivo/raketa-sour/",
+   "name": "Raketa Sour",
+   "description": "Jedná se o pivo stylu Sour IPA, které bylo uvařeno kettle sour způsobem. Pivo má stejný základ jako naše Zlatá Raketa, pouze s tím rozdílem, že je kyselá :-). Abychom podpořili vůně chmelů, přidali jsme ke standardnímu složení chmel Enigma. Pivo je tak díky skladbě chmelů citrusově ovocné, v chuti pak osvěživě nakyslé, ale přitom velmi plné a silné.",
+   "attrs": {
+    "styl": "Sour IPA",
+    "stupňovitost": "17°",
+    "alkohol": "7%",
+    "hořkost": "60 IBU",
+    "slad": "plzeňský, karapils",
+    "chmel": "Citra, Columbus, Amarillo, Enigma",
+    "kvašení": "svrchní",
+    "dostupnost": "občasná",
+    "ostatní": "lactobacillus, kyselina mléčná"
+   },
+   "sizes": [
+    "0,33 l",
+    "0,75 l",
+    "sud"
+   ],
+   "image": "https://snappycdn.net/matuska-prod/xkPIa_GWLJOEp28SQ_0abDAo0RdA4Y1zpKEheV6rvCI/fill/127/514/ce/1/aHR0cHM6Ly9tZ3dkYXRhLm5ldC9tYXR1c2thL3Byb2QvdXBsb2Fkcy8yMDIwLzEyL3Jha2V0YXNvdXItc21hbGwxMDAwaC5wbmc.png",
+   "category": "Speciály"
+  }
+ ]
+}

@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<title>Matuška – karty k tisku</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Atkinson+Hyperlegible:wght@400;700&display=swap">
+<style>
+@page { size: A4; margin: 0; }
+:root { --ink: #1c231b; --muted: #5b6656; --line: #c9d0c0; --hop: #3f6b26; --hop-soft: #e6eedd; --amber: #a85f0c; --amber-soft: #f6e6cf; --warn: #9a2f1c;
+  --beer-zlata: #e3a72f; --beer-jantar: #b5601d; --beer-tmava: #3b1f12; --beer-kal: #efc35a; --beer-malina: #c5364f; }
+* { box-sizing: border-box; }
+body { margin: 0; color: var(--ink); font: 9.4pt/1.34 "Atkinson Hyperlegible", Arial, sans-serif; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.sheet { width: 210mm; height: 297mm; display: grid; grid-template-columns: 105mm 105mm; grid-template-rows: 148.5mm 148.5mm; page-break-after: always; break-after: page; overflow: hidden; }
+.card { position: relative; padding: 7mm 7mm 6mm 10mm; border: 0.2mm dashed #bbb; overflow: hidden; display: flex; flex-direction: column; gap: 2.4mm; }
+.card::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4mm; background: var(--beer); }
+.empty::before { display: none; }
+h2 { font: 800 21pt/1 "Bricolage Grotesque", Arial, sans-serif; margin: 0; letter-spacing: -0.01em; }
+.cat { font-size: 6.8pt; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-weight: 700; }
+.style { color: var(--amber); font-weight: 700; font-size: 9.5pt; margin-top: 1mm; }
+.stats { display: flex; border-block: 0.3mm solid var(--line); }
+.stat { padding: 1.6mm 3.5mm 1.6mm 0; margin-right: 3.5mm; border-right: 0.3mm solid var(--line); }
+.stat:last-child { border: 0; }
+.stat b { display: block; font: 800 14pt/1.1 "Bricolage Grotesque", Arial, sans-serif; }
+.stat span, .lbl { font-size: 6.5pt; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; font-weight: 700; }
+.meter { display: flex; gap: 0.7mm; margin: 1mm 0 0.6mm; }
+.meter i { width: 4mm; height: 1.7mm; border-radius: 0.4mm; background: var(--line); }
+.meter i.on { background: var(--hop); }
+.bw { font-size: 8.5pt; }
+.stat .bw b { display: inline; font: 700 8.5pt "Atkinson Hyperlegible", Arial, sans-serif; }
+.tagline { font-size: 11.5pt; margin: 0; }
+.flav { display: flex; flex-wrap: wrap; gap: 1.2mm; }
+.flav span { background: var(--amber-soft); border-radius: 1mm; padding: 0.6mm 2mm; font-weight: 700; }
+p { margin: 0; }
+.warn { color: var(--warn); font-weight: 700; border: 0.3mm solid var(--warn); border-radius: 1mm; padding: 1mm 2mm; }
+.pitch { background: var(--hop-soft); border-radius: 1.5mm; padding: 2mm 2.5mm; }
+.back { font-size: 8.6pt; gap: 1.9mm; }
+.back h3 { font: 800 12pt/1 "Bricolage Grotesque", Arial, sans-serif; margin: 0; }
+ul { margin: 0.5mm 0 0; padding: 0; list-style: none; }
+dl { display: grid; grid-template-columns: max-content 1fr; gap: 0.5mm 2.5mm; margin: 0; font-size: 8pt; }
+dt { color: var(--muted); } dd { margin: 0; }
+.src { margin-top: auto; font-size: 6.5pt; color: var(--muted); }
+.index { padding: 14mm 16mm; }
+.index h1 { font: 800 24pt/1 "Bricolage Grotesque", Arial, sans-serif; margin: 0 0 4mm; }
+.index p { font-size: 10pt; margin: 0 0 3mm; max-width: 160mm; }
+.index ol { columns: 2; font-size: 9.5pt; padding-left: 0; list-style: none; }
+.index li { break-inside: avoid; margin-bottom: 1mm; }
+</style>
+</head>
+<body>
+<div id="out"></div>
+<script>
+const DATA = __DATA__;
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const BITTER = [[20, "jemná"], [35, "mírná"], [50, "střední"], [65, "výrazná"], [999, "velmi výrazná"]];
+const bitter = ibu => { if (ibu == null) return { level: 0, word: "neuvedeno" }; const i = BITTER.findIndex(([m]) => ibu < m); return { level: i + 1, word: BITTER[i][1] }; };
+const abv = v => v == null ? "?" : String(v).replace(".", ",");
+// ?tap=1 -> jen piva na čepu
+const beers = new URLSearchParams(location.search).get("tap") ? DATA.beers.filter(b => DATA.onTap.includes(b.slug)) : DATA.beers;
+
+const front = b => { const bt = bitter(b.ibu); return `
+  <div class="card" style="--beer: var(--beer-${b.color})">
+    <span class="cat">${esc(b.category)} · Pivovar Matuška</span>
+    <div><h2>${esc(b.name)}</h2><div class="style">${esc(b.styleLabel)}</div></div>
+    <div class="stats">
+      <div class="stat"><b>${esc(b.deg)}</b><span>stupně</span></div>
+      <div class="stat"><b>${abv(b.abv)} %</b><span>alkohol</span></div>
+      <div class="stat"><span>hořkost</span><div class="meter">${[1,2,3,4,5].map(i => `<i class="${i <= bt.level ? "on" : ""}"></i>`).join("")}</div>
+        <span class="bw"><b>${bt.word}</b>${b.ibu != null ? " · " + b.ibu + " IBU" : ""}</span></div>
+    </div>
+    <p class="tagline">${esc(b.tagline)}</p>
+    <div><span class="lbl">Chuť a vůně</span><div class="flav">${b.flavors.map(f => `<span>${esc(f)}</span>`).join("")}</div></div>
+    <p><span class="lbl">Chmel</span><br>${esc(b.hops.map(h => h.name).join(", "))}</p>
+    <p><span class="lbl">Styl</span><br>${esc(b.styleText)}</p>
+    ${b.caution ? `<div class="warn">${esc(b.caution)}</div>` : ""}
+  </div>`; };
+
+const back = b => `
+  <div class="card back" style="--beer: var(--beer-${b.color})">
+    <h3>${esc(b.name)} <span class="cat">· podrobnosti</span></h3>
+    <div class="pitch"><span class="lbl">Jak to říct hostovi</span><p>${esc(b.pitch)}</p></div>
+    <p><span class="lbl">Komu nabídnout</span><br>${esc(b.who)}</p>
+    <p><span class="lbl">K jídlu</span><br>${esc(b.food)}</p>
+    <div><span class="lbl">Chmely</span><ul>${b.hops.map(h => `<li><b>${esc(h.name)}</b>${h.note ? " – " + esc(h.note) : ""}</li>`).join("")}</ul></div>
+    ${b.tip ? `<p><b>Tip:</b> ${esc(b.tip)}</p>` : ""}
+    <dl>
+      <dt>Slad</dt><dd>${esc(b.malt)}</dd>
+      ${b.extra ? `<dt>Další</dt><dd>${esc(b.extra)}</dd>` : ""}
+      <dt>Kvašení</dt><dd>${esc(b.fermentation || "neuvedeno")}</dd>
+      <dt>Alergeny</dt><dd>${esc(b.allergens.join(", "))}</dd>
+      <dt>Vaří se</dt><dd>${esc(b.availability)}</dd>
+    </dl>
+    <div class="src">Údaje: ${esc(b.url.replace("https://www.", ""))} · ${esc(DATA.fetched.split("-").reverse().join(". "))}</div>
+  </div>`;
+
+const blank = `<div class="card empty"></div>`;
+let html = `<section class="sheet" style="display:block"><div class="index">
+  <h1>Pivovar Matuška – karty piv</h1>
+  <p>Tiskněte oboustranně, <b>převracet podle dlouhé strany</b>, měřítko 100 %. Každý list = 4 karty A6, stříhejte podle čárkovaných linek. Ruby sedí za líci.</p>
+  <p>Údaje z pivovarmatuska.cz, staženo ${esc(DATA.fetched.split("-").reverse().join(". "))}.</p>
+  <ol>${beers.map((b, i) => `<li>List ${Math.floor(i / 4) + 1}: <b>${esc(b.name)}</b> – ${esc(b.styleLabel)}</li>`).join("")}</ol>
+</div></section><section class="sheet"></section>`;
+for (let i = 0; i < beers.length; i += 4) {
+  const g = beers.slice(i, i + 4);
+  const f = [0, 1, 2, 3].map(k => g[k] ? front(g[k]) : blank);
+  const r = [0, 1, 2, 3].map(k => g[k] ? back(g[k]) : blank);
+  html += `<section class="sheet">${f.join("")}</section>`;
+  html += `<section class="sheet">${[r[1], r[0], r[3], r[2]].join("")}</section>`;
+}
+document.getElementById("out").innerHTML = html;
+</script>
+</body>
+</html>
