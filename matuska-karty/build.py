@@ -100,11 +100,32 @@ def render(template, data, out):
         f.write(html.replace("__DATA__", payload))
 
 
+def standalone():
+    """dist/index.html – samostatná stránka pro hosting mimo claude.ai (např. GitHub Pages)."""
+    with open(os.path.join(DIST, "karty.html"), encoding="utf-8") as f:
+        page = f.read()
+    links = ('<footer class="wrap" style="padding-block:0 40px"><b>K tisku (PDF):</b> '
+             '<a href="matuska-karty-nas-cep.pdf">Náš čep</a> · '
+             '<a href="matuska-karty-tisk.pdf">Celý sortiment</a> – A4, oboustranně, převracet podle dlouhé strany.</footer>')
+    head = ('<!doctype html><html lang="cs"><head><meta charset="utf-8">'
+            '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">'
+            '<meta name="robots" content="noindex"><meta name="theme-color" content="#3f6b26">'
+            '<style>:root{padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0)}body{margin:0}'
+            'img{max-width:100%}[hidden]{display:none!important}</style></head><body>')
+    title = re.search(r"<title>.*?</title>", page).group(0)
+    head = head.replace("</head>", title + "</head>")
+    page = page.replace(title, "", 1)
+    page = page.replace('<footer class="wrap" id="foot"></footer>', '<footer class="wrap" id="foot"></footer>\n' + links)
+    with open(os.path.join(DIST, "index.html"), "w", encoding="utf-8") as f:
+        f.write(head + page + "</body></html>")
+
+
 def main():
     data, missing, gone, unknown_tap = merge()
     os.makedirs(DIST, exist_ok=True)
     render("karty.template.html", data, "karty.html")
     render("tisk.template.html", data, "tisk.html")
+    standalone()
     print(f"{len(data['beers'])} karet (web staženo {data['fetched']})", file=sys.stderr)
     for label, items in (("NOVÁ piva bez textu", missing), ("Texty pro piva, která už na webu nejsou", gone),
                          ("Na čepu, ale neznámý slug", unknown_tap)):
