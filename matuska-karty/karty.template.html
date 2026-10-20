@@ -77,13 +77,17 @@ details.guide summary { padding: 14px 18px; font-weight: 700; cursor: pointer; f
 .card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; display: grid; grid-template-columns: 10px 1fr; cursor: pointer; transition: transform .18s ease; }
 .card.turning { transform: perspective(900px) rotateY(90deg); }
 .card .glass { background: var(--beer); }
-.card.tap { border-color: var(--hop); box-shadow: 0 0 0 2px var(--hop); }
+.card.stalice { border-color: var(--hop); box-shadow: 0 0 0 2px var(--hop); }
+.card.obcas { border-color: var(--hop); }
+.sec { grid-column: 1 / -1; font-size: 22px; font-weight: 800; padding-top: 8px; }
+.sec span { font: 400 14px var(--f-body); color: var(--muted); margin-left: 6px; }
 .face { padding: 16px 18px 14px; display: grid; gap: 12px; min-width: 0; }
 .face[hidden] { display: none; }
 .kicker { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
 .cat { font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-weight: 700; }
 .tapbtn { border: 1px solid var(--line); background: none; border-radius: 999px; padding: 4px 10px; font-size: 13px; font-weight: 700; white-space: nowrap; }
-.card.tap .tapbtn { background: var(--hop); color: var(--paper); border-color: var(--hop); }
+.tapbtn.stalice { background: var(--hop); color: var(--paper); border-color: var(--hop); }
+.tapbtn.obcas { color: var(--hop); border-color: var(--hop); }
 .name { font-size: 30px; font-weight: 800; letter-spacing: -0.015em; line-height: 1.02; }
 .style { font-weight: 700; color: var(--amber); margin-top: 2px; }
 .stats { display: grid; grid-template-columns: auto auto 1fr; gap: 0; border-block: 1px solid var(--line); }
@@ -131,7 +135,7 @@ footer { padding-block: 10px 40px; color: var(--muted); font-size: 13px; }
   <div class="wrap">
     <div class="row">
       <div class="seg" role="group" aria-label="Zobrazit">
-        <button id="v-tap" aria-pressed="false">Na čepu <span id="n-tap"></span></button>
+        <button id="v-tap" aria-pressed="false">Náš čep <span id="n-tap"></span></button>
         <button id="v-all" aria-pressed="true">Všechna <span id="n-all"></span></button>
       </div>
       <input id="q" type="search" placeholder="Hledat pivo, chmel, chuť…" aria-label="Hledat">
@@ -199,10 +203,18 @@ const store = {
   get(k) { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } },
   set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} },
 };
-const tapBase = DATA.onTapUpdated + "|" + DATA.onTap.join(",");
-let saved = store.get("matuska-tap");
-let onTap = new Set(saved && saved.base === tapBase ? saved.set : DATA.onTap);
-let view = onTap.size ? "tap" : "all";
+// Náš čep: slug -> "stalice" | "obcas". Výchozí z na-cepu.json, změny si pamatuje zařízení.
+const tapBase = [DATA.onTapUpdated, DATA.onTap, DATA.sometimes].join("|");
+let saved = store.get("matuska-cep");
+let tier = new Map(saved && saved.base === tapBase ? saved.map
+  : [...DATA.onTap.map(s => [s, "stalice"]), ...DATA.sometimes.map(s => [s, "obcas"])]);
+let view = tier.size ? "tap" : "all";
+const NEXT = { undefined: "stalice", stalice: "obcas", obcas: undefined };
+function tapBtn(b) {
+  const t = tier.get(b.slug);
+  const label = t === "stalice" ? "★ Stále na čepu" : t === "obcas" ? "☆ Občas na čepu" : "+ Na čep";
+  return `<button class="tapbtn${t ? " " + t : ""}" data-act="tap" title="Klepnutím přepnete: stále → občas → vůbec">${label}</button>`;
+}
 let group = null;
 let flipped = new Set();
 
@@ -219,7 +231,7 @@ function front(b) {
   return `
   <div class="face front">
     <div class="kicker"><span class="cat">${esc(b.category)}</span>
-      <button class="tapbtn" data-act="tap" aria-pressed="${onTap.has(b.slug)}">${onTap.has(b.slug) ? "✓ Na čepu" : "+ Na čep"}</button></div>
+      ${tapBtn(b)}</div>
     <div><h2 class="name">${esc(b.name)}</h2><div class="style">${esc(b.styleLabel)}</div></div>
     <div class="stats">
       <div class="stat"><b>${esc(b.deg || "?")}</b><span>stupně</span></div>
@@ -240,7 +252,7 @@ function back(b) {
   return `
   <div class="face back">
     <div class="kicker"><span class="cat">${esc(b.name)} · rub</span>
-      <button class="tapbtn" data-act="tap" aria-pressed="${onTap.has(b.slug)}">${onTap.has(b.slug) ? "✓ Na čepu" : "+ Na čep"}</button></div>
+      ${tapBtn(b)}</div>
     <div class="pitch"><span class="lbl">Jak to říct hostovi</span><p>${esc(b.pitch)}</p></div>
     <div class="kv">
       <div><span class="lbl">Komu ho nabídnout</span><p>${esc(b.who)}</p></div>
@@ -274,8 +286,8 @@ function matches(b, q) {
 function render() {
   const q = document.getElementById("q").value.trim().toLowerCase();
   const g = GROUPS.find(x => x[0] === group);
-  const list = BEERS.filter(b => (view === "all" || onTap.has(b.slug)) && (!g || g[2](b)) && matches(b, q));
-  document.getElementById("n-tap").textContent = `(${onTap.size})`;
+  const list = BEERS.filter(b => (view === "all" || tier.has(b.slug)) && (!g || g[2](b)) && matches(b, q));
+  document.getElementById("n-tap").textContent = `(${tier.size})`;
   document.getElementById("n-all").textContent = `(${BEERS.length})`;
   document.getElementById("v-tap").setAttribute("aria-pressed", view === "tap");
   document.getElementById("v-all").setAttribute("aria-pressed", view === "all");
@@ -285,16 +297,22 @@ function render() {
     : "";
   const grid = document.getElementById("grid");
   if (!list.length) {
-    grid.innerHTML = view === "tap" && !onTap.size
-      ? `<p class="empty">Zatím není nic označeno jako „na čepu“. Přepněte na <b>Všechna</b> a u piv, která čepujete, klepněte na <b>+ Na čep</b>.</p>`
+    grid.innerHTML = view === "tap" && !tier.size
+      ? `<p class="empty">Zatím není nic označeno. Přepněte na <b>Všechna</b> a u piv, která čepujete, klepněte na <b>+ Na čep</b>.</p>`
       : `<p class="empty">Nic neodpovídá. Zkuste zrušit filtr nebo hledání.</p>`;
     return;
   }
-  grid.innerHTML = list.map(b => `
-    <article class="card${onTap.has(b.slug) ? " tap" : ""}" data-slug="${b.slug}" style="--beer: var(--beer-${b.color})">
+  const card = b => `
+    <article class="card${tier.has(b.slug) ? " " + tier.get(b.slug) : ""}" data-slug="${b.slug}" style="--beer: var(--beer-${b.color})">
       <div class="glass" aria-hidden="true"></div>
       <div>${flipped.has(b.slug) ? back(b) : front(b)}</div>
-    </article>`).join("");
+    </article>`;
+  if (view === "all") { grid.innerHTML = list.map(card).join(""); return; }
+  const sec = (t, title, note) => {
+    const items = list.filter(b => tier.get(b.slug) === t);
+    return items.length ? `<h2 class="sec">${title} <span>${note}</span></h2>` + items.map(card).join("") : "";
+  };
+  grid.innerHTML = sec("stalice", "Stále na čepu", "tyhle znát nazpaměť") + sec("obcas", "Občas na čepu", "podle toho, co zrovna teče");
 }
 
 function flip(card) {
@@ -311,8 +329,9 @@ document.getElementById("grid").addEventListener("click", e => {
   const act = e.target.closest("[data-act]")?.dataset.act;
   if (act === "tap") {
     const s = card.dataset.slug;
-    onTap.has(s) ? onTap.delete(s) : onTap.add(s);
-    store.set("matuska-tap", { base: tapBase, set: [...onTap] });
+    const n = NEXT[tier.get(s)];
+    n ? tier.set(s, n) : tier.delete(s);
+    store.set("matuska-cep", { base: tapBase, map: [...tier] });
     render();
     return;
   }
@@ -331,7 +350,7 @@ GROUPS.forEach(([id, label]) => {
 });
 document.getElementById("foot").innerHTML =
   `Fakta (stupně, alkohol, hořkost, chmel, slad, popis) jsou z webu <a href="${esc(DATA.source)}" target="_blank" rel="noopener">pivovarmatuska.cz</a>, staženo ${esc(DATA.fetched.split("-").reverse().join(". "))}. ` +
-  `Vysvětlivky a doporučení pro obsluhu vychází z těchto údajů. Výběr „Na čepu“ si pamatuje každé zařízení zvlášť.`;
+  `Vysvětlivky a doporučení pro obsluhu vychází z těchto údajů. Úpravy „Našeho čepu“ si pamatuje každé zařízení zvlášť.`;
 try { if (!store.get("matuska-guide-seen")) { document.getElementById("guide").open = true; store.set("matuska-guide-seen", 1); } } catch (e) {}
 render();
 </script>

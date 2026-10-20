@@ -79,8 +79,9 @@ def merge():
             **{k: t.get(k) for k in ("color", "group", "tagline", "flavors", "pitch", "who", "food", "caution", "tip")},
         })
     gone = sorted(set(t_beers) - {b["slug"] for b in web["beers"]})
-    unknown_tap = sorted(set(tap["onTap"]) - {b["slug"] for b in beers})
+    unknown_tap = sorted(set(tap["onTap"] + tap.get("sometimes", [])) - {b["slug"] for b in beers})
     return {"fetched": web["fetched"], "source": web["source"], "onTap": tap["onTap"],
+            "sometimes": tap.get("sometimes", []),
             "onTapUpdated": tap.get("updated", ""), "beers": beers}, missing, gone, unknown_tap
 
 
@@ -104,11 +105,12 @@ def main():
             print(f"  ! {label}: {', '.join(items)}", file=sys.stderr)
     if "--pdf" in sys.argv:
         chrome = os.environ.get("CHROME", "/opt/pw-browsers/chromium-1194/chrome-linux/chrome")
-        subprocess.run([chrome, "--headless", "--no-sandbox", "--disable-gpu", "--no-pdf-header-footer",
-                        f"--print-to-pdf={os.path.join(DIST, 'matuska-karty-tisk.pdf')}",
-                        "file://" + os.path.join(DIST, "tisk.html")], check=True,
-                       stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-        print("  PDF: dist/matuska-karty-tisk.pdf", file=sys.stderr)
+        for pdf, query in (("matuska-karty-tisk.pdf", ""), ("matuska-karty-nas-cep.pdf", "?tap=1")):
+            subprocess.run([chrome, "--headless", "--no-sandbox", "--disable-gpu", "--no-pdf-header-footer",
+                            f"--print-to-pdf={os.path.join(DIST, pdf)}",
+                            "file://" + os.path.join(DIST, "tisk.html") + query], check=True,
+                           stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            print(f"  PDF: dist/{pdf}", file=sys.stderr)
 
 
 if __name__ == "__main__":

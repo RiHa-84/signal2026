@@ -44,6 +44,8 @@ def categories():
 
 def beer(slug):
     page = get(f"{BASE}/pivo/{slug}/")
+    if "singlebeer__attrs" not in page:
+        raise ValueError(f"{slug}: stránka piva neexistuje nebo nemá parametry")
     name = clean(re.search(r"<h1[^>]*>(.*?)</h1>", page, re.S).group(1))
     desc = re.search(r'class="singlebeer__desc">(.*?)</div>', page, re.S)
     attrs = {clean(k).lower(): clean(v) for k, v in re.findall(

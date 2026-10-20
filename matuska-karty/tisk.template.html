@@ -55,7 +55,9 @@ const BITTER = [[20, "jemná"], [35, "mírná"], [50, "střední"], [65, "výraz
 const bitter = ibu => { if (ibu == null) return { level: 0, word: "neuvedeno" }; const i = BITTER.findIndex(([m]) => ibu < m); return { level: i + 1, word: BITTER[i][1] }; };
 const abv = v => v == null ? "?" : String(v).replace(".", ",");
 // ?tap=1 -> jen piva na čepu
-const beers = new URLSearchParams(location.search).get("tap") ? DATA.beers.filter(b => DATA.onTap.includes(b.slug)) : DATA.beers;
+const bySlug = Object.fromEntries(DATA.beers.map(b => [b.slug, b]));
+const beers = new URLSearchParams(location.search).get("tap")
+  ? [...DATA.onTap, ...DATA.sometimes].map(s => bySlug[s]).filter(Boolean) : DATA.beers;
 
 const front = b => { const bt = bitter(b.ibu); return `
   <div class="card" style="--beer: var(--beer-${b.color})">
