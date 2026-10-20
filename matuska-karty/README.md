@@ -11,6 +11,7 @@ Karty piv Pivovaru Matuška pro personál pivnice. Na líci je rychlý přehled 
 | Soubor | Co obsahuje | Kdo ho mění |
 |---|---|---|
 | `beers-web.json` | fakta z pivovarmatuska.cz (styl, °, %, IBU, slad, chmel, kvašení, dostupnost, popis) | `scrape.py`, automaticky |
+| `beers-manual.json` | piva, která na webu pivovaru nejsou (např. Florida – údaje z e-shopu pivkodomu.cz); zdroj je uveden na kartě | ručně / Claude |
 | `texts.json` | texty pro obsluhu: prodejní věta, chutě, „komu nabídnout“, jídlo, vysvětlivky stylů a chmelů | ručně / Claude |
 | `na-cepu.json` | „Náš čep“: `onTap` = stále na čepu, `sometimes` = občas (slugy z URL piva) | ručně / Claude |
 
@@ -32,4 +33,4 @@ Pak znovu publikovat `dist/karty.html` na stejný odkaz. Stačí napsat Claudovi
 
 Úpravy „Našeho čepu“ v aplikaci (tlačítko na kartě: stále → občas → vůbec) si pamatuje každé zařízení zvlášť. Výchozí seznam pro všechna zařízení je v `na-cepu.json`; když se změní, zařízení přejdou na nový seznam.
 
-Pivo, které na webu pivovaru není (např. Florida), zatím kartu nemá – doplní se, až budou podklady (etiketa, popis od pivovaru).
+Pivo, které na webu pivovaru není, se doplní do `beers-manual.json` (+ text do `texts.json`). Až se objeví na webu pivovaru, má web přednost a `build.py` upozorní, že ruční záznam jde smazat.

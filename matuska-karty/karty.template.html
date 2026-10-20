@@ -271,8 +271,8 @@ function back(b) {
       <dt>Alergeny</dt><dd>${esc(b.allergens.join(", "))}</dd>
       <dt>Jak často se vaří</dt><dd>${esc(b.availability)}</dd>
     </dl>
-    <details class="orig"><summary>Co o pivu píše pivovar</summary><p>${esc(b.description)}</p></details>
-    <div class="src">Zdroj: <a href="${esc(b.url)}" target="_blank" rel="noopener">${esc(b.url.replace("https://www.", ""))}</a></div>
+    <details class="orig"><summary>${b.manual ? "Popis z e-shopu" : "Co o pivu píše pivovar"}</summary><p>${esc(b.description)}</p></details>
+    <div class="src">Zdroj: <a href="${esc(b.url)}" target="_blank" rel="noopener">${esc(b.url.replace("https://www.", "").split("/")[0])}</a>${b.manual ? " – pivo zatím není na webu pivovaru, údaje jsou z e-shopu" : ""}</div>
     <button class="flip" data-act="flip">↺ Zpět na přehled</button>
   </div>`;
 }

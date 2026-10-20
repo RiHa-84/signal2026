@@ -1,5 +1,18 @@
 {
  "updated": "2026-10-20",
- "onTap": ["california", "apollo-galaxy", "raptor", "zlata-raketa", "bila-perla"],
- "sometimes": ["dvanactka", "broumy", "sunshine", "kysela-mana", "raketa-sour"]
+ "onTap": [
+  "california",
+  "apollo-galaxy",
+  "raptor",
+  "zlata-raketa",
+  "florida",
+  "bila-perla"
+ ],
+ "sometimes": [
+  "dvanactka",
+  "broumy",
+  "sunshine",
+  "kysela-mana",
+  "raketa-sour"
+ ]
 }

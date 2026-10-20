@@ -1,32 +1,99 @@
 {
  "_info": "Texty pro obsluhu. Fakta (°, %, IBU, chmel, slad…) se berou z beers-web.json (web pivovaru). Tady jsou jen vysvětlení a prodejní věty. Klíč = slug piva z URL pivovarmatuska.cz/pivo/<slug>/.",
-
  "styles": {
-  "lezak": {"name": "Světlý ležák", "text": "Klasické české pivo. Spodně kvašené, zraje dlouho v chladu. Čistá sladová chuť a jemná bylinná hořkost českého chmele."},
-  "lezak-silny": {"name": "Silný ležák (speciál)", "text": "Ležák s vyšší stupňovitostí: plnější tělo, víc sladu, víc alkoholu. Pije se pomaleji."},
-  "polotmavy": {"name": "Polotmavý ležák", "text": "Ležák s karamelovým sladem. Jantarová barva, sladovější a kulatější chuť než u světlého."},
-  "tmavy": {"name": "Tmavý ležák – Schwarzbier", "text": "Spodně kvašené tmavé pivo z pražených sladů. Tóny pražení, přitom lehčí tělo a suchý konec."},
-  "doppelbock": {"name": "Doppelbock", "text": "Velmi silný sladový ležák německé tradice. Plné tělo, karamel, hřejivý alkohol."},
-  "apl": {"name": "APL – American Pale Lager", "text": "Ležák chmelený americkými chmely. Vůně jako u ovocného ALE, čistota a pitelnost ležáku."},
-  "pale-ale": {"name": "Pale Ale", "text": "Svrchně kvašené světlé pivo z Anglie. Ovocnější než ležák, víc vůně chmele."},
-  "apa": {"name": "APA – American Pale Ale", "text": "Pale Ale s americkými chmely: vůně citrusů a grapefruitu, svěží hořkost. Dobrý první krok od ležáku k ALE."},
-  "juicy": {"name": "Juicy Pale Ale / IPA", "text": "„Šťavnatý“ styl: hodně aromatického chmele, oves a pšenice. Kalné, jemné, voní ovocem, hořkost je nízká."},
-  "ipa": {"name": "IPA – India Pale Ale", "text": "Silnější a víc chmelené Pale Ale. Vznikla v Anglii v 19. století pro dlouhou plavbu do Indie. Výrazná vůně a hořkost."},
-  "iipa": {"name": "Double IPA (IIPA)", "text": "Ještě silnější IPA: víc sladu, víc chmele, víc alkoholu. Pije se pomalu, ideálně menší míra."},
-  "esb": {"name": "ESB – Extra Special Bitter", "text": "Anglický klasický styl. Karamelové slady, anglické zemité chmele, méně výrazné aroma a jemnější hořkost než IPA."},
-  "iba": {"name": "IBA – India Black Ale", "text": "„Černá IPA“: tmavé pražené slady a k tomu výrazné chmelení jako u IPA."},
-  "black-ale": {"name": "Black Ale", "text": "Tmavé svrchně kvašené pivo. Pražené slady dávají tóny kávy a hořké čokolády."},
-  "stout": {"name": "Stout", "text": "Černé svrchně kvašené pivo z praženého ječmene. Káva, hořká čokoláda, plné tělo."},
-  "weizen": {"name": "Pšeničné (Weizen)", "text": "Pivo z pšeničného sladu se svrchními kvasnicemi. Kvasnicový zákal, nízká hořkost, osvěžující."},
-  "weizenbock": {"name": "Weizenbock", "text": "Silná verze pšeničného piva. Plnější, sladovější, víc alkoholu."},
-  "witbier": {"name": "Witbier (belgické bílé)", "text": "Belgické pšeničné z pšenice sladované i nesladované. Typický zákal, lehké a svěží."},
-  "sour": {"name": "Kyseláč (Sour)", "text": "Záměrně nakyslé pivo (mléčné bakterie). Osvěžující, často s ovocem, hořkost skoro žádná. Chutná i lidem, kteří pivo moc nepijí."},
-  "gose": {"name": "Gose", "text": "Německý kyselý styl s pšenicí, koriandrem a špetkou soli. Lehký, svěží, slaný dotek."},
-  "sour-ipa": {"name": "Sour IPA", "text": "Kříženec kyseláče a IPA: chmelová vůně jako u IPA, k tomu osvěživá kyselost."},
-  "new-broumy": {"name": "New Broumy (vlastní styl)", "text": "Styl, který si pivovar vymyslel sám. Výrazné chmelové aroma, vyvážená chuť, vysoká pitelnost. Pšenice, oves, kyselý slad, pomerančová kůra."},
-  "horky-lezak": {"name": "Hořký silný ležák (vlastní styl)", "text": "Styl, který si pivovar definoval sám: silný ležák s velmi výraznou hořkostí."}
+  "lezak": {
+   "name": "Světlý ležák",
+   "text": "Klasické české pivo. Spodně kvašené, zraje dlouho v chladu. Čistá sladová chuť a jemná bylinná hořkost českého chmele."
+  },
+  "lezak-silny": {
+   "name": "Silný ležák (speciál)",
+   "text": "Ležák s vyšší stupňovitostí: plnější tělo, víc sladu, víc alkoholu. Pije se pomaleji."
+  },
+  "polotmavy": {
+   "name": "Polotmavý ležák",
+   "text": "Ležák s karamelovým sladem. Jantarová barva, sladovější a kulatější chuť než u světlého."
+  },
+  "tmavy": {
+   "name": "Tmavý ležák – Schwarzbier",
+   "text": "Spodně kvašené tmavé pivo z pražených sladů. Tóny pražení, přitom lehčí tělo a suchý konec."
+  },
+  "doppelbock": {
+   "name": "Doppelbock",
+   "text": "Velmi silný sladový ležák německé tradice. Plné tělo, karamel, hřejivý alkohol."
+  },
+  "apl": {
+   "name": "APL – American Pale Lager",
+   "text": "Ležák chmelený americkými chmely. Vůně jako u ovocného ALE, čistota a pitelnost ležáku."
+  },
+  "pale-ale": {
+   "name": "Pale Ale",
+   "text": "Svrchně kvašené světlé pivo z Anglie. Ovocnější než ležák, víc vůně chmele."
+  },
+  "apa": {
+   "name": "APA – American Pale Ale",
+   "text": "Pale Ale s americkými chmely: vůně citrusů a grapefruitu, svěží hořkost. Dobrý první krok od ležáku k ALE."
+  },
+  "juicy": {
+   "name": "Juicy Pale Ale / IPA",
+   "text": "„Šťavnatý“ styl: hodně aromatického chmele, oves a pšenice. Kalné, jemné, voní ovocem, hořkost je nízká."
+  },
+  "ipa": {
+   "name": "IPA – India Pale Ale",
+   "text": "Silnější a víc chmelené Pale Ale. Vznikla v Anglii v 19. století pro dlouhou plavbu do Indie. Výrazná vůně a hořkost."
+  },
+  "iipa": {
+   "name": "Double IPA (IIPA)",
+   "text": "Ještě silnější IPA: víc sladu, víc chmele, víc alkoholu. Pije se pomalu, ideálně menší míra."
+  },
+  "esb": {
+   "name": "ESB – Extra Special Bitter",
+   "text": "Anglický klasický styl. Karamelové slady, anglické zemité chmele, méně výrazné aroma a jemnější hořkost než IPA."
+  },
+  "iba": {
+   "name": "IBA – India Black Ale",
+   "text": "„Černá IPA“: tmavé pražené slady a k tomu výrazné chmelení jako u IPA."
+  },
+  "black-ale": {
+   "name": "Black Ale",
+   "text": "Tmavé svrchně kvašené pivo. Pražené slady dávají tóny kávy a hořké čokolády."
+  },
+  "stout": {
+   "name": "Stout",
+   "text": "Černé svrchně kvašené pivo z praženého ječmene. Káva, hořká čokoláda, plné tělo."
+  },
+  "weizen": {
+   "name": "Pšeničné (Weizen)",
+   "text": "Pivo z pšeničného sladu se svrchními kvasnicemi. Kvasnicový zákal, nízká hořkost, osvěžující."
+  },
+  "weizenbock": {
+   "name": "Weizenbock",
+   "text": "Silná verze pšeničného piva. Plnější, sladovější, víc alkoholu."
+  },
+  "witbier": {
+   "name": "Witbier (belgické bílé)",
+   "text": "Belgické pšeničné z pšenice sladované i nesladované. Typický zákal, lehké a svěží."
+  },
+  "sour": {
+   "name": "Kyseláč (Sour)",
+   "text": "Záměrně nakyslé pivo (mléčné bakterie). Osvěžující, často s ovocem, hořkost skoro žádná. Chutná i lidem, kteří pivo moc nepijí."
+  },
+  "gose": {
+   "name": "Gose",
+   "text": "Německý kyselý styl s pšenicí, koriandrem a špetkou soli. Lehký, svěží, slaný dotek."
+  },
+  "sour-ipa": {
+   "name": "Sour IPA",
+   "text": "Kříženec kyseláče a IPA: chmelová vůně jako u IPA, k tomu osvěživá kyselost."
+  },
+  "new-broumy": {
+   "name": "New Broumy (vlastní styl)",
+   "text": "Styl, který si pivovar vymyslel sám. Výrazné chmelové aroma, vyvážená chuť, vysoká pitelnost. Pšenice, oves, kyselý slad, pomerančová kůra."
+  },
+  "horky-lezak": {
+   "name": "Hořký silný ležák (vlastní styl)",
+   "text": "Styl, který si pivovar definoval sám: silný ležák s velmi výraznou hořkostí."
+  }
  },
-
  "hops": {
   "Žatecký": "český klasik – jemný, bylinný a kořenitý; základ českého ležáku",
   "ŽPČ": "Žatecký poloraný červeňák – ten klasický žatecký chmel: jemný, bylinný, kořenitý",
@@ -61,372 +128,668 @@
   "Cryo": "Cryo = koncentrovaný chmel (jen aromatická část hlávky) – silnější vůně",
   "čerstvý": "čerstvý = hlávkový chmel přímo ze sklizně, nesušený; dá se použít jen jednou ročně"
  },
-
  "beers": {
   "apollo-galaxy": {
-   "styleKey": "pale-ale", "color": "zlata", "group": "ovocne",
+   "styleKey": "pale-ale",
+   "color": "zlata",
+   "group": "ovocne",
    "tagline": "Letní Pale Ale, které voní tropickým ovocem a přitom má plnost a říz.",
-   "flavors": ["tropické ovoce", "citrusy", "výrazná hořkost"],
+   "flavors": [
+    "tropické ovoce",
+    "citrusy",
+    "výrazná hořkost"
+   ],
    "pitch": "Pivovar ho postavil jako křížence: vůně Zlaté Rakety a pitelnost Californie. Australský Galaxy a americká Citra dávají vůni tropického ovoce, americký Apollo pevnou hořkost. Je plnější a silnější než běžná dvanáctka.",
    "who": "Kdo má rád Californii a chce víc vůně. Kdo zkouší ovocné pivo poprvé a nebojí se hořkosti.",
    "food": "grilované maso, burger, pikantní jídla"
   },
   "california": {
-   "styleKey": "apa", "color": "zlata", "group": "ovocne",
+   "styleKey": "apa",
+   "color": "zlata",
+   "group": "ovocne",
    "tagline": "Sluníčková APA – citrusy a grapefruit, svěží a pitelná dvanáctka.",
-   "flavors": ["grapefruit", "citrusy", "svěží hořkost"],
+   "flavors": [
+    "grapefruit",
+    "citrusy",
+    "svěží hořkost"
+   ],
    "pitch": "Jedno z nejčastěji vařených piv Matušky. Americké chmely Citra a Cascade jí dávají vůni po citrusech a grapefruitu. Pivovar říká, že je to verze US/CZ – americký styl s něčím českým. Dvanáctka, takže se dá pít i víc kousků.",
    "who": "Ideální první krok od ležáku k ALE. Kdo chce něco voňavého, ale ne těžkého.",
    "food": "burger, fish & chips, nachos, saláty"
   },
+  "florida": {
+   "styleKey": "apa",
+   "color": "zlata",
+   "group": "ovocne",
+   "tagline": "Lehká desítka ve stylu Californie – svěží, ovocná a bylinná, jen 4,2 %.",
+   "flavors": [
+    "ovocné tóny",
+    "bylinky",
+    "svěží a lehká"
+   ],
+   "pitch": "Novinka od Matušky, inspirovaná Californií, ale lehčí: desítka se 4,2 % alkoholu. Chmel Citra dává ovocné tóny, Simcoe bylinné a borovicové. Světlé tělo a vyšší prokvašení (pivo je sušší, méně sladké) – proto se výborně pije.",
+   "who": "Kdo má rád Californii, ale chce něco lehčího. Na víc kousků nebo k obědu.",
+   "food": "saláty, ryby, kuřecí, lehký oběd"
+  },
   "double-ipa": {
-   "styleKey": "iipa", "color": "zlata", "group": "ovocne",
+   "styleKey": "iipa",
+   "color": "zlata",
+   "group": "ovocne",
    "tagline": "Silná Double IPA s experimentálním chmelem – tóny kokosu a whiskey.",
-   "flavors": ["kokos", "tropické ovoce", "tóny whiskey"],
+   "flavors": [
+    "kokos",
+    "tropické ovoce",
+    "tóny whiskey"
+   ],
    "pitch": "Osmnáctka se 7,6 % alkoholu. Podle pivovaru má experimentální chmel aroma podobné pivům zrajícím v sudech: kokos a whiskey. Citra, Amarillo a Ella k tomu přidávají ovoce. Vaří se jen velmi občas.",
    "who": "Zkušení pivaři, fanoušci IPA a sudových speciálů. Na ochutnání spíš menší míra.",
    "food": "výrazné sýry, pikantní kuchyně",
    "caution": "Silné pivo – 7,6 % alkoholu."
   },
   "e-s-b": {
-   "styleKey": "esb", "color": "jantar", "group": "ovocne",
+   "styleKey": "esb",
+   "color": "jantar",
+   "group": "ovocne",
    "tagline": "Anglická klasika – rybíz, pomeranč a karamel, kulatější než IPA.",
-   "flavors": ["černý rybíz", "pomeranč", "karamelový slad"],
+   "flavors": [
+    "černý rybíz",
+    "pomeranč",
+    "karamelový slad"
+   ],
    "pitch": "Extra Special Bitter je kus anglické pivní tradice. Anglické chmely Fuggle a Bramling Cross mu dávají vůni po rybízu a pomerančích. Je záměrně méně řízné než IPA. Pivovar doporučuje čepovat ho teplejší, kolem 13 °C – vůně se pak víc rozvine.",
    "who": "Kdo má rád polotmavé nebo karamelové pivo a chce zkusit něco jiného. Fanoušci anglických pubů.",
    "food": "pečené maso, fish & chips, čedar",
    "tip": "Čepovat teplejší, kolem 13 °C (doporučení pivovaru)."
   },
   "eldorado": {
-   "styleKey": "apa", "color": "zlata", "group": "ovocne",
+   "styleKey": "apa",
+   "color": "zlata",
+   "group": "ovocne",
    "tagline": "Pale Ale, které voní po citrusech a mangu.",
-   "flavors": ["mango", "citrusy", "výrazná hořkost"],
+   "flavors": [
+    "mango",
+    "citrusy",
+    "výrazná hořkost"
+   ],
    "pitch": "Hlavní roli hraje americký chmel Eldorado, k němu Citra a Apollo. Pivo podle pivovaru voní po citrusech a mangu. Novější verze (od února 2021) je bez mnichovského sladu, proto je světlejší.",
    "who": "Fanoušci Californie a Apolla Galaxy – další ovocná varianta.",
    "food": "asijská kuchyně, kuřecí, tacos"
   },
   "fastball": {
-   "styleKey": "pale-ale", "color": "zlata", "group": "ovocne",
+   "styleKey": "pale-ale",
+   "color": "zlata",
+   "group": "ovocne",
    "tagline": "Lehká devítka – osvěží, voní a nezatíží. Jen 3,8 %.",
-   "flavors": ["citrusy", "lehké tělo", "osvěžující"],
+   "flavors": [
+    "citrusy",
+    "lehké tělo",
+    "osvěžující"
+   ],
    "pitch": "Recept sestavil Adam Matuška, který hrál vrcholově baseball – fastball je rychlý a rovný nadhoz. Jen 3,8 % alkoholu, ale díky Citře a Cascade voní jako plnohodnotné ALE. Výborně se pije, uhasí žízeň.",
    "who": "Kdo chce lehké pivo, ale ne nudné. K obědu, v létě, na víc kousků.",
    "food": "saláty, ryby, lehký oběd"
   },
   "hellcat": {
-   "styleKey": "iipa", "color": "jantar", "group": "ovocne",
+   "styleKey": "iipa",
+   "color": "jantar",
+   "group": "ovocne",
    "tagline": "Jedna z nejsilnějších IIPA v Česku – 21°, 8,4 %, vůně borovice.",
-   "flavors": ["borovice", "pryskyřice", "plné sladové tělo"],
+   "flavors": [
+    "borovice",
+    "pryskyřice",
+    "plné sladové tělo"
+   ],
    "pitch": "Pivovar o něm píše, že „užitná hodnota“ jedné sklenice je asi jako dvě sklenice plzeňského. Ve vůni dominuje Simcoe – borovice. Barva je světle jantarová jen díky velkému množství světlého sladu. I přes sílu se dobře pije, proto hosta upozorněte.",
    "who": "Zkušení pivaři a milovníci silných piv. Ideálně menší míra.",
    "food": "výrazné sýry, pečené maso",
    "caution": "Velmi silné – 8,4 % alkoholu."
   },
   "raptor": {
-   "styleKey": "ipa", "color": "jantar", "group": "ovocne",
+   "styleKey": "ipa",
+   "color": "jantar",
+   "group": "ovocne",
    "tagline": "Vlajková loď Matušky – jedna z prvních IPA v Česku, české i americké chmely.",
-   "flavors": ["pomeranč a citrusy", "karamelový slad", "výrazná hořkost"],
+   "flavors": [
+    "pomeranč a citrusy",
+    "karamelový slad",
+    "výrazná hořkost"
+   ],
    "pitch": "Raptor je první IPA, kterou Matuška uvařil, a jedno z prvních piv tohoto stylu v Česku. Kombinuje české chmely (Saaz Special, Premiant) s americkými (Cascade, Amarillo) – je ovocný, ale s poctivou hořkostí. Kdo chce pochopit, proč je Matuška známá, začne tady.",
    "who": "Kdo chce ochutnat to nejznámější od Matušky. Kdo má rád hořké pivo.",
    "food": "burger, kari, pikantní jídla, čedar"
   },
   "high-voltage": {
-   "styleKey": "juicy", "label": "Juicy Double IPA", "color": "kal", "group": "ovocne",
+   "styleKey": "juicy",
+   "label": "Juicy Double IPA",
+   "color": "kal",
+   "group": "ovocne",
    "tagline": "Šťavnatá Double IPA – tropické ovoce ve vůni i v chuti, jemná a kalná.",
-   "flavors": ["tropické ovoce", "šťavnaté", "jemné tělo"],
+   "flavors": [
+    "tropické ovoce",
+    "šťavnaté",
+    "jemné tělo"
+   ],
    "pitch": "15 gramů chmele na litr piva – Citra, Mosaic a Eldorado. Ovesné a pšeničné vločky dělají pivo jemné a lehce zakalené. Na osmnáctku je hořkost nízká, takže působí spíš ovocně než hořce. Alkohol (7,6 %) se v něm ale dobře schová.",
    "who": "Fanoušci „juicy“ a NEIPA piv. Kdo má rád ovocné, ale ne hořké.",
    "food": "kořeněná a asijská jídla",
    "caution": "7,6 % alkoholu – je zrádně pitelné."
   },
   "tropical-rocket": {
-   "styleKey": "ipa", "color": "zlata", "group": "ovocne",
+   "styleKey": "ipa",
+   "color": "zlata",
+   "group": "ovocne",
    "tagline": "Sestra Zlaté Rakety s tropickou vůní – jedno z nejsilnějších stálých piv.",
-   "flavors": ["tropické ovoce", "citrusy", "výrazná hořkost"],
+   "flavors": [
+    "tropické ovoce",
+    "citrusy",
+    "výrazná hořkost"
+   ],
    "pitch": "Stejně silná jako Zlatá Raketa (17°, 7 %), liší se skladbou chmelů: Comet, Eldorado, Citra, Amarillo a Cascade. Převládají tropické vůně.",
    "who": "Kdo zná Zlatou Raketu a chce porovnat. Fanoušci silných IPA.",
    "food": "pikantní jídla, grilované maso",
    "caution": "Silné pivo – 7 % alkoholu."
   },
   "voltage": {
-   "styleKey": "juicy", "label": "Juicy Pale Ale", "color": "kal", "group": "ovocne",
+   "styleKey": "juicy",
+   "label": "Juicy Pale Ale",
+   "color": "kal",
+   "group": "ovocne",
    "tagline": "Lehčí sestra High Voltage – stejné množství chmele v dvanáctce.",
-   "flavors": ["marakuja", "ananas", "citrusy"],
+   "flavors": [
+    "marakuja",
+    "ananas",
+    "citrusy"
+   ],
    "pitch": "Do dvanáctky dal pivovar stejně chmele jako do silné High Voltage. Citra a Galaxy dávají výraznou vůni citrusů, marakuji a ananasu. Hořkost je nízká, tělo jemné díky ovesným a pšeničným vločkám.",
    "who": "Kdo nechce hořké, ale chce voňavé. Dobrý tip i pro hosty, kteří pivo moc nepijí.",
    "food": "saláty, ryby, kuřecí"
   },
   "zlata-raketa": {
-   "styleKey": "ipa", "color": "zlata", "group": "ovocne",
+   "styleKey": "ipa",
+   "color": "zlata",
+   "group": "ovocne",
    "tagline": "Silná IPA, která voní a chutná exoticky – stálice Matušky.",
-   "flavors": ["exotické ovoce", "citrusy", "výrazná hořkost"],
+   "flavors": [
+    "exotické ovoce",
+    "citrusy",
+    "výrazná hořkost"
+   ],
    "pitch": "Jedno z nejsilnějších pravidelně vařených piv pivovaru (17°, 7 %). Citra, Cascade a Amarillo jí dávají vůni exotického ovoce. Pivovar sám říká: „Pár Raket a jste v ráji.“",
    "who": "Fanoušci IPA. Kdo zná Raptora a chce něco silnějšího a ovocnějšího.",
    "food": "kari, pikantní kuchyně, burger",
    "caution": "Silné pivo – 7 % alkoholu."
   },
   "broumy": {
-   "styleKey": "polotmavy", "label": "Polotmavý ležák", "color": "jantar", "group": "lezak",
+   "styleKey": "polotmavy",
+   "label": "Polotmavý ležák",
+   "color": "jantar",
+   "group": "lezak",
    "tagline": "Polotmavá dvanáctka podle receptu zakladatele Martina Matušky.",
-   "flavors": ["karamel", "sladové tělo", "jemná hořkost"],
+   "flavors": [
+    "karamel",
+    "sladové tělo",
+    "jemná hořkost"
+   ],
    "pitch": "Poprvé uvařena k oslavě 10 let pivovaru. Měla takový úspěch, že se vaří znovu. Spodně kvašený polotmavý ležák se žateckým chmelem; karamelový slad mu dává jantarovou barvu a sladovou chuť.",
    "who": "Kdo má rád polotmavé nebo „řezané“ pivo, klasiku s trochou sladovosti.",
    "food": "pečená kachna, guláš, uzené"
   },
   "california-lager": {
-   "styleKey": "apl", "color": "zlata", "group": "lezak",
+   "styleKey": "apl",
+   "color": "zlata",
+   "group": "lezak",
    "tagline": "Ležák s vůní Californie – méně hořký, víc aroma.",
-   "flavors": ["citrusy", "čistý ležák", "mírná hořkost"],
+   "flavors": [
+    "citrusy",
+    "čistý ležák",
+    "mírná hořkost"
+   ],
    "pitch": "Vychází z Californie, ale kvasí spodními kvasnicemi – je to tedy ležák. Citra a Cascade dávají citrusovou vůni, český ŽPČ drží základ. Méně hořká varianta s vyšším aroma.",
    "who": "Kdo pije klasiku a chce zkusit něco voňavějšího bez skoku do ALE.",
    "food": "kuřecí, ryby, saláty"
   },
   "desitka": {
-   "styleKey": "lezak", "label": "Světlé výčepní (desítka)", "color": "zlata", "group": "lezak",
+   "styleKey": "lezak",
+   "label": "Světlé výčepní (desítka)",
+   "color": "zlata",
+   "group": "lezak",
    "tagline": "Poctivá desítka vařená na dva rmuty.",
-   "flavors": ["chlebový slad", "bylinný chmel", "pitelná"],
+   "flavors": [
+    "chlebový slad",
+    "bylinný chmel",
+    "pitelná"
+   ],
    "pitch": "Klasické české výčepní. Vaří se na dva rmuty – tradiční český postup, který dává plnější sladovou chuť. Žatecký chmel (ŽPČ a Saaz Special) dodává jemnou bylinnou hořkost.",
    "who": "Kdo chce „normální pivo“ – na víc kousků, k obědu, k fotbalu.",
    "food": "cokoli – řízek, utopenec, nakládaný hermelín"
   },
   "dvanactka": {
-   "styleKey": "lezak", "label": "Světlý ležák (dvanáctka)", "color": "zlata", "group": "lezak",
+   "styleKey": "lezak",
+   "label": "Světlý ležák (dvanáctka)",
+   "color": "zlata",
+   "group": "lezak",
    "tagline": "Jednoduše česká dvanáctka.",
-   "flavors": ["sladový základ", "bylinný chmel", "plná hořkost"],
+   "flavors": [
+    "sladový základ",
+    "bylinný chmel",
+    "plná hořkost"
+   ],
    "pitch": "Klasický český světlý ležák: plzeňský slad a žatecký chmel (ŽPČ a Saaz Special). Plnější a hořčejší než desítka.",
    "who": "Fanoušci klasické české dvanáctky.",
    "food": "česká kuchyně – vepřo knedlo, svíčková"
   },
   "jitrnice-zelena": {
-   "styleKey": "lezak-silny", "label": "Silný ležák (čtrnáctka)", "color": "jantar", "group": "lezak",
+   "styleKey": "lezak-silny",
+   "label": "Silný ležák (čtrnáctka)",
+   "color": "jantar",
+   "group": "lezak",
    "tagline": "Masopustní ležák na sílu – čtrnáctka na zabijačkové hody.",
-   "flavors": ["sladové tělo", "karamel", "bylinný chmel"],
+   "flavors": [
+    "sladové tělo",
+    "karamel",
+    "bylinný chmel"
+   ],
    "pitch": "Pivo hlavně pro období zabijaček a masopustu. Předci věřili, že v masopustu má člověk jíst a pít co nejvíc, aby byl celý rok při síle. Plnější čtrnáctka s mnichovským a karamelovým sladem a českým chmelem.",
    "who": "Ke zabijačkovým specialitám. Kdo chce plnější ležák.",
    "food": "jitrnice, jelita, ovar, tlačenka"
   },
   "knir": {
-   "styleKey": "lezak-silny", "label": "Silný ležák (čtrnáctka)", "color": "jantar", "group": "lezak",
+   "styleKey": "lezak-silny",
+   "label": "Silný ležák (čtrnáctka)",
+   "color": "jantar",
+   "group": "lezak",
    "tagline": "Čtrnáctka na podporu Movember – boje proti rakovině varlat a prostaty.",
-   "flavors": ["sladové tělo", "karamel", "bylinná hořkost"],
+   "flavors": [
+    "sladové tělo",
+    "karamel",
+    "bylinná hořkost"
+   ],
    "pitch": "Spodně kvašený ležák, který pivovar vaří na podporu kampaně Movember. Plnější tělo dává mnichovský a karamelový slad, hořkost český Žatecký a Premiant.",
    "who": "Kdo chce silnější klasický ležák – a k tomu s dobrým účelem.",
    "food": "pečené maso, klobásy"
   },
   "namornik": {
-   "styleKey": "horky-lezak", "color": "jantar", "group": "lezak",
+   "styleKey": "horky-lezak",
+   "color": "jantar",
+   "group": "lezak",
    "tagline": "Drsný ležák – 70 IBU, nic kulatého, nic jemného.",
-   "flavors": ["ostrá hořkost", "sladové tělo", "bylinný chmel"],
+   "flavors": [
+    "ostrá hořkost",
+    "sladové tělo",
+    "bylinný chmel"
+   ],
    "pitch": "Styl si pivovar definoval sám. Jako drsný námořnický rum. Patnáctka s českým chmelem Agnus – nejhořčím českým chmelem – plus Žatecký a americký Columbus. Pivovar varuje: „Pozor na něj, rád hází přes palubu.“",
    "who": "Milovníci hořkosti. Kdo říká, že mu klasika „není dost hořká“.",
    "food": "vepřové koleno, tučné maso, uzené",
    "caution": "Velmi hořké a 6,3 % alkoholu."
   },
   "svetle": {
-   "styleKey": "lezak", "label": "Speciální světlé (pils)", "color": "zlata", "group": "lezak",
+   "styleKey": "lezak",
+   "label": "Speciální světlé (pils)",
+   "color": "zlata",
+   "group": "lezak",
    "tagline": "Speciální světlé – český pils, nejrozšířenější styl piva na světě.",
-   "flavors": ["sladový", "bylinný chmel", "čistý"],
+   "flavors": [
+    "sladový",
+    "bylinný chmel",
+    "čistý"
+   ],
    "pitch": "Ve světě by se jmenovalo Pils nebo Bohemian Pilsner, u nás ten název z právních důvodů použít nejde – proto Speciální světlé. Třináctka s plzeňským a mnichovským sladem a žateckým chmelem.",
    "who": "Kdo chce klasiku s trochu plnějším tělem než dvanáctka.",
    "food": "česká kuchyně, řízek"
   },
   "vanocni": {
-   "styleKey": "doppelbock", "label": "Silný ležák – doppelbock", "color": "jantar", "group": "lezak",
+   "styleKey": "doppelbock",
+   "label": "Silný ležák – doppelbock",
+   "color": "jantar",
+   "group": "lezak",
    "tagline": "Vánoční devatenáctka s českými chmely – silná a sladová.",
-   "flavors": ["karamel", "plné sladové tělo", "hřejivý alkohol"],
+   "flavors": [
+    "karamel",
+    "plné sladové tělo",
+    "hřejivý alkohol"
+   ],
    "pitch": "Na Vánoce vaří Matuška dvě piva ze stejného základu. Tohle je spodně kvašená verze s českými chmely (Žatecký, Premiant, Saaz Special). Plné, sladové, s karamelovým sladem.",
    "who": "Na sváteční posezení. Ke sladkému nebo místo dezertu.",
    "food": "cukroví, kachna, zvěřina",
    "caution": "Silné pivo – 7,8 % alkoholu."
   },
   "wet-hop": {
-   "styleKey": "lezak", "label": "Světlý ležák s čerstvým chmelem", "color": "zlata", "group": "lezak",
+   "styleKey": "lezak",
+   "label": "Světlý ležák s čerstvým chmelem",
+   "color": "zlata",
+   "group": "lezak",
    "tagline": "Světlá třináctka s čerstvým, nesušeným žateckým chmelem – jen jednou ročně.",
-   "flavors": ["svěží zelený chmel", "bylinky", "sladový základ"],
+   "flavors": [
+    "svěží zelený chmel",
+    "bylinky",
+    "sladový základ"
+   ],
    "pitch": "Vychází ze Světlé 13. Pivovar přidal čerstvý hlávkový žatecký chmel přímo ze sklizně – do chmelovaru, whirlpoolu i ke studenému chmelení. Čerstvý chmel má 80 % vody a musí se zpracovat do 24 hodin, proto jde uvařit jen při sklizni (přelom srpna a září).",
    "who": "Kdo má rád český chmel a sezónní speciality.",
    "food": "česká kuchyně, sýry"
   },
   "drevo": {
-   "styleKey": "doppelbock", "label": "Doppelbock zrající na dubu", "color": "jantar", "group": "lezak",
+   "styleKey": "doppelbock",
+   "label": "Doppelbock zrající na dubu",
+   "color": "jantar",
+   "group": "lezak",
    "tagline": "Vánoční doppelbock, který dva měsíce zrál na americkém dubu – bourbon a vanilka.",
-   "flavors": ["dřevo a bourbon", "vanilka", "karamel"],
+   "flavors": [
+    "dřevo a bourbon",
+    "vanilka",
+    "karamel"
+   ],
    "pitch": "Jedno z nejvýjimečnějších piv pivovaru. Základem je 19° Vánoční, které leželo přes dva měsíce v tanku se 240 deskami amerického dubu. Výsledek: dřevité tóny s bourbonem a vanilkou, karamel a jemný říz. Pivovar sám píše: „vzhledem k alkoholu zrádně, nebezpečně pitelné“.",
    "who": "Fanoušci whiskey, sudových piv a silných sladších piv.",
    "food": "dezerty, čokoláda, uzené sýry",
    "caution": "Silné pivo – 7,8 % alkoholu."
   },
   "sunshine": {
-   "styleKey": "sour", "label": "Ovocný kyseláč (Sour Fruited Ale)", "color": "kal", "group": "kysele",
+   "styleKey": "sour",
+   "label": "Ovocný kyseláč (Sour Fruited Ale)",
+   "color": "kal",
+   "group": "kysele",
    "tagline": "Kyselé ovocné léto ve sklenici – ananas, broskev a marakuja.",
-   "flavors": ["ananas a broskev", "marakuja", "osvěživá kyselost"],
+   "flavors": [
+    "ananas a broskev",
+    "marakuja",
+    "osvěživá kyselost"
+   ],
    "pitch": "Kyseláč inspirovaný anglickým pivem Future Sunshine od Pressure Drop Brewing. Ovocné pyré z ananasu, broskve a marakuji a k tomu laktóza, která kyselost zakulatí. Hořkost skoro žádná. Silnější patnáctka se 6 %.",
    "who": "Kdo „nepije pivo“. Fanoušci cideru a ovocných drinků.",
    "food": "dezerty, ovoce, lehké saláty",
    "caution": "Obsahuje laktózu (mléčný cukr) – pozor u intolerance."
   },
   "kysela-mana": {
-   "styleKey": "gose", "label": "Malinové gose", "color": "malina", "group": "kysele",
+   "styleKey": "gose",
+   "label": "Malinové gose",
+   "color": "malina",
+   "group": "kysele",
    "tagline": "Malinové gose se šípkem a špetkou mořské soli.",
-   "flavors": ["maliny", "lehká kyselost", "slaný dotek"],
+   "flavors": [
+    "maliny",
+    "lehká kyselost",
+    "slaný dotek"
+   ],
    "pitch": "Plzeňský a pšeničný slad, maliny, šípek, koriandr a mořská sůl. Velmi svěží, lehce kyselé, malinové ve vůni i v chuti. Pivovar o pitelnosti píše: „Extrémně vysoká!“ Jen 4,4 %.",
    "who": "Kdo chce něco osvěžujícího a nehořkého. Hosté, kteří pivo běžně nepijí.",
    "food": "saláty, kozí sýr, ryby"
   },
   "bila-perla": {
-   "styleKey": "new-broumy", "color": "kal", "group": "psenicne",
+   "styleKey": "new-broumy",
+   "color": "kal",
+   "group": "psenicne",
    "tagline": "Jemné jarní pivo – pomeranč, koření a citrusy, jen 4,2 %.",
-   "flavors": ["pomeranč", "citrusy", "koření"],
+   "flavors": [
+    "pomeranč",
+    "citrusy",
+    "koření"
+   ],
    "pitch": "Kromě ječného sladu je v něm pšeničný a kyselý slad a pomerančová kůra, chmelení je jemné (Perle, Amarillo, Citra a další). Ve vůni čerstvé pomeranče, koření a citrusy, chuť jemná a osvěžující. Není to klasické pšeničné ani witbier – proto vlastní styl New Broumy. Recept vymyslel celý tým pivovaru.",
    "who": "Kdo chce lehké, nehořké a voňavé. Kdo by si jinak dal pšeničné.",
    "food": "saláty, ryby, kuřecí"
   },
   "new-broumy": {
-   "styleKey": "new-broumy", "color": "kal", "group": "ovocne",
+   "styleKey": "new-broumy",
+   "color": "kal",
+   "group": "ovocne",
    "tagline": "Vlastní styl pivovaru: silné chmelové aroma, vyvážená chuť, vysoká pitelnost.",
-   "flavors": ["tropické ovoce", "pomeranč", "jemné tělo"],
+   "flavors": [
+    "tropické ovoce",
+    "pomeranč",
+    "jemné tělo"
+   ],
    "pitch": "Styl, který zastupuje vše, co mají v Broumech rádi. Chmely Azacca, Idaho a Citra, k tomu ječný a pšeničný slad s ovesnými vločkami pro jemnou chuť. Kyselý slad a pomerančová kůra lákají k dalšímu doušku. Pozor: není to pšeničné pivo – pivovar to sám zdůrazňuje.",
    "who": "Fanoušci juicy IPA a ovocných Pale Ale.",
    "food": "asijská kuchyně, kuřecí, tacos"
   },
   "cerna-raketa": {
-   "styleKey": "iba", "color": "tmava", "group": "tmave",
+   "styleKey": "iba",
+   "color": "tmava",
+   "group": "tmave",
    "tagline": "Černá IPA – Matuška ji v Česku uvařil jako první.",
-   "flavors": ["pražený slad", "citrusové chmely", "výrazná hořkost"],
+   "flavors": [
+    "pražený slad",
+    "citrusové chmely",
+    "výrazná hořkost"
+   ],
    "pitch": "Vypadá jako tmavé, voní jako IPA. Pražené slady a k tomu chmely Columbus, Cascade a Amarillo. Pivovar Matuška byl první, kdo tento styl v Česku uvařil.",
    "who": "Kdo se nemůže rozhodnout mezi tmavým a IPA.",
    "food": "grilované maso, BBQ",
    "caution": "Silné pivo – 7 % alkoholu."
   },
   "cert-2": {
-   "styleKey": "black-ale", "color": "tmava", "group": "tmave",
+   "styleKey": "black-ale",
+   "color": "tmava",
+   "group": "tmave",
    "tagline": "Mikulášské tmavé ALE – káva a čokoláda, k tomu vanilka a kokos z chmelů.",
-   "flavors": ["káva a hořká čokoláda", "vanilka a kokos", "pražený konec"],
+   "flavors": [
+    "káva a hořká čokoláda",
+    "vanilka a kokos",
+    "pražený konec"
+   ],
    "pitch": "Víc pražených sladů dává chuť kávy a tmavé čokolády. Zahraniční experimentální chmely přidávají tóny vanilky, bourbonu a kokosu. Po napití pražený, hořký konec. Pivovar: „Prostě po čertech dobré.“ Vaří se na Mikuláše.",
    "who": "Milovníci tmavých piv a kávy.",
    "food": "čokoládové dezerty, pečené maso"
   },
   "robust-stout": {
-   "styleKey": "stout", "label": "Stout (mezi Export a Imperial)", "color": "tmava", "group": "tmave",
+   "styleKey": "stout",
+   "label": "Stout (mezi Export a Imperial)",
+   "color": "tmava",
+   "group": "tmave",
    "tagline": "Velmi plný, čokoládový stout – na pomezí Export a Imperial.",
-   "flavors": ["čokoláda", "pražený slad", "jemná hořkost"],
+   "flavors": [
+    "čokoláda",
+    "pražený slad",
+    "jemná hořkost"
+   ],
    "pitch": "Osmnáctka se 7 %. Velmi plný, čokoládový a jemně hořký. Verze z roku 2021 navíc ležela na americkém dubu (dřevo, bourbon, vanilka) – jestli platí i pro aktuální várku, ověřte u vedoucího.",
    "who": "Kdo má rád Guinness, ale chce víc plnosti.",
    "food": "čokoládový dort, sýry, guláš",
    "caution": "Silné pivo – 7 % alkoholu."
   },
   "stout": {
-   "styleKey": "stout", "color": "tmava", "group": "tmave",
+   "styleKey": "stout",
+   "color": "tmava",
+   "group": "tmave",
    "tagline": "Černý stout s kávově-čokoládovou vůní a plnou hořkou chutí.",
-   "flavors": ["káva", "čokoláda", "intenzivní hořkost"],
+   "flavors": [
+    "káva",
+    "čokoláda",
+    "intenzivní hořkost"
+   ],
    "pitch": "Slovo stout se kdysi používalo prostě pro „silné pivo“. Šestnáctka, černá barva, výrazná kávově-čokoládová vůně a plná, velmi intenzivní hořká chuť.",
    "who": "Milovníci tmavých piv, kávy a hořké čokolády.",
    "food": "dezerty, guláš, pečené maso"
   },
   "tmave": {
-   "styleKey": "tmavy", "label": "Tmavý ležák (Schwarzbier)", "color": "tmava", "group": "tmave",
+   "styleKey": "tmavy",
+   "label": "Tmavý ležák (Schwarzbier)",
+   "color": "tmava",
+   "group": "tmave",
    "tagline": "Tmavé, které není přeslazené – víc chmele, pražené slady.",
-   "flavors": ["pražené slady", "nedoslazené", "příjemná hořkost"],
+   "flavors": [
+    "pražené slady",
+    "nedoslazené",
+    "příjemná hořkost"
+   ],
    "pitch": "Pozor, není to sladké tmavé, jaké lidi znají z hospod: Matuška ho nedoslazuje a chmelí víc, než je u tmavého zvykem. Vychutnáte si pražené slady s příjemnou hořkostí. Podle barvy patří mezi Schwarzbier. Mimochodem: úplně první várka pivovaru v roce 2009 bylo spodně kvašené tmavé pivo.",
    "who": "Kdo má rád tmavé, ale ne přeslazené.",
    "food": "pečené maso, knedlík se zelím, guláš"
   },
   "golden-weizenbock": {
-   "styleKey": "weizenbock", "color": "kal", "group": "psenicne",
+   "styleKey": "weizenbock",
+   "color": "kal",
+   "group": "psenicne",
    "tagline": "Silné pšeničné – „tekutý chléb“ středověkých mnichů.",
-   "flavors": ["pšeničný slad", "karamel", "plné tělo"],
+   "flavors": [
+    "pšeničný slad",
+    "karamel",
+    "plné tělo"
+   ],
    "pitch": "Silnější verze pšeničného piva (16°, 6,8 %). Ve středověku sloužilo pivo tohoto typu v klášterech v období půstu místo jídla. Hořkost minimální.",
    "who": "Fanoušci pšeničných piv, kdo chce něco plnějšího.",
    "food": "bavorská kuchyně, uzené, sýry",
    "caution": "Silné pivo – 6,8 % alkoholu."
   },
   "psenicne": {
-   "styleKey": "weizen", "color": "kal", "group": "psenicne",
+   "styleKey": "weizen",
+   "color": "kal",
+   "group": "psenicne",
    "tagline": "Klasické pšeničné s kvasnicovým zákalem.",
-   "flavors": ["pšenice", "kvasnicové tóny", "jemná hořkost"],
+   "flavors": [
+    "pšenice",
+    "kvasnicové tóny",
+    "jemná hořkost"
+   ],
    "pitch": "Pšeničné patří do vysokého tenkostěnného poháru – podle pivovaru jedině tak si ho vychutnáte. Typický je kvasnicový zákal. Jeden z nejstarších pivních stylů, zmínky jsou už ze středověku.",
    "who": "Kdo chce nehořké a osvěžující.",
    "food": "bílé klobásy, saláty, ryby",
    "tip": "Čepovat do pšeničného poháru."
   },
   "witbier": {
-   "styleKey": "witbier", "color": "kal", "group": "psenicne",
+   "styleKey": "witbier",
+   "color": "kal",
+   "group": "psenicne",
    "tagline": "Lehké belgické pšeničné – zakalené a osvěžující.",
-   "flavors": ["pšenice", "citrusy", "svěží"],
+   "flavors": [
+    "pšenice",
+    "citrusy",
+    "svěží"
+   ],
    "pitch": "Belgický styl, vařil se už ve středověku. Pšenice sladovaná i nesladovaná a ovesné vločky dávají typický zákal. Chmel Citra, hořkost nízká. Lehké osvěžující pivo, hlavně na léto.",
    "who": "Kdo chce lehké, nehořké a svěží.",
    "food": "ryby, mušle, saláty"
   },
   "summer-ale": {
-   "styleKey": "apa", "color": "zlata", "group": "ovocne",
+   "styleKey": "apa",
+   "color": "zlata",
+   "group": "ovocne",
    "tagline": "Letní pivo s citrusovo-pomerančovou vůní.",
-   "flavors": ["pomeranč", "citrusy", "stabilní pěna"],
+   "flavors": [
+    "pomeranč",
+    "citrusy",
+    "stabilní pěna"
+   ],
    "pitch": "Světlá barva, citrusovo-pomerančová vůně z chmelů Citra a Loral a pevná pěna díky troše pšeničného sladu. Pivovar: „Zkrátka pivo na léto, jak má být!“",
    "who": "Kdo chce na léto něco voňavého a pitelného.",
    "food": "grilování, saláty"
   },
   "sv-martin": {
-   "styleKey": "lezak-silny", "label": "Silný ležák (šestnáctka)", "color": "jantar", "group": "lezak",
+   "styleKey": "lezak-silny",
+   "label": "Silný ležák (šestnáctka)",
+   "color": "jantar",
+   "group": "lezak",
    "tagline": "Svatomartinský ležák k huse – vaří se jednou ročně.",
-   "flavors": ["sladový", "karamel", "příjemně chmelový"],
+   "flavors": [
+    "sladový",
+    "karamel",
+    "příjemně chmelový"
+   ],
    "pitch": "Pivo vařené jednou ročně na Sv. Martina. Pivovar ho popisuje jako sladové a příjemně chmelové a doporučuje ho k huse.",
    "who": "Ke svatomartinskému menu. Kdo chce plnější sváteční ležák.",
    "food": "svatomartinská husa, zelí, knedlík"
   },
   "sv-vaclav": {
-   "styleKey": "lezak", "label": "Desítka z čerstvého chmele", "color": "zlata", "group": "lezak",
+   "styleKey": "lezak",
+   "label": "Desítka z čerstvého chmele",
+   "color": "zlata",
+   "group": "lezak",
    "tagline": "Svatováclavská desítka z čerstvého chmele – pro patrona sládků.",
-   "flavors": ["svěží chmel", "bylinky", "lehká"],
+   "flavors": [
+    "svěží chmel",
+    "bylinky",
+    "lehká"
+   ],
    "pitch": "Na sv. Václava, patrona sládků a českého piva, uvařil pivovar desítku z čerstvého hlávkového chmele Saaz Special – skoro 15 kg do jedné várky. Sklizeň je jen jednou ročně, proto je pivo výjimečné svěží vůní i vzácnou dostupností.",
    "who": "Kdo má rád desítku a chce ochutnat sezónní speciál.",
    "food": "česká kuchyně"
   },
   "svoboda": {
-   "styleKey": "lezak", "label": "Ležák s chmely z celého světa", "color": "zlata", "group": "lezak",
+   "styleKey": "lezak",
+   "label": "Ležák s chmely z celého světa",
+   "color": "zlata",
+   "group": "lezak",
    "tagline": "Ležák k výročí Sametové revoluce – suroviny z celého světa.",
-   "flavors": ["tropické ovoce", "citrusy", "čistý ležák"],
+   "flavors": [
+    "tropické ovoce",
+    "citrusy",
+    "čistý ležák"
+   ],
    "pitch": "Sládek Honza Najbrt dostal na tohle pivo svobodnou ruku. Recept je ze surovin z celého světa (chmely z Austrálie, Jižní Afriky, Nového Zélandu a USA). Suroviny se každý rok mění, základ zůstává.",
    "who": "Kdo chce ležák, ale něco neobvyklého.",
    "food": "kuřecí, ryby, saláty",
    "tip": "Chmely se každý rok mění – na kartě jsou podle webu pivovaru."
   },
   "vanocni-ale": {
-   "styleKey": "iipa", "color": "jantar", "group": "ovocne",
+   "styleKey": "iipa",
+   "color": "jantar",
+   "group": "ovocne",
    "tagline": "Vánoční ALE – stejný základ jako Vánoční ležák, ale s americkými chmely.",
-   "flavors": ["citrusy a borovice", "karamel", "silné tělo"],
+   "flavors": [
+    "citrusy a borovice",
+    "karamel",
+    "silné tělo"
+   ],
    "pitch": "Na Vánoce vaří Matuška dvě piva ze stejného základu. Tohle je svrchně kvašená verze s americkými chmely Amarillo a Simcoe (plus Žatecký). Silná devatenáctka.",
    "who": "Kdo má rád IPA a chce sváteční silný kousek.",
    "food": "kachna, zvěřina, sýry",
    "caution": "Silné pivo – 7,8 % alkoholu."
   },
   "wet-hop-california": {
-   "styleKey": "apa", "label": "APA s čerstvým chmelem", "color": "zlata", "group": "ovocne",
+   "styleKey": "apa",
+   "label": "APA s čerstvým chmelem",
+   "color": "zlata",
+   "group": "ovocne",
    "tagline": "California s čerstvým chmelem Cascade – víc šťávy ve vůni.",
-   "flavors": ["grapefruit", "svěží chmel", "citrusy"],
+   "flavors": [
+    "grapefruit",
+    "svěží chmel",
+    "citrusy"
+   ],
    "pitch": "Klasická California, ale navíc s čerstvým (nesušeným) chmelem Cascade a koncentrovaným Cryo Cascade. Oba dodávají pivu pořádnou šťávu, nejvíc znát je ve vůni.",
    "who": "Fanoušci Californie – stejné pivo, ještě voňavější.",
    "food": "burger, nachos"
   },
   "winter-ale": {
-   "styleKey": "ipa", "color": "jantar", "group": "ovocne",
+   "styleKey": "ipa",
+   "color": "jantar",
+   "group": "ovocne",
    "tagline": "Zimní IPA s kořenitou vůní.",
-   "flavors": ["kořenité tóny", "karamelový slad", "výrazná hořkost"],
+   "flavors": [
+    "kořenité tóny",
+    "karamelový slad",
+    "výrazná hořkost"
+   ],
    "pitch": "IPA vařená na zimu, ve vůni dominují spíš kořenité tóny. Chmely Lotus, Loral, český Most a novozélandský Pacific Jade.",
    "who": "Fanoušci IPA, kterým v zimě nesedí letní ovoce.",
    "food": "pečené maso, zvěřina"
   },
   "black-dog": {
-   "styleKey": "pale-ale", "color": "kal", "group": "ovocne",
+   "styleKey": "pale-ale",
+   "color": "kal",
+   "group": "ovocne",
    "tagline": "Svěží Pale Ale s jediným chmelem – Simcoe: bylinky a borovice.",
-   "flavors": ["borovice", "bylinky", "lehká kyselinka"],
+   "flavors": [
+    "borovice",
+    "bylinky",
+    "lehká kyselinka"
+   ],
    "pitch": "Uvařeno s kluky z Black Dogu k jejich narozeninám. Kromě plzeňského je v něm pšeničný a kyselý slad a jediný chmel – Simcoe, který dává bylinné a borovicové tóny. Velmi svěží, mírně zakalené, s lehkou kyselinkou.",
    "who": "Kdo chce lehčí, svěží ALE.",
    "food": "saláty, ryby"
   },
   "raketa-sour": {
-   "styleKey": "sour-ipa", "color": "kal", "group": "kysele",
+   "styleKey": "sour-ipa",
+   "color": "kal",
+   "group": "kysele",
    "tagline": "Zlatá Raketa, která je kyselá – citrusy, svěží kyselost a plné tělo.",
-   "flavors": ["citrusy", "osvěživá kyselost", "plné tělo"],
+   "flavors": [
+    "citrusy",
+    "osvěživá kyselost",
+    "plné tělo"
+   ],
    "pitch": "Stejný základ jako Zlatá Raketa, jen je kyselá. Pro víc vůně přidal pivovar chmel Enigma. Citrusově ovocné, v chuti osvěživě nakyslé, ale přitom velmi plné a silné.",
    "who": "Fanoušci kyseláčů i IPA. Kdo chce něco neobvyklého.",
    "food": "ryby, ceviche, saláty",

@@ -1,0 +1,24 @@
+{
+ "_info": "Piva, která nejsou na webu pivovaru. Stejná struktura jako beers-web.json. Když se pivo objeví na webu pivovaru, má přednost web a záznam odsud lze smazat.",
+ "beers": [
+  {
+   "slug": "florida",
+   "url": "https://www.pivkodomu.cz/pivovar-matuska-florida-10-0-75l-american-pale-ale",
+   "fetched": "2026-10-20",
+   "name": "Florida",
+   "category": "Svrchně kvašená",
+   "description": "Pivo Florida 10° od pivovaru Matuška je svěží American Pale Ale inspirovaný Californií. S chmely Citra a Simcoe dodává jemné ovocné a bylinné tóny. Díky světlému sladu Heidelberg a plzeňskému sladu má světlé tělo a vyšší prokvašení, což ho činí velmi pitelným. (popis z e-shopu pivkodomu.cz)",
+   "attrs": {
+    "styl": "American Pale Ale",
+    "stupňovitost": "10°",
+    "alkohol": "4,2 %",
+    "slad": "Heidelberg (světlý), plzeňský",
+    "chmel": "Citra, Simcoe",
+    "kvašení": "svrchní",
+    "dostupnost": "novinka (není na webu pivovaru)"
+   },
+   "sizes": ["0,75l"],
+   "image": null
+  }
+ ]
+}

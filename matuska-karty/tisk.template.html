@@ -91,7 +91,7 @@ const back = b => `
       <dt>Alergeny</dt><dd>${esc(b.allergens.join(", "))}</dd>
       <dt>Vaří se</dt><dd>${esc(b.availability)}</dd>
     </dl>
-    <div class="src">Údaje: ${esc(b.url.replace("https://www.", ""))} · ${esc(DATA.fetched.split("-").reverse().join(". "))}</div>
+    <div class="src">Údaje: ${esc(b.url.replace("https://www.", "").split("/")[0])}${b.manual ? " (není na webu pivovaru)" : ""} · ${esc(DATA.fetched.split("-").reverse().join(". "))}</div>
   </div>`;
 
 const blank = `<div class="card empty"></div>`;

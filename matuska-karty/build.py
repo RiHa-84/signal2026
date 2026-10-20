@@ -57,7 +57,13 @@ def merge():
     web, texts, tap = load("beers-web.json"), load("texts.json"), load("na-cepu.json")
     styles, gloss, t_beers = texts["styles"], texts["hops"], texts["beers"]
     beers, missing = [], []
-    for b in web["beers"]:
+    web_slugs = {b["slug"] for b in web["beers"]}
+    manual = load("beers-manual.json")["beers"] if os.path.exists(os.path.join(HERE, "beers-manual.json")) else []
+    for m in manual:
+        if m["slug"] in web_slugs:
+            print(f"  ! {m['slug']} už je na webu pivovaru – smažte ho z beers-manual.json", file=sys.stderr)
+    all_beers = web["beers"] + [m for m in manual if m["slug"] not in web_slugs]
+    for b in all_beers:
         t = t_beers.get(b["slug"])
         if not t:
             missing.append(b["slug"])
@@ -76,9 +82,10 @@ def merge():
             "malt": malt, "hops": hop_list(a.get("chmel", ""), gloss),
             "fermentation": a.get("kvašení", ""), "availability": a.get("dostupnost", ""),
             "extra": extra, "allergens": allergens(malt, extra), "description": b["description"],
+            "manual": "fetched" in b,
             **{k: t.get(k) for k in ("color", "group", "tagline", "flavors", "pitch", "who", "food", "caution", "tip")},
         })
-    gone = sorted(set(t_beers) - {b["slug"] for b in web["beers"]})
+    gone = sorted(set(t_beers) - {b["slug"] for b in all_beers})
     unknown_tap = sorted(set(tap["onTap"] + tap.get("sometimes", [])) - {b["slug"] for b in beers})
     return {"fetched": web["fetched"], "source": web["source"], "onTap": tap["onTap"],
             "sometimes": tap.get("sometimes", []),
